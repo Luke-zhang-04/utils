@@ -1,14 +1,16 @@
 {
-  "name": "utils",
+  "name": "@luke-zhang-04/utils",
   "version": "1.0.0",
   "description": "Utility functions that I find myself using a lot",
   "license": "0BSD",
-  "author": "",
+  "author": "Luke Zhang",
   "main": "lib",
   "type": "module",
   "scripts": {
+    "build": "tsc",
     "lint": "eslint --ext ts src --cache",
-    "lint:fix": "eslint --ext ts src --cache --fix"
+    "lint:fix": "eslint --ext ts src --cache --fix",
+    "test": "NODE_ENV=test node --experimental-specifier-resolution=node --experimental-vm-modules ./__tests__/node_modules/jest/bin/jest.js --config ./jest.config.mjs"
   },
   "keywords": [],
   "devDependencies": {
@@ -21,6 +23,7 @@
     "prettier": "^2.3.2",
     "prettier-plugin-jsdoc": "^0.3.23",
     "prettier-plugin-package": "^1.3.0",
+    "tslib": "^2.3.0",
     "typescript": "^4.3.5"
   }
 }

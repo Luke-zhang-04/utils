@@ -1,0 +1,27 @@
+{
+  "name": "utils-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Test suite for utility functions",
+  "license": "0BSD",
+  "author": "Luke Zhang",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "NODE_ENV=test node --experimental-specifier-resolution=node --experimental-vm-modules ./node_modules/jest/bin/jest.js --config ../jest.config.mjs"
+  },
+  "keywords": [],
+  "dependencies": {
+    "@peculiar/webcrypto": "^1.1.7"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.24",
+    "@types/jsdom": "^16.2.13",
+    "jest": "^27.0.6",
+    "jsdom": "^16.6.0",
+    "node-notifier": "^10.0.0",
+    "tslib": "^2.3.0",
+    "typescript": "^4.3.5"
+  }
+}

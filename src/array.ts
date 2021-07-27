@@ -22,6 +22,34 @@ export function* arrayToChunks<T>(array: T[], chunkSize = 3): Generator<T[], voi
 }
 
 /**
+ * Counts items in array that match the predicate
+ *
+ * @param array - Array to count items from
+ * @param predicate- Function to determine if item matches predicate
+ * @param max - Max number of items to count
+ * @returns Number of counted items
+ */
+export const count = <T>(
+    array: T[],
+    predicate: (value: T) => unknown,
+    max = Infinity,
+): number => {
+    let total = 0
+
+    for (const item of array) {
+        if (predicate(item)) {
+            total++
+        }
+
+        if (total >= max) {
+            return total
+        }
+    }
+
+    return total
+}
+
+/**
  * Array.filter equivalent with size limit
  *
  * @template T - Type of values in the array
@@ -32,19 +60,19 @@ export function* arrayToChunks<T>(array: T[], chunkSize = 3): Generator<T[], voi
  */
 export function* filter<T>(
     array: T[],
-    predicate?: (value: T, index: number, array: T[]) => unknown,
+    predicate: (value: T, index: number, array: T[]) => unknown,
     maxSize = Infinity,
 ): Generator<T, void, void> {
     let total = 0
 
     for (const [index, item] of array.entries()) {
-        if (predicate?.(item, index, array)) {
+        if (predicate(item, index, array)) {
             total++
 
             yield item
         }
 
-        if (total > maxSize) {
+        if (total >= maxSize) {
             return
         }
     }
@@ -81,38 +109,10 @@ export function* filterMap<T, K>(
     callbackFn: FilterMapCallback<T, K>,
 ): Generator<K, void, void> {
     for (const [index, item] of array.entries()) {
-        const result = callbackFn?.(item, index)
+        const result = callbackFn(item, index)
 
         if (result.include) {
             yield result.newValue
         }
     }
-}
-
-/**
- * Counts items in array that match the predicate
- *
- * @param array - Array to count items from
- * @param predicate- Function to determine if item matches predicate
- * @param max - Max number of items to count
- * @returns Number of counted items
- */
-export const count = <T>(
-    array: T[],
-    predicate?: (value: T) => unknown,
-    max = Infinity,
-): number => {
-    let total = 0
-
-    for (const item of array) {
-        if (predicate?.(item)) {
-            total++
-        }
-
-        if (total > max) {
-            return total
-        }
-    }
-
-    return total
 }

@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "declaration": false,
+    "tsBuildInfoFile": "./.tsbuildinfo.json",
+    "lib": ["DOM", "es2019", "es2020.promise", "es2020.bigint", "es2020.string"],
+  },
+  "include": ["."]
+}
