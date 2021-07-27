@@ -20,7 +20,7 @@ module.exports = {
         sourceType: "module",
         project: ["./tsconfig.json"],
     },
-    plugins: ["@typescript-eslint", "prefer-arrow"],
+    plugins: ["@typescript-eslint", "prefer-arrow", "prettier"],
     rules: {
         // General ESLint rules
         "arrow-body-style": ["warn", "as-needed"],
@@ -151,6 +151,15 @@ module.exports = {
                 singleReturnOnly: false,
                 classPropertiesAllowed: true,
                 allowStandaloneDeclarations: false,
+            },
+        ],
+
+        // Prettier rules
+        "prettier/prettier": [
+            "warn",
+            {},
+            {
+                usePrettierrc: true,
             },
         ],
     },

@@ -4,6 +4,8 @@
  * 0BSD License
  */
 
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
+
 /**
  * Tries to execute `func` and discards any error that occurs
  *
@@ -76,3 +78,5 @@ export async function inlineTryPromise<T>(
         return
     }
 }
+
+/* eslint-enable prefer-arrow/prefer-arrow-functions */

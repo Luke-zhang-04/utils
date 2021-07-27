@@ -9,7 +9,7 @@
 export const urlEncodeBase64 = (input: string) => {
     const chars = {"+": "-", "/": "_", "=": ""}
 
-    return input.replace(/[\+\/=]/gu, (char) => chars[char as keyof typeof chars])
+    return input.replace(/[+/=]/gu, (char) => chars[char as keyof typeof chars])
 }
 
 /**

@@ -10,7 +10,7 @@
 /**
  * Splits an array into chunks
  *
- * @template T - type of items in the array
+ * @template T - Type of items in the array
  * @param array - Array to split
  * @param chunkSize - Size of array chunks
  * @returns Generator of each chunk
