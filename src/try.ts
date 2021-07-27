@@ -9,6 +9,15 @@
 /**
  * Tries to execute `func` and discards any error that occurs
  *
+ * @example
+ *
+ * ```ts
+ * inlineTry(() => {
+ *     throw new Error("Error!")
+ * }, false) // undefined
+ * inlineTry(() => 1, false) // 1
+ * ```
+ *
  * @template T - Type of data that will be returned by the callback
  * @param func - Callback function
  * @param shouldKeepError - If error should be returned
@@ -17,7 +26,16 @@
 export function inlineTry<T>(func: () => T, shouldKeepError: false): T | undefined
 
 /**
- * Tries to execute `func` and discards any error that occurs
+ * Tries to execute `func` and returns any error that occurs
+ *
+ * @example
+ *
+ * ```ts
+ * inlineTry(() => {
+ *     throw new Error("Error!")
+ * }) // Error: Error!
+ * inlineTry(() => 1, true) // 1
+ * ```
  *
  * @template T - Type of data that will be returned by the callback
  * @param func - Callback function
@@ -41,6 +59,16 @@ export function inlineTry<T>(func: () => T, shouldKeepError = true): T | Error |
 /**
  * Tries to execute and await `func` and discards any error that occurs
  *
+ * @example
+ *
+ * ```ts
+ * await inlineTryPromise(async () => {
+ *     await Promise.resolve()
+ *     throw new Error("Error!")
+ * }, false) // undefined
+ * await inlineTryPromise(async () => await Promise.resolve(1), false) // 1
+ * ```
+ *
  * @template T - Type of data that will be returned by the callback
  * @param func - Callback function
  * @param shouldKeepError - If error should be returned
@@ -52,7 +80,17 @@ export async function inlineTryPromise<T>(
 ): Promise<T | undefined>
 
 /**
- * Tries to execute and await `func` and discards any error that occurs
+ * Tries to execute and await `func` and returns any error that occurs
+ *
+ * @example
+ *
+ * ```ts
+ * await inlineTryPromise(async () => {
+ *     await Promise.resolve()
+ *     throw new Error("Error!")
+ * }) // Error: Error!
+ * await inlineTryPromise(async () => await Promise.resolve(1), true) // 1
+ * ```
  *
  * @template T - Type of data that will be returned by the callback
  * @param func - Callback function

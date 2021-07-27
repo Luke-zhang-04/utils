@@ -10,6 +10,13 @@
 /**
  * Splits an array into chunks
  *
+ * @example
+ *
+ * ```ts
+ * Array.from(arrayToChunks([1, 2, 3, 4, 5, 5])) // [[1, 2, 3], [4, 5, 6]]
+ * Array.from(arrayToChunks([1, 2, 3, 4, 5, 5], 2)) // [[1, 2], [3, 4], [5, 6]]
+ * ```
+ *
  * @template T - Type of items in the array
  * @param array - Array to split
  * @param chunkSize - Size of array chunks
@@ -24,16 +31,22 @@ export function* arrayToChunks<T>(array: T[], chunkSize = 3): Generator<T[], voi
 /**
  * Counts items in array that match the predicate
  *
+ * @example
+ *
+ * ```ts
+ * const array = [true, true, true, false, false, false, false]
+ * count(array, (val) => val) // 3
+ * count(array, (val) => !val) // 4
+ * count(array, (val) => !val, 2) // 2
+ * ```
+ *
+ * @template T - Type of value in the array
  * @param array - Array to count items from
  * @param predicate- Function to determine if item matches predicate
  * @param max - Max number of items to count
  * @returns Number of counted items
  */
-export const count = <T>(
-    array: T[],
-    predicate: (value: T) => unknown,
-    max = Infinity,
-): number => {
+export const count = <T>(array: T[], predicate: (value: T) => unknown, max = Infinity): number => {
     let total = 0
 
     for (const item of array) {
@@ -51,6 +64,14 @@ export const count = <T>(
 
 /**
  * Array.filter equivalent with size limit
+ *
+ * @example
+ *
+ * ```ts
+ * const array = [true, true, true, false, false, false, false]
+ * Array.from(filter(array, (val) => val)) // [true, true, true]
+ * Array.from(filter(array, (val) => val, 2)) // [true, true]
+ * ```
  *
  * @template T - Type of values in the array
  * @param array - Array to filter
@@ -96,6 +117,24 @@ type FilterMapCallback<T, K> = (
 
 /**
  * Map and filter in one loop
+ *
+ * @example
+ *
+ * ```ts
+ * const array = [true, true, true, false, false, false, false]
+ * Array.from(
+ *     filterMap(array, (val, index) => ({
+ *         include: val,
+ *         newValue: index,
+ *     })),
+ * ) // [0, 1, 2]
+ * Array.from(
+ *     filterMap(array, (val, index) => ({
+ *         include: !val,
+ *         newValue: index,
+ *     })),
+ * ) // [3, 4, 5, 6]
+ * ```
  *
  * @template T - Type of original values in the array
  * @template K - Typeof the new, filtered and mapped values
