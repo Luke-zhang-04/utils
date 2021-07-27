@@ -25,11 +25,6 @@ export const hash = async (
     algo: "SHA-1" | "SHA-256" | "SHA-384" | "SHA-512" = "SHA-256",
     enc: "hex" | "base64" = "hex",
 ): Promise<string> => {
-    if (!window.crypto?.subtle) {
-        // Not supported
-        throw new Error("SubtleCrypto cannot be found")
-    }
-
     const encodedData = new TextEncoder().encode(JSON.stringify(data))
     const hashBuffer = await crypto.subtle.digest(algo, encodedData)
     const bytes = new Uint8Array(hashBuffer)
@@ -58,11 +53,6 @@ export const hmacHash = async (
     algo: "SHA-1" | "SHA-256" | "SHA-384" | "SHA-512" = "SHA-256",
     enc: "hex" | "base64" = "hex",
 ): Promise<string> => {
-    if (!window.crypto?.subtle) {
-        // Not supported
-        throw new Error("SubtleCrypto cannot be found")
-    }
-
     const textEncoder = new TextEncoder()
     const encodedSecret = textEncoder.encode(secret)
     const encodedData = textEncoder.encode(JSON.stringify(data))
