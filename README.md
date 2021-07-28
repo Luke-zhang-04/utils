@@ -6,6 +6,8 @@ Included are also wrappers around existing APIs. For example, the Node Crypto AP
 
 ## Installation
 
+Install directly from Github.
+
 "Rolling release"
 
 ```
