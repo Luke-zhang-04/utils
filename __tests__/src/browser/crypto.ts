@@ -8,7 +8,7 @@ import * as crypto from "../../../lib/browser/crypto"
 
 describe("crypto", () => {
     describe("hash", () => {
-        const data = Date.now()
+        const data = Date.now().toString()
 
         describe.each<Parameters<typeof crypto.hash>[1][]>([
             ["SHA-1"],
@@ -35,7 +35,7 @@ describe("crypto", () => {
     })
 
     describe("HMAC hash", () => {
-        const data = Date.now()
+        const data = Date.now().toString()
         const key1 = "key1"
         const key2 = "key2"
 
