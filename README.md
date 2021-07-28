@@ -1,6 +1,6 @@
 # Utilities
 
-Useful utility functions without the bloat of Lodash. Lodash contains many unecessary functions, and have functions which rely on eachother, creating massive bundles even if you only used one function. These utilities are tree-shakeable, independent, and are built with performance in mind. I use these functions in my own projects.
+Useful utility functions without the bloat of Lodash. Lodash contains many unecessary functions, and have functions which rely on eachother, creating massive bundles even if you only used one function. These utilities are tree-shakeable, independent, pure functions and are built with performance in mind. I use these functions in my own projects.
 
 Even though most of these functions are trivial to write, it becomes annoying to have to write them over and over again, so I put them into a repo that can be installed with a package manager.
 
