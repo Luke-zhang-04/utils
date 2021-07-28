@@ -11,7 +11,7 @@ describe("array", () => {
         const testArray = new Array(300).fill(undefined).map((_, index) => index)
 
         it.each([[1], [undefined], [5], [10]])(
-            "should split array into chunks of %d",
+            "should split array into chunks of %s",
             (chunkSize) => {
                 const newArray = Array.from(array.arrayToChunks(testArray, chunkSize))
                 const _chunkSize = chunkSize ?? 3
@@ -53,7 +53,7 @@ describe("array", () => {
 
     describe("filter", () => {
         it.each([[1], [10], [100], [undefined]])(
-            "should an array of booleans up to %d",
+            "should an array of booleans up to %s",
             (filterMax) => {
                 const testArray = new Array(300).fill(undefined).map((_, index) => index % 2 == 0)
                 const testArrayTrueCount = array.count(testArray, (value) => value)
@@ -64,7 +64,7 @@ describe("array", () => {
         )
 
         it.each([[1], [10], [100], [undefined]])(
-            "should an array of booleans up to %d",
+            "should an array of booleans up to %s",
             (filterMax) => {
                 const testArray = new Array(300).fill(undefined).map((_, index) => index)
                 const maxFilterValue = 50

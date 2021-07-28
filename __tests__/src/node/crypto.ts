@@ -17,12 +17,12 @@ describe("crypto", () => {
             ["sha384"],
             ["sha512"],
         ])("hash with %s", (algo) => {
-            it.each<Parameters<typeof crypto.hash>[2][]>([[undefined], ["base64"]])(
+            it.each<Parameters<typeof crypto.hash>[2][]>([["hex"], ["base64"]])(
                 `should hash with ${algo} and %s encoding`,
                 async (enc) => {
-                    const hash1 = crypto.hash(data, algo, enc)
-                    const hash2 = crypto.hash(data, algo, enc)
-                    const hash3 = crypto.hash("abc", algo, enc)
+                    const hash1 = crypto.hash(data, algo, enc === "hex" ? undefined : enc)
+                    const hash2 = crypto.hash(data, algo, enc === "hex" ? undefined : enc)
+                    const hash3 = crypto.hash("abc", algo, enc === "hex" ? undefined : enc)
 
                     // Hashes should be deterministic
                     expect(hash1).toBe(hash2)
@@ -45,13 +45,33 @@ describe("crypto", () => {
             ["sha384"],
             ["sha512"],
         ])("hash with HMAC %s", (algo) => {
-            it.each<Parameters<typeof crypto.hash>[2][]>([[undefined], ["base64"]])(
+            it.each<Parameters<typeof crypto.hash>[2][]>([["hex"], ["base64"]])(
                 `should hash with HMAC ${algo} and %s encoding`,
                 async (enc) => {
-                    const hash1 = crypto.hmacHash(data, algo, key1, enc)
-                    const hash2 = crypto.hmacHash(data, algo, key1, enc)
-                    const hash3 = crypto.hmacHash("abc", algo, key1, enc)
-                    const hash4 = crypto.hmacHash(data, algo, key2, enc)
+                    const hash1 = crypto.hmacHash(
+                        data,
+                        algo,
+                        key1,
+                        enc === "hex" ? undefined : enc,
+                    )
+                    const hash2 = crypto.hmacHash(
+                        data,
+                        algo,
+                        key1,
+                        enc === "hex" ? undefined : enc,
+                    )
+                    const hash3 = crypto.hmacHash(
+                        "abc",
+                        algo,
+                        key1,
+                        enc === "hex" ? undefined : enc,
+                    )
+                    const hash4 = crypto.hmacHash(
+                        data,
+                        algo,
+                        key2,
+                        enc === "hex" ? undefined : enc,
+                    )
 
                     // Hashes should be deterministic
                     expect(hash1).toBe(hash2)
@@ -75,16 +95,46 @@ describe("crypto", () => {
             ["aes-256-cbc", 32],
             ["aes-256-ctr", 32],
         ])("encrypt and decrypt with %s", (algo, keyLength) => {
-            it.each<Parameters<typeof crypto.encrypt>[3]>([undefined, "base64"])(
+            it.each<Parameters<typeof crypto.encrypt>[3]>(["hex", "base64"])(
                 `should encrypt and decrypt with ${algo} using %s encoding`,
                 (enc) => {
                     const key = nodeCrypto
                         .randomBytes(keyLength)
-                        .toString(enc ?? "hex")
+                        .toString("hex")
+                        .slice(0, keyLength)
+                    const badKey = nodeCrypto
+                        .randomBytes(keyLength)
+                        .toString("hex")
                         .slice(0, keyLength)
                     const data = nodeCrypto.randomBytes(256).toString("base64")
-                    const encrypted = crypto.encrypt(data, algo, key, enc)
-                    const decrypted = crypto.decrypt(encrypted, algo, key, enc)
+                    const encrypted = crypto.encrypt(
+                        data,
+                        algo,
+                        key,
+                        enc === "hex" ? undefined : enc,
+                    )
+                    const decrypted = crypto.decrypt(
+                        encrypted,
+                        algo,
+                        key,
+                        enc === "hex" ? undefined : enc,
+                    )
+
+                    // If given a bad key, the decrypt function will throw an error, or return deformed data
+                    let errorOrBadData: string | Error
+
+                    try {
+                        errorOrBadData = crypto.decrypt(encrypted, algo, badKey, enc)
+                    } catch (err: unknown) {
+                        errorOrBadData = err instanceof Error ? err : new Error(String(err))
+                    }
+
+                    if (typeof errorOrBadData === "string") {
+                        expect(errorOrBadData).not.toBe(data)
+                    } else {
+                        expect(errorOrBadData).toBeInstanceOf(Error)
+                        expect(errorOrBadData.message).toContain("bad decrypt")
+                    }
 
                     expect(decrypted).toBe(data)
                 },
