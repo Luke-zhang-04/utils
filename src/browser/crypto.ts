@@ -15,14 +15,6 @@ export const urlEncodeBase64 = (input: string) => {
 /**
  * Hashes data with a SHA algorithm
  *
- * @example
- *
- * ```ts
- * hash("hello!")
- * hash("hello!", "SHA-384", "base64")
- * hash("hello!", "SHA-512", "hex")
- * ```
- *
  * @param data - Data to hash
  * @param algo - Hash algorithm. The only available algorithms are those provided by the `SubtleCrypto` API
  * @param enc - Hash digest encoding types. Only hex and base64 are supported
@@ -48,14 +40,6 @@ export const hash = async (
 
 /**
  * Salts and hashes data with HMAC and a SHA algorithm
- *
- * @example
- *
- * ```ts
- * hmacHash("hello!", "secret")
- * hmacHash("hello!", "secret", "SHA-384", "base64")
- * hmacHash("hello!", "secret", "SHA-512", "hex")
- * ```
  *
  * @param data - Data to hash
  * @param secret - Secret to salt the data with

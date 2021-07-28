@@ -152,7 +152,10 @@ const config = {
     // testLocationInResults: false,
 
     // The glob patterns Jest uses to detect test files
-    testMatch: ["<rootDir>/__tests__/lib/index.js"],
+    testMatch: [
+        "<rootDir>/__tests__/lib/index.js",
+        "<rootDir>/__tests__/lib/{browser,node}/index.js",
+    ],
 
     // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
     // testPathIgnorePatterns: [
