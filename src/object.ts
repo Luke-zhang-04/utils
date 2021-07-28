@@ -26,9 +26,9 @@ export const pick = <T extends {[key: string]: unknown}, K extends (keyof T)[]>(
 ): Pick<T, typeof keys[number]> => {
     const newObj = {} as Pick<T, K[number]>
 
-    for (const [key, value] of Object.entries(obj)) {
-        if (keys.includes(key)) {
-            newObj[key as K[number]] = value as T[K[number]]
+    for (const key of keys) {
+        if (key in obj) {
+            newObj[key] = obj[key]
         }
     }
 
