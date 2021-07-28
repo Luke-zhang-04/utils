@@ -1,6 +1,8 @@
 # Utilities
 
-Useful utility functions without the bloat of Lodash. Built with performance in mind, many of these functions are trivial to write, but have been written with performance in mind. I find myself using these functions a lot.
+Useful utility functions without the bloat of Lodash. Ladash contains many unecessary functions, and have functions which rely on eachother. These utilities are tree-shakeable, independent, and are built with performance in mind. I find myself using these functions often.
+
+Included are also wrappers around existing APIs. For example, the Node Crypto API is hard to use, and requires many steps. The functions in `node/crypto` allow for easy hashing and encryption.
 
 ## Installation
 
