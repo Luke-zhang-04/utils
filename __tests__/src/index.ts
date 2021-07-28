@@ -8,5 +8,6 @@
 import "./array"
 import "./deepEqual"
 import "./object"
+import "./string"
 import "./try"
 import "./typeGuards"

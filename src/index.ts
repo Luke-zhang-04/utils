@@ -8,5 +8,6 @@
 export * from "./array"
 export * from "./deepEqual"
 export * from "./object"
+export * from "./string"
 export * from "./try"
 export * from "./typeGuards"
