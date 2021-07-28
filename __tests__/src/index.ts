@@ -6,6 +6,7 @@
  */
 
 import "./array"
+import "./deepEqual"
 import "./object"
 import "./try"
 import "./typeGuards"

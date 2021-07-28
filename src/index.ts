@@ -6,6 +6,7 @@
  */
 
 export * from "./array"
+export * from "./deepEqual"
 export * from "./object"
 export * from "./try"
 export * from "./typeGuards"
