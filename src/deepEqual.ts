@@ -1,7 +1,9 @@
 /**
- * Utility functions
+ * Utils that check for deep equality
  *
- * 0BSD License
+ * @module
+ * @license 0BSD
+ * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
 // The functions isEqual, isEqualArray, and isEqualObject circularly reference eachother

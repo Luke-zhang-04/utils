@@ -2,7 +2,7 @@
  * Test suite for utility functions
  *
  * @license 0BSD
- * @author Luke Zhang (luke-zhang-04.github.io)
+ * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
 import "./array"

@@ -1,7 +1,11 @@
 /**
- * Leverages the SubtleCrypto API for a straightforward hashing function
+ * Cryptography related utils
  *
- * 0BSD License
+ * Wraps the existing SubtleCrypto API
+ *
+ * @module
+ * @license 0BSD
+ * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
 /// <reference types="typescript/lib/lib.dom"/>

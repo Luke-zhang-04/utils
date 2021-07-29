@@ -1,3 +1,13 @@
+/**
+ * Cryptography related utils
+ *
+ * Wraps the existing Node Crypto API
+ *
+ * @module
+ * @license 0BSD
+ * @author Luke Zhang (https://luke-zhang-04.github.io)
+ */
+
 import crypto from "crypto"
 
 type HashAlgorithms =

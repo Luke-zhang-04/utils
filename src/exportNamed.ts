@@ -2,7 +2,7 @@
  * Utility functions
  *
  * @license 0BSD
- * @author Luke Zhang (luke-zhang-04.github.io)
+ * @author Luke Zhang (https://luke-zhang-04.github.io)
  * @file exports All items into seperate namespaces, plus a default export
  */
 

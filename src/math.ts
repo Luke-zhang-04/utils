@@ -1,7 +1,9 @@
 /**
- * Utility functions
+ * Math related utils
  *
- * 0BSD License
+ * @module
+ * @license 0BSD
+ * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
 /**

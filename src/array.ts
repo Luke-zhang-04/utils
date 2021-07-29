@@ -1,10 +1,9 @@
 /**
- * Utility functions
+ * Array related utils
  *
- * Many of these functions are somewhat trivial to write with native methods, but come with certain
- * performance implications
- *
- * 0BSD License
+ * @module
+ * @license 0BSD
+ * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
 /**
