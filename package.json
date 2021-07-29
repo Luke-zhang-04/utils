@@ -8,6 +8,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
+    "build:prod": "./build.sh",
     "lint": "eslint --ext ts src --cache",
     "lint:fix": "eslint --ext ts src --cache --fix",
     "test": "NODE_ENV=test node --experimental-specifier-resolution=node --experimental-vm-modules ./__tests__/node_modules/jest/bin/jest.js --config ./jest.config.mjs",

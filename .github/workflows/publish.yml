@@ -1,0 +1,67 @@
+name: Publish to package
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    name: "deploy to branch and release"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+          registry-url: "https://registry.npmjs.org"
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.0.2
+
+      - name: install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: build
+        run: pnpm build:prod
+
+      - name: archive files
+        run: tar -czvf utils.tar.gz dist
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ./deStagnate.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: dist
+          folder: dist
+          commit-message: "deploy"
+
+  typedoc:
+    name: "deploy to branch and release"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+          registry-url: "https://registry.npmjs.org"
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.0.2
+
+      - name: typedoc
+        run: pnpm typedoc
+
+      - name: Upload Documentation to Wiki
+        uses: SwiftDocOrg/github-wiki-publish-action@v1
+        with:
+          path: "typedoc-output"
+        env:
+          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}

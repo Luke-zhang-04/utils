@@ -1,0 +1,82 @@
+name: Node.js CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+          registry-url: "https://registry.npmjs.org"
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.0.2
+
+      - name: install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: lint
+        run: pnpm lint
+
+      - name: build
+        run: pnpm build
+
+      - name: buildAll
+        run: pnpm build --recursive
+
+  test:
+    name: test on node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    needs: build
+    strategy:
+      matrix:
+        node: [12.x, 14.x, 16.x]
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+          registry-url: "https://registry.npmjs.org"
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.0.2
+
+      - name: install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: test
+        run: pnpm test
+
+  coverage:
+    name: coverage
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+          registry-url: "https://registry.npmjs.org"
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.0.2
+
+      - name: install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: test coverage
+        uses: paambaati/codeclimate-action@v2.6.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: pnpm test
+          coverageLocations: ${{github.workspace}}/coverage/clover.xml:clover
