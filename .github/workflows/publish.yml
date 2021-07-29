@@ -31,7 +31,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ./deStagnate.tar.gz
+            ./utils.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
