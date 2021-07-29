@@ -1,11 +1,11 @@
 {
   "entryPoints": [
     "src/index.ts",
-    "src/exportAll.ts",
     "src/exportNamed.ts",
-    "src/exportNamedOnly.ts",
     "src/node/index.ts",
-    "src/browser/index.ts"
+    "src/node/exportNamed.ts",
+    "src/browser/index.ts",
+    "src/browser/exportNamed.ts"
   ],
   "out": "typedoc-output",
   "theme": "./node_modules/typedoc-github-wiki-theme/dist",

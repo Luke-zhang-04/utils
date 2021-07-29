@@ -1,5 +1,5 @@
 /**
- * Utility functions
+ * Utility functions the web
  *
  * @module
  * @license 0BSD

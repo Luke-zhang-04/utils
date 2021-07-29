@@ -1,5 +1,5 @@
 /**
- * Utility functions
+ * Utility functions for NodeJS
  *
  * @module
  * @license 0BSD
