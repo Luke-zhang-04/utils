@@ -10,6 +10,8 @@
 
 /// <reference types="typescript/lib/lib.dom"/>
 
+import * as encoding from "./encoding"
+
 /**
  * Hashes data with a SHA algorithm
  *
@@ -28,12 +30,10 @@ export const hash = async (
     const bytes = new Uint8Array(hashBuffer)
 
     if (enc === "hex") {
-        return Array.from(bytes)
-            .map((bite) => bite.toString(16).padStart(2, "0"))
-            .join("") // Hex string
+        return encoding.toHex(bytes)
     }
 
-    return window.btoa(String.fromCharCode(...bytes))
+    return encoding.toBase64(bytes)
 }
 
 /**
@@ -65,10 +65,8 @@ export const hmacHash = async (
     const bytes = new Uint8Array(hashBuffer)
 
     if (enc === "hex") {
-        return Array.from(bytes)
-            .map((bite) => bite.toString(16).padStart(2, "0"))
-            .join("") // Hex string
+        return encoding.toHex(bytes)
     }
 
-    return window.btoa(String.fromCharCode(...bytes))
+    return encoding.toBase64(bytes)
 }
