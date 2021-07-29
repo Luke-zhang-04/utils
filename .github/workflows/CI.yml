@@ -59,6 +59,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: build tests
+        if: ${{ matrix.node != '14.x' }}
         run: pnpm tsc -p __tests__/
 
       - name: test
@@ -70,5 +71,5 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: ";"
+          coverageCommand: "pnpm tsc -p __tests__/"
           coverageLocations: ${{github.workspace}}/coverage/clover.xml:clover
