@@ -1,5 +1,5 @@
 /**
- * Test suite for uility functions
+ * Utility functions
  *
  * 0BSD License
  */

@@ -1,4 +1,10 @@
 /**
+ * Utility functions
+ *
+ * 0BSD License
+ */
+
+/**
  * Recursive implementation of Euclid's GCD algorithm
  *
  * @example

@@ -1,4 +1,10 @@
 /**
+ * Utility functions
+ *
+ * 0BSD License
+ */
+
+/**
  * Capitalizes the first letter of a string
  *
  * @example
