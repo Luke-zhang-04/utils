@@ -40,7 +40,7 @@ jobs:
         with:
           branch: dist
           folder: dist
-          commit-message: "deploy"
+          commit-message: "deploy for ${{ github.sha }}"
 
   typedoc:
     name: "typedoc"
