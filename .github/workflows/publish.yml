@@ -16,7 +16,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - uses: pnpm/action-setup@v2.0.1
         with:
-          version: 6.0.2
+          version: 6.10.3
 
       - name: install deps
         run: pnpm install --frozen-lockfile
@@ -54,7 +54,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - uses: pnpm/action-setup@v2.0.1
         with:
-          version: 6.0.2
+          version: 6.10.3
 
       - name: typedoc
         run: pnpm typedoc

@@ -15,7 +15,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - uses: pnpm/action-setup@v2.0.1
         with:
-          version: 6.0.2
+          version: 6.10.3
 
       - name: install deps
         run: pnpm install --frozen-lockfile
@@ -48,15 +48,15 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - uses: pnpm/action-setup@v2.0.1
         with:
-          version: 6.0.2
-
-      - name: install deps
-        run: pnpm install --frozen-lockfile
+          version: 6.10.3
 
       - uses: actions/download-artifact@v2
         with:
           name: lib
           path: lib
+
+      - name: install deps
+        run: pnpm install --frozen-lockfile
 
       - name: build tests
         run: pnpm tsc -p __tests__/
