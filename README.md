@@ -27,3 +27,7 @@ yarn add Luke-zhang-04/utilities#<Commit hash>
 ```
 
 Make sure the commits are specifically from the dist branch.
+
+## Usage
+
+Visit the [wiki](https://github.com/Luke-zhang-04/utils/wiki) for documentation
