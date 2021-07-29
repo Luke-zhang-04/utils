@@ -7,6 +7,7 @@
 
 import "./array"
 import "./deepEqual"
+import "./math"
 import "./object"
 import "./string"
 import "./try"

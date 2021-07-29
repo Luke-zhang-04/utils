@@ -7,6 +7,7 @@
 
 export * from "./array"
 export * from "./deepEqual"
+export * from "./math"
 export * from "./object"
 export * from "./string"
 export * from "./try"
