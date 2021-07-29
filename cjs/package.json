@@ -5,7 +5,7 @@
   "license": "0BSD",
   "author": "Luke Zhang",
   "main": "./index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "build": "tsc",
     "build:prod": "./build.sh",
