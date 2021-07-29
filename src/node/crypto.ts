@@ -10,6 +10,9 @@
 
 import crypto from "crypto"
 
+// Random number
+const iterations = 2097
+
 type HashAlgorithms =
     | "sha1"
     | "sha256"
@@ -72,24 +75,13 @@ export const hmacHash: HmacHashFunction = (contents, algo, secretKey, format = "
 type EncryptionAlgorithms =
     | "aes-128-cbc"
     | "aes-128-ctr"
-    | "id-aes128-gcm"
+    | "aes-128-gcm"
     | "aes-192-cbc"
     | "aes-192-ctr"
-    | "id-aes192-gcm"
+    | "aes-192-gcm"
     | "aes-256-cbc"
     | "aes-256-ctr"
-    | "id-aes256-gcm"
-
-type EncryptedData = {
-    /**
-     * Initialization vector; required for decryption
-     */
-    iv: string
-    /**
-     * Encrypted data in string form
-     */
-    encryptedData: string
-}
+    | "aes-256-gcm"
 
 // Overload algorithm parameter to allow for autocomplete while allowing different algorithms
 type EncryptionFunction = {
@@ -98,8 +90,8 @@ type EncryptionFunction = {
         algo: EncryptionAlgorithms,
         secretKey: string,
         enc?: BufferEncoding,
-    ): EncryptedData
-    (contents: string, algo: string, secretKey: string, enc?: BufferEncoding): EncryptedData
+    ): Promise<string>
+    (contents: string, algo: string, secretKey: string, enc?: BufferEncoding): Promise<string>
 }
 
 /**
@@ -118,42 +110,55 @@ type EncryptionFunction = {
  *   - AES-256 - 32 bytes
  *
  * @param enc - Encoding for the final data, including the initialization vector and data
- * @returns Object with the initialization vector and encrypted data, encoded according to param enc
+ * @returns Encrypted string
  */
-export const encrypt: EncryptionFunction = (contents, algo, secretKey, enc = "hex") => {
+export const encrypt: EncryptionFunction = async (contents, algo, secretKey, enc = "hex") => {
     const iv = crypto.randomBytes(16)
+
+    if (algo.endsWith("gcm")) {
+        const salt = crypto.randomBytes(64)
+        const key = await new Promise<Buffer>((resolve, reject) => {
+            crypto.pbkdf2(
+                secretKey,
+                salt,
+                iterations,
+                secretKey.length,
+                "sha512",
+                (err, derivedKey) =>
+                    // istanbul ignore next
+                    err ? reject(err) : resolve(derivedKey),
+            )
+        })
+        const cipher = crypto.createCipheriv(algo as crypto.CipherGCMTypes, key, iv)
+        const ciphered = cipher.update(contents)
+        const encrypted = Buffer.concat([ciphered, cipher.final()])
+        const tag = cipher.getAuthTag()
+
+        return Buffer.concat([salt, iv, tag, encrypted]).toString(enc)
+    }
+
     const cipher = crypto.createCipheriv(algo, Buffer.from(secretKey), iv)
     const ciphered = cipher.update(contents)
     const encrypted = Buffer.concat([ciphered, cipher.final()])
 
-    return {
-        iv: iv.toString(enc),
-        encryptedData: encrypted.toString(enc),
-    }
+    return Buffer.concat([iv, encrypted]).toString(enc)
 }
 
 // Overload algorithm parameter to allow for autocomplete while allowing different algorithms
 type DecryptionFunction = {
     (
-        encryptedData: EncryptedData,
+        encryptedData: string,
         algo: EncryptionAlgorithms,
         secretKey: string,
         enc?: BufferEncoding,
-        ivEnc?: BufferEncoding,
-    ): string
-    (
-        encryptedData: EncryptedData,
-        algo: string,
-        secretKey: string,
-        enc?: BufferEncoding,
-        ivEnc?: BufferEncoding,
-    ): string
+    ): Promise<string>
+    (encryptedData: string, algo: string, secretKey: string, enc?: BufferEncoding): Promise<string>
 }
 
 /**
  * Decrypts encryptedData with an initialization vector, algorithm, and secretKey
  *
- * @param encryptedData - Object with `iv` (initialization vector) and the encrypted data in string form
+ * @param encryptedData - String to decrypt
  * @param algo- Algorithm identifier. The algorithm is dependent on the available algorithms
  *   supported by the version of OpenSSL on the platform. `openssl list -cipher-algorithms ` will
  *   display the available cipher algorithms.
@@ -166,21 +171,41 @@ type DecryptionFunction = {
  *   - AES-256 - 32 bytes
  *
  * @param enc - Encoding for the final data, including the initialization vector and data
- * @param ivEnc - If the initialization vector was created with a different encoding, change it
- *   here. This isn't usually needed
  * @returns Object with the decrypted data in string form
  */
-export const decrypt: DecryptionFunction = (
-    encryptedData,
-    algo,
-    secretKey,
-    enc = "hex",
-    ivEnc?,
-) => {
-    // istanbul ignore next
-    const _ivEnc = ivEnc ?? enc
-    const iv = Buffer.from(encryptedData.iv, _ivEnc)
-    const encryptedText = Buffer.from(encryptedData.encryptedData, enc)
+export const decrypt: DecryptionFunction = async (encryptedData, algo, secretKey, enc = "hex") => {
+    const bData = Buffer.from(encryptedData, enc)
+
+    if (algo.endsWith("gcm")) {
+        const salt = bData.slice(0, 64)
+        const iv = bData.slice(64, 80)
+        const tag = bData.slice(80, 96)
+        const encryptedText = bData.slice(96)
+
+        const key = await new Promise<Buffer>((resolve, reject) => {
+            crypto.pbkdf2(
+                secretKey,
+                salt,
+                iterations,
+                secretKey.length,
+                "sha512",
+                (err, derivedKey) =>
+                    // istanbul ignore next
+                    err ? reject(err) : resolve(derivedKey),
+            )
+        })
+        const decipher = crypto.createDecipheriv(algo as crypto.CipherGCMTypes, key, iv)
+
+        decipher.setAuthTag(tag)
+
+        const decrypted = Buffer.concat([decipher.update(encryptedText), decipher.final()])
+
+        return decrypted.toString()
+    }
+
+    const iv = bData.slice(0, 16)
+    const encryptedText = bData.slice(16)
+
     const decipher = crypto.createDecipheriv(algo, Buffer.from(secretKey), iv)
     const deciphered = decipher.update(encryptedText)
     const decrypted = Buffer.concat([deciphered, decipher.final()])
