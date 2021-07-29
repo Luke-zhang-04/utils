@@ -10,12 +10,6 @@
 
 /// <reference types="typescript/lib/lib.dom"/>
 
-export const urlEncodeBase64 = (input: string) => {
-    const chars = {"+": "-", "/": "_", "=": ""}
-
-    return input.replace(/[+/=]/gu, (char) => chars[char as keyof typeof chars])
-}
-
 /**
  * Hashes data with a SHA algorithm
  *
@@ -39,7 +33,7 @@ export const hash = async (
             .join("") // Hex string
     }
 
-    return urlEncodeBase64(window.btoa(String.fromCharCode(...bytes)))
+    return window.btoa(String.fromCharCode(...bytes))
 }
 
 /**
@@ -76,5 +70,5 @@ export const hmacHash = async (
             .join("") // Hex string
     }
 
-    return urlEncodeBase64(window.btoa(String.fromCharCode(...bytes)))
+    return window.btoa(String.fromCharCode(...bytes))
 }
