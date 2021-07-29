@@ -4,7 +4,7 @@
   "description": "Utility functions that I find myself using a lot",
   "license": "0BSD",
   "author": "Luke Zhang",
-  "main": "lib",
+  "main": "./index.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
