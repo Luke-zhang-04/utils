@@ -4,6 +4,9 @@
  * 0BSD License
  */
 
+// The functions isEqual, isEqualArray, and isEqualObject circularly reference eachother
+/* eslint-disable @typescript-eslint/no-use-before-define */
+
 /**
  * Checks if val1 and val2 are equal. Works like lodash isEqual, and is just as fast.
  *
@@ -126,3 +129,5 @@ export const isEqualArray = (
 
     return true
 }
+
+/* eslint-enable @typescript-eslint/no-use-before-define */

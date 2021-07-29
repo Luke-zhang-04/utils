@@ -30,4 +30,4 @@ export const capitalizeFirst = (str: string): string =>
  * @returns String in title case
  */
 export const toTitleCase = (str: string): string =>
-    str.replace(/\w\S*/gu, (text) => (text[0]?.toUpperCase() ?? "") + text.slice(1).toLowerCase())
+    str.replace(/\w\S*/gu, (text) => text[0]!.toUpperCase() + text.slice(1).toLowerCase())

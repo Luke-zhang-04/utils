@@ -3,6 +3,7 @@ import * as string from "../../lib/string"
 describe("string", () => {
     describe("capitalizeFirst", () => {
         it.each([
+            ["", ""],
             ["word", "Word"],
             ["word word", "Word word"],
             ["WORD", "WORD"],
@@ -14,6 +15,7 @@ describe("string", () => {
 
     describe("toTitleCase", () => {
         it.each([
+            ["", ""],
             ["word", "Word"],
             ["word word", "Word Word"],
             ["WORD WORD WORD", "Word Word Word"],
