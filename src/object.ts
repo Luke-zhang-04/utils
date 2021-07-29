@@ -10,8 +10,7 @@
  * @example
  *
  * ```ts
- * const myObject = pick({a: 1, b: 2, c: 3}, "a", "b")
- * console.log(myObject) // {a: 1, b: 2}
+ * pick({a: 1, b: 2, c: 3}, "a", "b") // {a: 1, b: 2}
  * ```
  *
  * @template T - Type of the object to pick items from
@@ -41,8 +40,7 @@ export const pick = <T extends {[key: string]: unknown}, K extends (keyof T)[]>(
  * @example
  *
  * ```ts
- * const myObject = omit({a: 1, b: 2, c: 3}, "a", "b")
- * console.log(myObject) // {c: 3}
+ * omit({a: 1, b: 2, c: 3}, "a", "b") // {c: 3}
  * ```
  *
  * @template T - Type of the object to omit items from
