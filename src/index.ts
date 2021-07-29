@@ -3,12 +3,8 @@
  *
  * @license 0BSD
  * @author Luke Zhang (luke-zhang-04.github.io)
+ * @file exports All items directly into one namespace, plus a default export
  */
 
-export * from "./array"
-export * from "./deepEqual"
-export * from "./math"
-export * from "./object"
-export * from "./string"
-export * from "./try"
-export * from "./typeGuards"
+export * from "./exportAll"
+export * as default from "./exportAll"
