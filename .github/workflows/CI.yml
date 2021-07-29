@@ -59,7 +59,7 @@ jobs:
           path: lib
 
       - name: build tests
-        name: pnpm tsc -p __tests__/
+        run: pnpm tsc -p __tests__/
 
       - name: test
         run: pnpm test
@@ -71,4 +71,3 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageLocations: ${{github.workspace}}/coverage/clover.xml:clover
-
