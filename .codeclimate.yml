@@ -1,0 +1,4 @@
+version: "1" # required to adjust maintainability checks
+exclude_patterns:
+  - "*.config.*"
+  - "./__tests__"
