@@ -107,12 +107,12 @@ type FilterMapCallback<T, K> = (
     index: number,
 ) =>
     | {
-          include: false
-          newValue?: any
+          shouldInclude: false
+          value?: any
       }
     | {
-          include: true
-          newValue: K
+          shouldInclude: true
+          value: K
       }
 
 /**
@@ -124,14 +124,14 @@ type FilterMapCallback<T, K> = (
  * const array = [true, true, true, false, false, false, false]
  * Array.from(
  *     filterMap(array, (val, index) => ({
- *         include: val,
- *         newValue: index,
+ *         shouldInclude: val,
+ *         value: index,
  *     })),
  * ) // [0, 1, 2]
  * Array.from(
  *     filterMap(array, (val, index) => ({
- *         include: !val,
- *         newValue: index,
+ *         shouldInclude: !val,
+ *         value: index,
  *     })),
  * ) // [3, 4, 5, 6]
  * ```
@@ -140,7 +140,7 @@ type FilterMapCallback<T, K> = (
  * @template K - Typeof the new, filtered and mapped values
  * @param array - Array to filter and map
  * @param callbackFn - Callback to call on every item, which should return an object that indicates
- *   whether or not the value should be included, and what the new value is
+ *   whether or not the value should be shouldIncluded, and what the new value is
  * @returns Generator of each item that goes through callbackFn
  */
 export function* filterMap<T, K>(
@@ -150,8 +150,8 @@ export function* filterMap<T, K>(
     for (const [index, item] of array.entries()) {
         const result = callbackFn(item, index)
 
-        if (result.include) {
-            yield result.newValue
+        if (result.shouldInclude) {
+            yield result.value
         }
     }
 }

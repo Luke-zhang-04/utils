@@ -85,8 +85,8 @@ describe("array", () => {
         it("should filter and map array", () => {
             const newArray = Array.from(
                 array.filterMap(testArray, (value, index) => ({
-                    include: value,
-                    newValue: index,
+                    shouldInclude: value,
+                    value: index,
                 })),
             )
 
