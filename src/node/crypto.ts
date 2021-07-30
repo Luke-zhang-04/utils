@@ -113,6 +113,7 @@ type EncryptionFunction = {
 export const deriveKey = async (
     secretKey: string,
     salt: Buffer,
+    // istanbul ignore next
     algorithm: HashAlgorithms = "sha256",
 ): Promise<Buffer> =>
     await new Promise<Buffer>((resolve, reject) => {

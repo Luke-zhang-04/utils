@@ -55,6 +55,19 @@ importers:
       tslib: 2.3.0
       typescript: 4.3.5
 
+  benchmark:
+    specifiers:
+      '@types/benchmark': ^2.1.1
+      '@types/lodash': ^4.14.171
+      benchmark: ^2.1.4
+      lodash: ^4.17.21
+    dependencies:
+      benchmark: 2.1.4
+      lodash: 4.17.21
+    devDependencies:
+      '@types/benchmark': 2.1.1
+      '@types/lodash': 4.14.171
+
 packages:
 
   /@babel/code-frame/7.12.11:
@@ -754,6 +767,10 @@ packages:
       '@babel/types': 7.14.8
     dev: true
 
+  /@types/benchmark/2.1.1:
+    resolution: {integrity: sha512-XmdNOarpSSxnb3DE2rRFOFsEyoqXLUL+7H8nSGS25vs+JS0018bd+cW5Ma9vdlkPmoTHSQ6e8EUFMFMxeE4l+g==}
+    dev: true
+
   /@types/graceful-fs/4.1.5:
     resolution: {integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==}
     dependencies:
@@ -793,6 +810,10 @@ packages:
 
   /@types/json-schema/7.0.8:
     resolution: {integrity: sha512-YSBPTLTVm2e2OoQIDYx8HaeWJ5tTToLH67kXR7zYNGupXMEHa2++G8k+DczX2cFVgalypqtyZIcU19AFcmOpmg==}
+    dev: true
+
+  /@types/lodash/4.14.171:
+    resolution: {integrity: sha512-7eQ2xYLLI/LsicL2nejW9Wyko3lcpN6O/z0ZLHrEQsg280zIdCv1t/0m6UtBjUHokCGBQ3gYTbHzDkZ1xOBwwg==}
     dev: true
 
   /@types/mdast/3.0.7:
@@ -1156,6 +1177,13 @@ packages:
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
+
+  /benchmark/2.1.4:
+    resolution: {integrity: sha1-CfPeMckWQl1JjMLuVloOvzwqVik=}
+    dependencies:
+      lodash: 4.17.21
+      platform: 1.3.6
+    dev: false
 
   /binary-search-bounds/2.0.5:
     resolution: {integrity: sha512-H0ea4Fd3lS1+sTEB2TgcLoK21lLhwEJzlQv3IN47pJS976Gx4zoWe0ak3q+uYh60ppQxg9F16Ri4tS1sfD4+jA==}
@@ -2706,7 +2734,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /lru-cache/5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
@@ -2996,6 +3023,10 @@ packages:
     dependencies:
       find-up: 4.1.0
     dev: true
+
+  /platform/1.3.6:
+    resolution: {integrity: sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg==}
+    dev: false
 
   /prelude-ls/1.1.2:
     resolution: {integrity: sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ=}
