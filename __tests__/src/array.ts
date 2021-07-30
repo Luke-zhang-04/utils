@@ -13,7 +13,7 @@ describe("array", () => {
         it.each([[1], [undefined], [5], [10]])(
             "should split array into chunks of %s",
             (chunkSize) => {
-                const newArray = Array.from(array.arrayToChunks(testArray, chunkSize))
+                const newArray = array.arrayToChunks(testArray, chunkSize)
                 const _chunkSize = chunkSize ?? 3
 
                 expect(newArray[0]).toHaveLength(_chunkSize)
@@ -57,7 +57,7 @@ describe("array", () => {
             (filterMax) => {
                 const testArray = new Array(300).fill(undefined).map((_, index) => index % 2 == 0)
                 const testArrayTrueCount = array.count(testArray, (value) => value)
-                const newArray = Array.from(array.filter(testArray, (value) => value, filterMax))
+                const newArray = array.filter(testArray, (value) => value, filterMax)
 
                 expect(newArray).toHaveLength(Math.min(testArrayTrueCount, filterMax ?? Infinity))
             },
@@ -69,8 +69,10 @@ describe("array", () => {
                 const testArray = new Array(300).fill(undefined).map((_, index) => index)
                 const maxFilterValue = 50
 
-                const newArray = Array.from(
-                    array.filter(testArray, (value) => value < maxFilterValue, filterMax),
+                const newArray = array.filter(
+                    testArray,
+                    (value) => value < maxFilterValue,
+                    filterMax,
                 )
 
                 expect(newArray).toHaveLength(Math.min(maxFilterValue, filterMax ?? Infinity))
@@ -83,12 +85,10 @@ describe("array", () => {
         const testArrayTrueCount = array.count(testArray, (value) => value)
 
         it("should filter and map array", () => {
-            const newArray = Array.from(
-                array.filterMap(testArray, (value, index) => ({
-                    shouldInclude: value,
-                    value: index,
-                })),
-            )
+            const newArray = array.filterMap(testArray, (value, index) => ({
+                shouldInclude: value,
+                value: index,
+            }))
 
             expect(newArray).toHaveLength(testArrayTrueCount)
             expect(newArray[0]).toBe(0)

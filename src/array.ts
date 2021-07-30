@@ -6,6 +6,12 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
+/*
+Notes:
+    - The use of for-loops using indexes is encouraged because of the performance gain involved
+    - Don't use iterators or generators. Just use arrays - they're faster.
+*/
+
 /**
  * Splits an array into chunks
  *
@@ -21,10 +27,14 @@
  * @param chunkSize - Size of array chunks
  * @returns Generator of each chunk
  */
-export function* arrayToChunks<T>(array: T[], chunkSize = 3): Generator<T[], void, void> {
+export const arrayToChunks = <T>(array: T[], chunkSize = 3): T[][] => {
+    const resultArray: T[][] = []
+
     for (let index = 0; index < array.length; index += chunkSize) {
-        yield array.slice(index, index + chunkSize)
+        resultArray.push(array.slice(index, index + chunkSize))
     }
+
+    return resultArray
 }
 
 /**
@@ -48,13 +58,11 @@ export function* arrayToChunks<T>(array: T[], chunkSize = 3): Generator<T[], voi
 export const count = <T>(array: T[], predicate: (value: T) => unknown, max = Infinity): number => {
     let total = 0
 
-    for (const item of array) {
+    for (let index = 0; index < array.length && total < max; index++) {
+        const item = array[index]!
+
         if (predicate(item)) {
             total++
-        }
-
-        if (total >= max) {
-            return total
         }
     }
 
@@ -68,8 +76,8 @@ export const count = <T>(array: T[], predicate: (value: T) => unknown, max = Inf
  *
  * ```ts
  * const array = [true, true, true, false, false, false, false]
- * Array.from(filter(array, (val) => val)) // [true, true, true]
- * Array.from(filter(array, (val) => val, 2)) // [true, true]
+ * filter(array, (val) => val) // [true, true, true]
+ * filter(array, (val) => val, 2) // [true, true]
  * ```
  *
  * @template T - Type of values in the array
@@ -78,24 +86,25 @@ export const count = <T>(array: T[], predicate: (value: T) => unknown, max = Inf
  * @param maxSize - Max number of items in filter; stop after this number is reached
  * @returns Generator of each item that isn't filtered and within the limit
  */
-export function* filter<T>(
+export const filter = <T>(
     array: T[],
     predicate: (value: T, index: number, array: T[]) => unknown,
     maxSize = Infinity,
-): Generator<T, void, void> {
+): T[] => {
     let total = 0
+    const processedArray: T[] = []
 
-    for (const [index, item] of array.entries()) {
+    for (let index = 0; index < array.length && total < maxSize; index++) {
+        const item = array[index]!
+
         if (predicate(item, index, array)) {
             total++
 
-            yield item
-        }
-
-        if (total >= maxSize) {
-            return
+            processedArray.push(item)
         }
     }
+
+    return processedArray
 }
 
 /**
@@ -121,18 +130,16 @@ type FilterMapCallback<T, K> = (
  *
  * ```ts
  * const array = [true, true, true, false, false, false, false]
- * Array.from(
- *     filterMap(array, (val, index) => ({
- *         shouldInclude: val,
- *         value: index,
- *     })),
- * ) // [0, 1, 2]
- * Array.from(
- *     filterMap(array, (val, index) => ({
- *         shouldInclude: !val,
- *         value: index,
- *     })),
- * ) // [3, 4, 5, 6]
+ *
+ * filterMap(array, (val, index) => ({
+ *     shouldInclude: val,
+ *     value: index,
+ * })) // [0, 1, 2]
+ *
+ * filterMap(array, (val, index) => ({
+ *     shouldInclude: !val,
+ *     value: index,
+ * })) // [3, 4, 5, 6]
  * ```
  *
  * @template T - Type of original values in the array
@@ -142,15 +149,17 @@ type FilterMapCallback<T, K> = (
  *   whether or not the value should be shouldIncluded, and what the new value is
  * @returns Generator of each item that goes through callbackFn
  */
-export function* filterMap<T, K>(
-    array: T[],
-    callbackFn: FilterMapCallback<T, K>,
-): Generator<K, void, void> {
-    for (const [index, item] of array.entries()) {
+export const filterMap = <T, K>(array: T[], callbackFn: FilterMapCallback<T, K>): K[] => {
+    const processedArray: K[] = []
+
+    for (let index = 0; index < array.length; index++) {
+        const item = array[index]!
         const result = callbackFn(item, index)
 
         if (result.shouldInclude) {
-            yield result.value
+            processedArray.push(result.value)
         }
     }
+
+    return processedArray
 }
