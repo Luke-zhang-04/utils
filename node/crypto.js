@@ -50,7 +50,9 @@ export const hmacHash = (contents, algo, secretKey, format = "hex") => crypto.cr
  * @param algorithm - Digest algorithm
  * @returns Derived secret key
  */
-export const deriveKey = async (secretKey, salt, algorithm = "sha256") => await new Promise((resolve, reject) => {
+export const deriveKey = async (secretKey, salt, 
+// istanbul ignore next
+algorithm = "sha256") => await new Promise((resolve, reject) => {
     crypto.pbkdf2(secretKey, salt, iterations, secretKey.length, algorithm, (err, derivedKey) => 
     // istanbul ignore next
     err ? reject(err) : resolve(derivedKey));

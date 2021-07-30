@@ -8,6 +8,11 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.filterMap = exports.filter = exports.count = exports.arrayToChunks = void 0;
+/*
+Notes:
+    - The use of for-loops using indexes is encouraged because of the performance gain involved
+    - Don't use iterators or generators. Just use arrays - they're faster.
+*/
 /**
  * Splits an array into chunks
  *
@@ -23,11 +28,13 @@ exports.filterMap = exports.filter = exports.count = exports.arrayToChunks = voi
  * @param chunkSize - Size of array chunks
  * @returns Generator of each chunk
  */
-function* arrayToChunks(array, chunkSize = 3) {
+const arrayToChunks = (array, chunkSize = 3) => {
+    const resultArray = [];
     for (let index = 0; index < array.length; index += chunkSize) {
-        yield array.slice(index, index + chunkSize);
+        resultArray.push(array.slice(index, index + chunkSize));
     }
-}
+    return resultArray;
+};
 exports.arrayToChunks = arrayToChunks;
 /**
  * Counts items in array that match the predicate
@@ -49,12 +56,10 @@ exports.arrayToChunks = arrayToChunks;
  */
 const count = (array, predicate, max = Infinity) => {
     let total = 0;
-    for (const item of array) {
+    for (let index = 0; index < array.length && total < max; index++) {
+        const item = array[index];
         if (predicate(item)) {
             total++;
-        }
-        if (total >= max) {
-            return total;
         }
     }
     return total;
@@ -67,8 +72,8 @@ exports.count = count;
  *
  * ```ts
  * const array = [true, true, true, false, false, false, false]
- * Array.from(filter(array, (val) => val)) // [true, true, true]
- * Array.from(filter(array, (val) => val, 2)) // [true, true]
+ * filter(array, (val) => val) // [true, true, true]
+ * filter(array, (val) => val, 2) // [true, true]
  * ```
  *
  * @template T - Type of values in the array
@@ -77,18 +82,18 @@ exports.count = count;
  * @param maxSize - Max number of items in filter; stop after this number is reached
  * @returns Generator of each item that isn't filtered and within the limit
  */
-function* filter(array, predicate, maxSize = Infinity) {
+const filter = (array, predicate, maxSize = Infinity) => {
     let total = 0;
-    for (const [index, item] of array.entries()) {
+    const processedArray = [];
+    for (let index = 0; index < array.length && total < maxSize; index++) {
+        const item = array[index];
         if (predicate(item, index, array)) {
             total++;
-            yield item;
-        }
-        if (total >= maxSize) {
-            return;
+            processedArray.push(item);
         }
     }
-}
+    return processedArray;
+};
 exports.filter = filter;
 /**
  * Map and filter in one loop
@@ -97,18 +102,16 @@ exports.filter = filter;
  *
  * ```ts
  * const array = [true, true, true, false, false, false, false]
- * Array.from(
- *     filterMap(array, (val, index) => ({
- *         shouldInclude: val,
- *         value: index,
- *     })),
- * ) // [0, 1, 2]
- * Array.from(
- *     filterMap(array, (val, index) => ({
- *         shouldInclude: !val,
- *         value: index,
- *     })),
- * ) // [3, 4, 5, 6]
+ *
+ * filterMap(array, (val, index) => ({
+ *     shouldInclude: val,
+ *     value: index,
+ * })) // [0, 1, 2]
+ *
+ * filterMap(array, (val, index) => ({
+ *     shouldInclude: !val,
+ *     value: index,
+ * })) // [3, 4, 5, 6]
  * ```
  *
  * @template T - Type of original values in the array
@@ -118,13 +121,16 @@ exports.filter = filter;
  *   whether or not the value should be shouldIncluded, and what the new value is
  * @returns Generator of each item that goes through callbackFn
  */
-function* filterMap(array, callbackFn) {
-    for (const [index, item] of array.entries()) {
+const filterMap = (array, callbackFn) => {
+    const processedArray = [];
+    for (let index = 0; index < array.length; index++) {
+        const item = array[index];
         const result = callbackFn(item, index);
         if (result.shouldInclude) {
-            yield result.value;
+            processedArray.push(result.value);
         }
     }
-}
+    return processedArray;
+};
 exports.filterMap = filterMap;
 //# sourceMappingURL=array.js.map

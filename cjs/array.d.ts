@@ -20,7 +20,7 @@
  * @param chunkSize - Size of array chunks
  * @returns Generator of each chunk
  */
-export declare function arrayToChunks<T>(array: T[], chunkSize?: number): Generator<T[], void, void>;
+export declare const arrayToChunks: <T>(array: T[], chunkSize?: number) => T[][];
 /**
  * Counts items in array that match the predicate
  *
@@ -47,8 +47,8 @@ export declare const count: <T>(array: T[], predicate: (value: T) => unknown, ma
  *
  * ```ts
  * const array = [true, true, true, false, false, false, false]
- * Array.from(filter(array, (val) => val)) // [true, true, true]
- * Array.from(filter(array, (val) => val, 2)) // [true, true]
+ * filter(array, (val) => val) // [true, true, true]
+ * filter(array, (val) => val, 2) // [true, true]
  * ```
  *
  * @template T - Type of values in the array
@@ -57,7 +57,7 @@ export declare const count: <T>(array: T[], predicate: (value: T) => unknown, ma
  * @param maxSize - Max number of items in filter; stop after this number is reached
  * @returns Generator of each item that isn't filtered and within the limit
  */
-export declare function filter<T>(array: T[], predicate: (value: T, index: number, array: T[]) => unknown, maxSize?: number): Generator<T, void, void>;
+export declare const filter: <T>(array: T[], predicate: (value: T, index: number, array: T[]) => unknown, maxSize?: number) => T[];
 /**
  * Callback type for the filterMap function
  */
@@ -75,18 +75,16 @@ declare type FilterMapCallback<T, K> = (value: T, index: number) => {
  *
  * ```ts
  * const array = [true, true, true, false, false, false, false]
- * Array.from(
- *     filterMap(array, (val, index) => ({
- *         shouldInclude: val,
- *         value: index,
- *     })),
- * ) // [0, 1, 2]
- * Array.from(
- *     filterMap(array, (val, index) => ({
- *         shouldInclude: !val,
- *         value: index,
- *     })),
- * ) // [3, 4, 5, 6]
+ *
+ * filterMap(array, (val, index) => ({
+ *     shouldInclude: val,
+ *     value: index,
+ * })) // [0, 1, 2]
+ *
+ * filterMap(array, (val, index) => ({
+ *     shouldInclude: !val,
+ *     value: index,
+ * })) // [3, 4, 5, 6]
  * ```
  *
  * @template T - Type of original values in the array
@@ -96,5 +94,5 @@ declare type FilterMapCallback<T, K> = (value: T, index: number) => {
  *   whether or not the value should be shouldIncluded, and what the new value is
  * @returns Generator of each item that goes through callbackFn
  */
-export declare function filterMap<T, K>(array: T[], callbackFn: FilterMapCallback<T, K>): Generator<K, void, void>;
+export declare const filterMap: <T, K>(array: T[], callbackFn: FilterMapCallback<T, K>) => K[];
 export {};
