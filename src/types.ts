@@ -19,3 +19,13 @@ export type Tuple<T, L extends number> = L extends L
 type TupleOf<T, N extends number, R extends unknown[]> = R["length"] extends N
     ? R
     : TupleOf<T, N, [T, ...R]>
+
+/**
+ * Extracts the value of an iterable
+ *
+ * @template T - Iterable to extract value frome
+ */
+export type IterableValue<T extends Iterable<any>> = Exclude<
+    ReturnType<ReturnType<T[typeof Symbol.iterator]>["next"]>,
+    IteratorReturnResult<any>
+>["value"]

@@ -20,37 +20,23 @@ function* generator2(): Generator<number> {
 
 describe("itertools", () => {
     describe("zip", () => {
-        it("should zip iterables", () => {
-            const iterator = itertools.zip<string | number, [Iterable<string>, Iterable<number>]>(
-                generator1(),
-                generator2(),
-            )
+        it.each([
+            [generator1(), generator2()],
+            [generator1(), [1, 2, 3]],
+            [["a", "b"], generator2()],
+            [
+                ["a", "b"],
+                [1, 2, 3],
+            ],
+        ])("should zip iterables", (iterator1, iterator2) => {
+            const iterator = itertools.zip(iterator1, iterator2)
 
             expect(typeof iterator[Symbol.iterator]).toBe("function")
 
             const result = Array.from(iterator)
 
             // @ts-expect-error
-            result[0]?.[3]
-
-            expect(result).toBeInstanceOf(Array)
-            expect(
-                isEqualArray(result, [
-                    ["a", 1],
-                    ["b", 2],
-                ]),
-            ).toBe(true)
-        })
-
-        it("should zip arrays", () => {
-            const iterator = itertools.zip(["a", "b"], [1, 2, 3])
-
-            expect(typeof iterator[Symbol.iterator]).toBe("function")
-
-            const result = Array.from(iterator)
-
-            // @ts-expect-error
-            result[0]?.[3]
+            result[0]?.[2]
 
             expect(result).toBeInstanceOf(Array)
             expect(
