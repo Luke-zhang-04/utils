@@ -125,7 +125,7 @@ module.exports = {
             },
         ],
         "@typescript-eslint/no-unnecessary-boolean-literal-compare": "warn",
-        "@typescript-eslint/prefer-for-of": "warn",
+        "@typescript-eslint/prefer-for-of": "off",
         "@typescript-eslint/prefer-function-type": "warn",
         "@typescript-eslint/prefer-optional-chain": "warn",
 

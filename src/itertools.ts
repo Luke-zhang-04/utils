@@ -45,12 +45,8 @@ export function* zip<T, K extends Iterable<T>[] = Iterable<T>[]>(
 
         if (results.some((result) => result.done)) {
             return
-        } else {
-            yield results.map((result) => result.value) as Tuple<
-                IterableValue<K[number]>,
-                K["length"]
-            >
         }
+        yield results.map((result) => result.value) as Tuple<IterableValue<K[number]>, K["length"]>
     }
 }
 
