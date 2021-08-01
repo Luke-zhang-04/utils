@@ -20,9 +20,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./array"), exports);
 __exportStar(require("./deepEqual"), exports);
+__exportStar(require("./itertools"), exports);
 __exportStar(require("./math"), exports);
 __exportStar(require("./object"), exports);
 __exportStar(require("./string"), exports);
 __exportStar(require("./try"), exports);
 __exportStar(require("./typeGuards"), exports);
+__exportStar(require("./types"), exports);
 //# sourceMappingURL=exportAll.js.map

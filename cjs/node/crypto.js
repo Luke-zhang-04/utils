@@ -122,10 +122,12 @@ exports.encrypt = encrypt;
 const decrypt = async (encryptedData, algo, secretKey, enc = "hex") => {
     const bData = Buffer.from(encryptedData, enc);
     if (algo.endsWith("gcm")) {
+        /* eslint-disable @typescript-eslint/no-magic-numbers */
         const salt = bData.slice(0, 64);
         const iv = bData.slice(64, 80);
         const tag = bData.slice(80, 96);
         const encryptedText = bData.slice(96);
+        /* eslint-enable @typescript-eslint/no-magic-numbers */
         const key = await exports.deriveKey(secretKey, salt, "sha512");
         const decipher = crypto_1.default.createDecipheriv(algo, key, iv);
         decipher.setAuthTag(tag);

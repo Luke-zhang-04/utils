@@ -6,6 +6,35 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 /**
+ * Check if object like (`typeof object` and not null)
+ *
+ * @example
+ *
+ * ```ts
+ * isErrorLike({}) // True
+ * isErrorLike(/regex/) // True
+ * isErrorLike(new Date()) // True
+ * isErrorLike("string") // False
+ *
+ * // Works as a typguard
+ * const something = {} as unknown
+ *
+ * if (isObject(something)) {
+ *     // No Typescript error
+ *     console.log(something.property)
+ * }
+ *
+ * if (typeof something === "object" && something !== null) {
+ *     // Property 'property' does not exist on type 'object'. ts(2339)
+ *     console.log(something.property)
+ * }
+ * ```
+ *
+ * @param obj - Object to check
+ * @returns If object is error-like
+ */
+export const isObject = (obj) => typeof obj === "object" && obj !== null;
+/**
  * Check if error like (i.e has the name and message properties, both of which are strings)
  *
  * @example
@@ -27,8 +56,5 @@
  * @param obj - Object to check
  * @returns If object is error-like
  */
-export const isErrorLike = (obj) => typeof obj === "object" &&
-    obj !== null &&
-    typeof obj.message === "string" &&
-    typeof obj.name === "string";
+export const isErrorLike = (obj) => isObject(obj) && typeof obj.message === "string" && typeof obj.name === "string";
 //# sourceMappingURL=typeGuards.js.map
