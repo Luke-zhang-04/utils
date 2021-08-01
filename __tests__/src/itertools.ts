@@ -28,8 +28,8 @@ describe("itertools", () => {
                 ["a", "b"],
                 [1, 2, 3],
             ],
-        ])("should zip iterables", (iterator1, iterator2) => {
-            const iterator = itertools.zip(iterator1, iterator2)
+        ])("should zip iterables", (iterable1, iterable2) => {
+            const iterator = itertools.zip(iterable1, iterable2)
 
             expect(typeof iterator[Symbol.iterator]).toBe("function")
 
@@ -63,6 +63,44 @@ describe("itertools", () => {
                     ["b", 2, "b", 2],
                 ]),
             ).toBe(true)
+        })
+    })
+
+    describe("chain", () => {
+        it.each([
+            [generator1(), generator2()],
+            [generator1(), [1, 2, 3]],
+            [["a", "b"], generator2()],
+            [
+                ["a", "b"],
+                [1, 2, 3],
+            ],
+        ])("should chain iterables", (iterable1, iterable2) => {
+            const iterator = itertools.chain(iterable1, iterable2)
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            let _test: string | number = result[0]!
+
+            _test
+
+            expect(isEqualArray(result, ["a", "b", 1, 2, 3])).toBe(true)
+        })
+
+        it("should chain iterables", () => {
+            const iterator = itertools.chain(generator1(), generator2(), ["a", "b"], [1, 2, 3])
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            let _test: string | number = result[0]!
+
+            _test
+
+            expect(isEqualArray(result, ["a", "b", 1, 2, 3, "a", "b", 1, 2, 3])).toBe(true)
         })
     })
 })
