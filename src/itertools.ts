@@ -55,7 +55,9 @@ export function* zip<T, K extends Iterable<T>[] = Iterable<T>[]>(
 }
 
 /**
- * Chains `iterables` together into one iterable
+ * Chains `iterables` together into one iterable, from the first iterable until it is exhausted,
+ * then proceeds to the next iterable, until all of the iterables are exhausted. Used for treating
+ * consecutive sequences as a single sequence.
  *
  * Based on [Python's `itertools.chain`
  * function](https://docs.python.org/3/library/itertools.html#itertools.chain)
