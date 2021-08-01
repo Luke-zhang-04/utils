@@ -7,6 +7,7 @@
 
 import "./array"
 import "./deepEqual"
+import "./itertools"
 import "./math"
 import "./object"
 import "./random"
