@@ -158,3 +158,33 @@ export function* accumulate<K extends Iterable<number> = Iterable<number>>(
         yield val
     }
 }
+
+/**
+ * Make an iterator that yields `item` over and over again. Runs indefinitely unless the `times`
+ * argument is specified.
+ *
+ * Based on [Pythons `itertools.repeat`
+ * function](https://docs.python.org/3/library/itertools.html#itertools.repeat)
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(repeat(10, 3)) // [10, 10, 10]
+ * Array.from(zip([1, 2, 3], repeat(10))) // [[1, 10], [2, 10], [3, 10]]
+ * ```
+ *
+ * @param item - Item to repeat
+ * @param times - Number of times to repeat `item`, or `undefined` for indefinite repeat
+ * @returns Generator of `item` until `times` is reached
+ */
+export function* repeat<T>(item: T, times?: number | undefined): Generator<T, void, void> {
+    if (times === undefined) {
+        while (true) {
+            yield item
+        }
+    } else {
+        for (let amt = 0; amt < times; amt++) {
+            yield item
+        }
+    }
+}

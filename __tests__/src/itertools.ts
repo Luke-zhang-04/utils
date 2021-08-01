@@ -107,13 +107,13 @@ describe("itertools", () => {
     describe("accumulate", () => {
         it.each<[...Parameters<typeof itertools["accumulate"]>, number[]]>([
             [[1, 2, 3, 4, 5], undefined, undefined, [1, 3, 6, 10, 15]],
-            [[1, 2, 3, 4, 5], (prev, cur) => prev + cur + 1, undefined, [1, 4, 8, 13, 18]],
+            [[1, 2, 3, 4, 5], (prev, cur) => prev + cur + 1, undefined, [1, 4, 8, 13, 19]],
             [[1, 2, 3, 4, 5], "+", undefined, [1, 3, 6, 10, 15]],
-            [[1, 2, 3, 4, 5], "-", undefined, [1, -1, -4, -7, -12]],
+            [[1, 2, 3, 4, 5], "-", undefined, [1, -1, -4, -8, -13]],
             [[1, 2, 3, 4, 5], "*", undefined, [1, 2, 6, 24, 120]],
             [[100, 10, 5, 2], "/", undefined, [100, 10, 2, 1]],
-            [[100, 12, 10, 2], "%", undefined, [100, 4, 2, 0]],
-            [[2, 2, 3], "**", undefined, [2, 4, 256]],
+            [[100, 12, 10, 2], "%", undefined, [100, 4, 4, 0]],
+            [[2, 2, 3], "**", undefined, [2, 4, 64]],
             [[1, 2, 3, 4, 5], undefined, 10, [10, 11, 13, 16, 20, 25]],
         ])("should accumulate iterables", (iterable, operator, initial, expected) => {
             const iterator = itertools.accumulate(iterable, operator, initial)
@@ -122,7 +122,38 @@ describe("itertools", () => {
 
             const result = Array.from(iterator)
 
-            expect(isEqualArray(result, expected))
+            expect(isEqualArray(result, expected)).toBe(true)
+        })
+    })
+
+    describe("repeat", () => {
+        it.each([
+            [10, 20, new Array(20).fill(10)],
+            ["str", 10, new Array(10).fill("str")],
+        ])("should repeat item", (item, times, expected) => {
+            const iterator = itertools.repeat(item, times)
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            expect(isEqualArray(result, expected)).toBe(true)
+        })
+
+        it("should repeat indefinetly", () => {
+            const iterator = itertools.zip(generator2(), itertools.repeat("item"))
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            expect(
+                isEqualArray(result, [
+                    [1, "item"],
+                    [2, "item"],
+                    [3, "item"],
+                ]),
+            ).toBe(true)
         })
     })
 })
