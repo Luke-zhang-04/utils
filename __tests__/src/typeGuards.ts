@@ -7,8 +7,48 @@
 import * as typeguards from "../../lib/typeGuards"
 
 describe("typeguards", () => {
+    describe("isObject", () => {
+        it.each<unknown>([[{}], new Date(), new String(), new Number(), /regex/u])(
+            "should be object",
+            (object) => {
+                const isObject = typeguards.isObject(object)
+
+                expect(isObject).toBe(true)
+
+                if (typeguards.isObject(object)) {
+                    expect(typeof object).toBe("object")
+
+                    object.toString
+                } else {
+                    // @ts-expect-error
+                    object.toString
+                }
+            },
+        )
+
+        it.each<unknown>([[5], ["string"], [true], [null], [undefined], [NaN]])(
+            "should not be object",
+            (object) => {
+                const isObject = typeguards.isObject(object)
+
+                expect(isObject).toBe(false)
+
+                if (!typeguards.isObject(object)) {
+                    // @ts-expect-error
+                    object?.toString
+
+                    if (object !== null) {
+                        expect(typeof object).not.toBe("object")
+                    }
+                } else {
+                    object.toString
+                }
+            },
+        )
+    })
+
     describe("isErrorLike", () => {
-        it.each<{}>([[{name: "name", message: "Error!"}], [new Error("Error!")]])(
+        it.each<unknown>([[{name: "name", message: "Error!"}], [new Error("Error!")]])(
             "should be error like",
             (error) => {
                 const isErrorLike = typeguards.isErrorLike(error)
@@ -27,7 +67,7 @@ describe("typeguards", () => {
             },
         )
 
-        it.each<{}>([[{}], [{name: "error", message: undefined}], [0], [""]])(
+        it.each<unknown>([[{}], [{name: "error", message: undefined}], [0], [""]])(
             "should not be error like",
             (error) => {
                 const isErrorLike = typeguards.isErrorLike(error)
