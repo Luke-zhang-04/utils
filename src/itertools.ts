@@ -201,7 +201,6 @@ export function* repeat<T>(item: T, times?: number | undefined): Generator<T, vo
  *
  * ```ts
  * Array.from(zip([1, 2, 3], cycle("abc"))) // [[1, "a"], [2, "b"], [3, "c"]]
- *
  * Array.from(cycle([1, 2, 3])) // [1, 2, 3, 1, 2, 3, 1, 2, 3 ...(forever)]
  * ```
  *
@@ -223,5 +222,35 @@ export function* cycle<T, K extends Iterable<T> = Iterable<T>>(
         for (let index = 0; index < saved.length; index++) {
             yield saved[index]!
         }
+    }
+}
+
+/**
+ * Make an iterator that returns evenly spaced values `step` apart starting with number `start`
+ *
+ * Based on [Python's `itertools.count`
+ * function](https://docs.python.org/3/library/itertools.html#itertools.count)
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(zip([1, 2, 3], increment())) // [[1, 1], [2, 2], [3, 3]]
+ * Array.from(increment()) // [0, 1, 2, 3, 4, ...(forever)]
+ * Array.from(increment(10, 2)) // [10, 12, 14, 16, ...(forever)]
+ * ```
+ *
+ * @param start - Start number
+ * @param step - Amount to increment
+ * @returns Generator of evenly spaced values `step` apart starting with number `start`
+ */
+export function* increment(start = 0, step = 1): Generator<number, void, void> {
+    let current = start
+
+    yield current
+
+    while (true) {
+        current += step
+
+        yield current
     }
 }

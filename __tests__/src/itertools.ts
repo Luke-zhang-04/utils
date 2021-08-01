@@ -190,4 +190,38 @@ describe("itertools", () => {
             expect(isEqualArray(result, expected)).toBe(true)
         })
     })
+
+    describe("increment", () => {
+        it.each([
+            [
+                itertools.repeat(10, 5),
+                [],
+                [
+                    [10, 0],
+                    [10, 1],
+                    [10, 2],
+                    [10, 3],
+                    [10, 4],
+                ],
+            ],
+            [
+                [1, 2, 3, 4],
+                [10, -1],
+                [
+                    [1, 10],
+                    [2, 9],
+                    [3, 8],
+                    [4, 7],
+                ],
+            ],
+        ])("should create incremental values", (iterable1, incrementArgs, expected) => {
+            const iterator = itertools.zip(iterable1, itertools.increment(...incrementArgs))
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            expect(isEqualArray(result, expected)).toBe(true)
+        })
+    })
 })
