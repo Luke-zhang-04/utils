@@ -9,8 +9,10 @@
 
 export * as array from "./array"
 export * as deepEqual from "./deepEqual"
+export * as iter from "./itertools"
 export * as math from "./math"
 export * as object from "./object"
 export * as string from "./string"
 export * as try from "./try"
 export * as typeGuards from "./typeGuards"
+export * as types from "./types"
