@@ -103,4 +103,26 @@ describe("itertools", () => {
             expect(isEqualArray(result, ["a", "b", 1, 2, 3, "a", "b", 1, 2, 3])).toBe(true)
         })
     })
+
+    describe("accumulate", () => {
+        it.each<[...Parameters<typeof itertools["accumulate"]>, number[]]>([
+            [[1, 2, 3, 4, 5], undefined, undefined, [1, 3, 6, 10, 15]],
+            [[1, 2, 3, 4, 5], (prev, cur) => prev + cur + 1, undefined, [1, 4, 8, 13, 18]],
+            [[1, 2, 3, 4, 5], "+", undefined, [1, 3, 6, 10, 15]],
+            [[1, 2, 3, 4, 5], "-", undefined, [1, -1, -4, -7, -12]],
+            [[1, 2, 3, 4, 5], "*", undefined, [1, 2, 6, 24, 120]],
+            [[100, 10, 5, 2], "/", undefined, [100, 10, 2, 1]],
+            [[100, 12, 10, 2], "%", undefined, [100, 4, 2, 0]],
+            [[2, 2, 3], "**", undefined, [2, 4, 256]],
+            [[1, 2, 3, 4, 5], undefined, 10, [10, 11, 13, 16, 20, 25]],
+        ])("should accumulate iterables", (iterable, operator, initial, expected) => {
+            const iterator = itertools.accumulate(iterable, operator, initial)
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            expect(isEqualArray(result, expected))
+        })
+    })
 })

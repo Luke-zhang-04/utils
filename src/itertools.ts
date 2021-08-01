@@ -92,3 +92,71 @@ export function* chain<T, K extends Iterable<T>[] = Iterable<T>[]>(
         }
     }
 }
+
+type Operators = ((prev: number, current: number) => number) | "+" | "-" | "*" | "/" | "%" | "**"
+
+/**
+ * Make an iterator that returns accumulated sums, or accumulated results of other binary functions
+ * (specified via the optional func argument).
+ *
+ * Based on [Python's `itertools.accumulate`
+ * function](https://docs.python.org/3/library/itertools.html#itertools.accumulate)
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(accumulate([1, 2, 3, 4, 5])) // [1, 3, 6, 10, 15]
+ * Array.from(accumulate([1, 2, 3, 4, 5], undefined, 100)) // [100, 101, 103, 106, 110, 115]
+ * Array.from(accumulate([1, 2, 3, 4, 5], (prev, current) => prev * current)) // [1, 2, 6, 24, 120]
+ * Array.from(accumulate([1, 2, 3, 4, 5], "*") // [1, 2, 6, 24, 120]
+ * ```
+ *
+ * @param iterable - Iterable to accumulate values of
+ * @param operator - Optional function that specifies the way items should be accumulated, or an
+ *   arithmetic operator in string form to apply
+ * @param initial - Initial value to accumulate from, which is yielded once at the beginning if defined
+ * @returns - Generator of each item of `iterable`, each item accumulated from the previous values
+ */
+export function* accumulate<K extends Iterable<number> = Iterable<number>>(
+    iterable: K,
+    operator: Operators = "+",
+    initial?: number,
+): Generator<number, void, void> {
+    let val: number | undefined = initial
+
+    if (initial !== undefined) {
+        yield initial
+    }
+
+    for (const item of iterable) {
+        if (val === undefined) {
+            val = item
+        } else {
+            switch (operator) {
+                case "+":
+                    val += item
+                    break
+                case "-":
+                    val -= item
+                    break
+                case "*":
+                    val *= item
+                    break
+                case "/":
+                    val /= item
+                    break
+                case "%":
+                    val %= item
+                    break
+                case "**":
+                    val **= item
+                    break
+                default:
+                    val = operator(val, item)
+                    break
+            }
+        }
+
+        yield val
+    }
+}
