@@ -38,11 +38,29 @@ describe("itertools", () => {
             // @ts-expect-error
             result[0]?.[2]
 
-            expect(result).toBeInstanceOf(Array)
             expect(
                 isEqualArray(result, [
                     ["a", 1],
                     ["b", 2],
+                ]),
+            ).toBe(true)
+        })
+
+        it("should zip iterables", () => {
+            const iterator = itertools.zip(generator1(), generator2(), ["a", "b"], [1, 2, 3])
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            // @ts-expect-error
+            result[0]?.[4]
+            result[0]?.[3]
+
+            expect(
+                isEqualArray(result, [
+                    ["a", 1, "a", 1],
+                    ["b", 2, "b", 2],
                 ]),
             ).toBe(true)
         })
