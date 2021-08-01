@@ -46,6 +46,7 @@ export function* zip<T, K extends Iterable<T>[] = Iterable<T>[]>(
         if (results.some((result) => result.done)) {
             return
         }
+
         yield results.map((result) => result.value) as Tuple<IterableValue<K[number]>, K["length"]>
     }
 }
@@ -185,6 +186,42 @@ export function* repeat<T>(item: T, times?: number | undefined): Generator<T, vo
     } else {
         for (let amt = 0; amt < times; amt++) {
             yield item
+        }
+    }
+}
+
+/**
+ * Make an iterator returning elements from the iterable and saving a copy of each. When the
+ * iterable is exhausted, return elements from the saved copy. Repeats indefinitely.
+ *
+ * Based on [Python's `itertools.cycle`
+ * function](https://docs.python.org/3/library/itertools.html#itertools.cycle)
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(zip([1, 2, 3], cycle("abc"))) // [[1, "a"], [2, "b"], [3, "c"]]
+ *
+ * Array.from(cycle([1, 2, 3])) // [1, 2, 3, 1, 2, 3, 1, 2, 3 ...(forever)]
+ * ```
+ *
+ * @param iterable - Iterable to cycle through
+ * @returns Generator of the elements of `iterable`
+ */
+export function* cycle<T, K extends Iterable<T> = Iterable<T>>(
+    iterable: K,
+): Generator<IterableValue<K>, void, void> {
+    const saved: IterableValue<K>[] = []
+
+    for (const item of iterable) {
+        saved.push(item)
+
+        yield item
+    }
+
+    while (true) {
+        for (let index = 0; index < saved.length; index++) {
+            yield saved[index]!
         }
     }
 }

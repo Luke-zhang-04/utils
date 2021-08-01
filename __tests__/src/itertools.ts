@@ -156,4 +156,38 @@ describe("itertools", () => {
             ).toBe(true)
         })
     })
+
+    describe("cycle", () => {
+        it.each([
+            [
+                itertools.repeat(10, 5),
+                ["a", "b", "c"],
+                [
+                    [10, "a"],
+                    [10, "b"],
+                    [10, "c"],
+                    [10, "a"],
+                    [10, "b"],
+                ],
+            ],
+            [
+                [1, 2, 3, 4],
+                generator1(),
+                [
+                    [1, "a"],
+                    [2, "b"],
+                    [3, "a"],
+                    [4, "b"],
+                ],
+            ],
+        ])("should cycle through iterator", (iterable1, iterable2, expected) => {
+            const iterator = itertools.zip(iterable1, itertools.cycle(iterable2))
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            expect(isEqualArray(result, expected)).toBe(true)
+        })
+    })
 })
