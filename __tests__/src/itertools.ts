@@ -249,4 +249,29 @@ describe("itertools", () => {
             expect(isEqualArray(result, expected)).toBe(true)
         })
     })
+
+    describe("dropWhile", () => {
+        it.each([
+            [[1, 4, 6, 4, 1], (val: number) => val < 5, [6, 4, 1]],
+            [generator2(), (val: number) => val !== 2, [2, 3]],
+        ])("should drop data until predicate is true", (iterable, predicate, expected) => {
+            const iterator = itertools.dropWhile(iterable, predicate)
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            expect(isEqualArray(result, expected)).toBe(true)
+        })
+
+        it("should drop data until predicate is true", () => {
+            const iterator = itertools.dropWhile("abcdefg", (val: string) => val !== "d")
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            expect(isEqualArray(result, ["d", "e", "f", "g"])).toBe(true)
+        })
+    })
 })

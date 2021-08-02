@@ -283,3 +283,41 @@ export function* compress<T>(
         }
     }
 }
+
+/**
+ * Make an iterator that drops elements from the iterable as long as the predicate is `true`;
+ * afterwards, returns every element. Note, the iterator does not produce *any* output until the
+ * predicate first becomes false, so it may have a lengthy start-up time.
+ *
+ * Based on [Python's `itertools.dropwhile`
+ * function](https://docs.python.org/3/library/itertools.html#itertools.dropwhile)
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(dropWhile([1, 4, 6, 4, 1], (val) => val < 5)) // [6, 4, 1]
+ * Array.from(dropWhile("abcdefg", (val) => val !== "d")) // ["d", "e", "f", "g"]
+ * ```
+ *
+ * @param iterable - Iterable to get and drop items from
+ * @param predicate - Function that determines from which values to include
+ * @returns Generator of each item after the predicate is fulfulled
+ */
+export function* dropWhile<T>(
+    iterable: Iterable<T>,
+    predicate: (val: T) => boolean,
+): Generator<T> {
+    let didFulfillPredicate = false
+
+    for (const item of iterable) {
+        if (!didFulfillPredicate) {
+            if (!predicate(item)) {
+                didFulfillPredicate = true
+
+                yield item
+            }
+        } else {
+            yield item
+        }
+    }
+}
