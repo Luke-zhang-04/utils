@@ -311,4 +311,33 @@ describe("itertools", () => {
             },
         )
     })
+
+    describe("map", () => {
+        it.each([
+            ["abc", (val: string) => val + "a", ["aa", "ba", "ca"]],
+            [generator1(), (val: string) => val + "a", ["aa", "ba"]],
+            [["a", "b"], (val: string) => val + "a", ["aa", "ba"]],
+        ])("should map iterator", (iterable, transformer, expected) => {
+            const iterator = itertools.map(iterable, transformer)
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            expect(isEqualArray(result, expected)).toBe(true)
+        })
+
+        it.each([
+            [generator2(), (val: number) => val - 1, [0, 1, 2]],
+            [[1, 2, 3], (val: number) => val + 10, [11, 12, 13]],
+        ])("should map iterator", (iterable, transformer, expected) => {
+            const iterator = itertools.map(iterable, transformer)
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            expect(isEqualArray(result, expected)).toBe(true)
+        })
+    })
 })

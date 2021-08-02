@@ -334,6 +334,7 @@ export function* dropWhile<T>(
  * Array.from(filter("abcdefg", (val) => val !== "a", 3)) // ["b", "c", "d"]
  * ```
  *
+ * @template T - Type of the iterable's items
  * @param iterable - Iterable to filter
  * @param predicate - Function to determine if item is filtered out or not
  * @param maxSize - Max number of items in filter; stop after this number is reached
@@ -352,12 +353,42 @@ export function* filter<T>(
             return
         }
 
-        if (predicate(item, index)) {
+        if (predicate(item, index++)) {
             yielded++
 
             yield item
         }
-
-        index++
     }
 }
+
+export {filter as ifilter}
+
+/**
+ * Array.map equivalent with support for iterables
+ *
+ * @example
+ *
+ * ```ts
+ * const array = [1, 2, 3, 4, 5, 6]
+ * Array.from(map(array, (val) => val % 2 === 0)) // [false, true, false, true, false, true]
+ * Array.from(map(array, (val) => val - 1)) // [0, 1, 2, 3, 4, 5]
+ * ```
+ *
+ * @template T - Type of the iterable's items
+ * @template K - Type of the transformer function's return
+ * @param iterable - Iterable with items to map
+ * @param transformer - Function to transform each item in iterable
+ * @returns Generator of each item, passed through the `transformer` function
+ */
+export function* map<T, K>(
+    iterable: Iterable<T>,
+    transformer: (val: T, index: number) => K,
+): Generator<K, void, void> {
+    let index = 0
+
+    for (const item of iterable) {
+        yield transformer(item, index++)
+    }
+}
+
+export {map as imap}
