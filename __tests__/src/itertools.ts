@@ -6,6 +6,7 @@
 
 import * as array from "../../lib/array"
 import * as itertools from "../../lib/itertools"
+import {inlineTry} from "../../lib/try"
 import {isEqualArray} from "../../lib/deepEqual"
 
 function* generator1(): Generator<string> {
@@ -317,7 +318,7 @@ describe("itertools", () => {
             ["abc", (val: string) => val + "a", ["aa", "ba", "ca"]],
             [generator1(), (val: string) => val + "a", ["aa", "ba"]],
             [["a", "b"], (val: string) => val + "a", ["aa", "ba"]],
-        ])("should map iterator", (iterable, transformer, expected) => {
+        ])("should map iterable", (iterable, transformer, expected) => {
             const iterator = itertools.map(iterable, transformer)
 
             expect(typeof iterator[Symbol.iterator]).toBe("function")
@@ -330,7 +331,7 @@ describe("itertools", () => {
         it.each([
             [generator2(), (val: number) => val - 1, [0, 1, 2]],
             [[1, 2, 3], (val: number) => val + 10, [11, 12, 13]],
-        ])("should map iterator", (iterable, transformer, expected) => {
+        ])("should map iterable", (iterable, transformer, expected) => {
             const iterator = itertools.map(iterable, transformer)
 
             expect(typeof iterator[Symbol.iterator]).toBe("function")
@@ -338,6 +339,34 @@ describe("itertools", () => {
             const result = Array.from(iterator)
 
             expect(isEqualArray(result, expected)).toBe(true)
+        })
+    })
+
+    describe("reduce", () => {
+        it.each([
+            [generator2(), (prev: number, current: number) => prev + current, undefined, 6],
+            [[1, 2, 3, 4, 5], (prev: number, current: number) => prev + current, 10, 25],
+            [[], (prev: number, current: number) => prev + current, 10, 10],
+        ])("should reduce iterable", (iterable, reducer, initial, expected) => {
+            const value = itertools.reduce(iterable, reducer, initial)
+
+            expect(value).toBe(expected)
+        })
+
+        it("should reduce iterable", () => {
+            const value = itertools.reduce("abcdef", (prev: string, current: string) =>
+                current === "c" ? prev : prev + current,
+            )
+
+            expect(value).toBe("abdef")
+        })
+
+        it("should throw error on empty array with no initial value", () => {
+            const result = inlineTry(() => {
+                return itertools.reduce([], (prev: number, current: number) => prev + current)
+            })
+
+            expect(result).toBeInstanceOf(TypeError)
         })
     })
 })

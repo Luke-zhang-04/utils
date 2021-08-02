@@ -126,4 +126,4 @@ export const filterMap = <T, K>(array: T[], callbackFn: FilterMapCallback<T, K>)
     return processedArray
 }
 
-export {filter, map} from "./itertools"
+export {filter} from "./itertools"

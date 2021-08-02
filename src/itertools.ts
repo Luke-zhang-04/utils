@@ -372,6 +372,7 @@ export {filter as ifilter}
  * const array = [1, 2, 3, 4, 5, 6]
  * Array.from(map(array, (val) => val % 2 === 0)) // [false, true, false, true, false, true]
  * Array.from(map(array, (val) => val - 1)) // [0, 1, 2, 3, 4, 5]
+ * Array.from(map("abc", (val: string) => val + "a")) // ["aa", "ba", "ca"]
  * ```
  *
  * @template T - Type of the iterable's items
@@ -392,3 +393,54 @@ export function* map<T, K>(
 }
 
 export {map as imap}
+
+/**
+ * Array.reduce equivalent with support for iterables
+ *
+ * @example
+ *
+ * ```ts
+ * const array = [1, 2, 3, 4, 5, 6]
+ * reduce([], (val: number) => val + 1) // Uncaught TypeError: Reduce of empty array with no initial value
+ * reduce(array, (prev, current) => prev + current) // 15
+ * reduce(array, (prev, current) => prev + current, 10) // 25
+ * reduce("abcdef", (prev, current) => (current === "c" ? prev : prev + current)) // "abdef"
+ * ```
+ *
+ * @template T - Type of the iterable's items
+ * @template K - Type of the transformer function's return
+ * @param iterable - Iterable with items to map
+ * @param transformer - Function to transform each item in iterable
+ * @returns Generator of each item, passed through the `transformer` function
+ */
+export const reduce = <T>(
+    iterable: Iterable<T>,
+    reducer: (accumulated: T, currentValue: T, index: number) => T,
+    defaultValue?: T,
+): T => {
+    const iterator = iterable[Symbol.iterator]()
+    let accumulated = defaultValue
+    let index = 0
+
+    if (accumulated === undefined) {
+        const next = iterator.next()
+
+        if (next.done) {
+            throw new TypeError("Reduce of empty iterator with no initial value")
+        }
+
+        accumulated = next.value
+    }
+
+    let next = iterator.next()
+
+    while (next.done !== true) {
+        accumulated = reducer(accumulated, next.value, index++)
+
+        next = iterator.next()
+    }
+
+    return accumulated
+}
+
+export {reduce as ireduce}
