@@ -18,14 +18,14 @@ Notes:
  * @example
  *
  * ```ts
- * Array.from(arrayToChunks([1, 2, 3, 4, 5, 5])) // [[1, 2, 3], [4, 5, 6]]
- * Array.from(arrayToChunks([1, 2, 3, 4, 5, 5], 2)) // [[1, 2], [3, 4], [5, 6]]
+ * arrayToChunks([1, 2, 3, 4, 5, 5]) // [[1, 2, 3], [4, 5, 6]]
+ * arrayToChunks([1, 2, 3, 4, 5, 5], 2) // [[1, 2], [3, 4], [5, 6]]
  * ```
  *
  * @template T - Type of items in the array
  * @param array - Array to split
  * @param chunkSize - Size of array chunks
- * @returns Generator of each chunk
+ * @returns Array of each chunk in the form of arrays
  */
 export const arrayToChunks = <T>(array: T[], chunkSize = 3): T[][] => {
     const resultArray: T[][] = []
@@ -84,7 +84,7 @@ export const count = <T>(array: T[], predicate: (value: T) => unknown, max = Inf
  * @param array - Array to filter
  * @param predicate - Function to determine if item is filtered out or not
  * @param maxSize - Max number of items in filter; stop after this number is reached
- * @returns Generator of each item that isn't filtered and within the limit
+ * @returns Array of each item that isn't filtered and within the limit
  */
 export const filter = <T>(
     array: T[],
@@ -147,7 +147,7 @@ type FilterMapCallback<T, K> = (
  * @param array - Array to filter and map
  * @param callbackFn - Callback to call on every item, which should return an object that indicates
  *   whether or not the value should be shouldIncluded, and what the new value is
- * @returns Generator of each item that goes through callbackFn
+ * @returns Array of each item that goes through callbackFn
  */
 export const filterMap = <T, K>(array: T[], callbackFn: FilterMapCallback<T, K>): K[] => {
     const processedArray: K[] = []
