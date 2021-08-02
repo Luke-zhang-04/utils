@@ -51,35 +51,6 @@ describe("array", () => {
         })
     })
 
-    describe("filter", () => {
-        it.each([[1], [10], [100], [undefined]])(
-            "should an array of booleans up to %s",
-            (filterMax) => {
-                const testArray = new Array(300).fill(undefined).map((_, index) => index % 2 == 0)
-                const testArrayTrueCount = array.count(testArray, (value) => value)
-                const newArray = array.filter(testArray, (value) => value, filterMax)
-
-                expect(newArray).toHaveLength(Math.min(testArrayTrueCount, filterMax ?? Infinity))
-            },
-        )
-
-        it.each([[1], [10], [100], [undefined]])(
-            "should an array of booleans up to %s",
-            (filterMax) => {
-                const testArray = new Array(300).fill(undefined).map((_, index) => index)
-                const maxFilterValue = 50
-
-                const newArray = array.filter(
-                    testArray,
-                    (value) => value < maxFilterValue,
-                    filterMax,
-                )
-
-                expect(newArray).toHaveLength(Math.min(maxFilterValue, filterMax ?? Infinity))
-            },
-        )
-    })
-
     describe("filterMap", () => {
         const testArray = new Array(300).fill(undefined).map((_, index) => index % 2 == 0)
         const testArrayTrueCount = array.count(testArray, (value) => value)

@@ -70,44 +70,6 @@ export const count = <T>(array: T[], predicate: (value: T) => unknown, max = Inf
 }
 
 /**
- * Array.filter equivalent with size limit
- *
- * @example
- *
- * ```ts
- * const array = [true, true, true, false, false, false, false]
- * filter(array, (val) => val) // [true, true, true]
- * filter(array, (val) => val, 2) // [true, true]
- * ```
- *
- * @template T - Type of values in the array
- * @param array - Array to filter
- * @param predicate - Function to determine if item is filtered out or not
- * @param maxSize - Max number of items in filter; stop after this number is reached
- * @returns Array of each item that isn't filtered and within the limit
- */
-export const filter = <T>(
-    array: T[],
-    predicate: (value: T, index: number, array: T[]) => unknown,
-    maxSize = Infinity,
-): T[] => {
-    let total = 0
-    const processedArray: T[] = []
-
-    for (let index = 0; index < array.length && total < maxSize; index++) {
-        const item = array[index]!
-
-        if (predicate(item, index, array)) {
-            total++
-
-            processedArray.push(item)
-        }
-    }
-
-    return processedArray
-}
-
-/**
  * Callback type for the filterMap function
  */
 type FilterMapCallback<T, K> = (
@@ -163,3 +125,5 @@ export const filterMap = <T, K>(array: T[], callbackFn: FilterMapCallback<T, K>)
 
     return processedArray
 }
+
+export {filter} from "./itertools"

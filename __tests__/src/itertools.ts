@@ -4,6 +4,7 @@
  * 0BSD License
  */
 
+import * as array from "../../lib/array"
 import * as itertools from "../../lib/itertools"
 import {isEqualArray} from "../../lib/deepEqual"
 
@@ -273,5 +274,41 @@ describe("itertools", () => {
 
             expect(isEqualArray(result, ["d", "e", "f", "g"])).toBe(true)
         })
+    })
+
+    describe("filter", () => {
+        it.each([[1], [10], [100], [undefined]])(
+            "should an array of booleans up to %s",
+            (filterMax) => {
+                const testArray = new Array(300).fill(undefined).map((_, index) => index % 2 == 0)
+                const testArrayTrueCount = array.count(testArray, (value) => value)
+                const newIterator = itertools.filter(testArray, (value) => value, filterMax)
+
+                expect(typeof newIterator[Symbol.iterator]).toBe("function")
+
+                const newArray = Array.from(newIterator)
+
+                expect(newArray).toHaveLength(Math.min(testArrayTrueCount, filterMax ?? Infinity))
+            },
+        )
+
+        it.each([[1], [10], [100], [undefined]])(
+            "should an array of booleans up to %s",
+            (filterMax) => {
+                const testArray = new Array(300).fill(undefined).map((_, index) => index)
+                const maxFilterValue = 50
+                const newIterator = itertools.filter(
+                    testArray,
+                    (value) => value < maxFilterValue,
+                    filterMax,
+                )
+
+                expect(typeof newIterator[Symbol.iterator]).toBe("function")
+
+                const newArray = Array.from(newIterator)
+
+                expect(newArray).toHaveLength(Math.min(maxFilterValue, filterMax ?? Infinity))
+            },
+        )
     })
 })

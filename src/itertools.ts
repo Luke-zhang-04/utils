@@ -321,3 +321,43 @@ export function* dropWhile<T>(
         }
     }
 }
+
+/**
+ * Array.filter equivalent with size limit and support for iterables
+ *
+ * @example
+ *
+ * ```ts
+ * const array = [true, true, true, false, false, false, false]
+ * Array.from(filter(array, (val) => val)) // [true, true, true]
+ * Array.from(filter(array, (val) => val, 2)) // [true, true]
+ * Array.from(filter("abcdefg", (val) => val !== "a", 3)) // ["b", "c", "d"]
+ * ```
+ *
+ * @param iterable - Iterable to filter
+ * @param predicate - Function to determine if item is filtered out or not
+ * @param maxSize - Max number of items in filter; stop after this number is reached
+ * @returns Generator of each item that isn't filtered and within the limit
+ */
+export function* filter<T>(
+    iterable: Iterable<T>,
+    predicate: (value: T, index: number) => unknown,
+    maxSize = Infinity,
+): Generator<T, void, void> {
+    let yielded = 0
+    let index = 0
+
+    for (const item of iterable) {
+        if (yielded >= maxSize) {
+            return
+        }
+
+        if (predicate(item, index)) {
+            yielded++
+
+            yield item
+        }
+
+        index++
+    }
+}
