@@ -30,6 +30,7 @@ yarn add Luke-zhang-04/utilities#<Commit hash>
 ```
 
 To install a specific version:
+
 ```
 npm i https://github.com/Luke-zhang-04/utils/releases/download/v<version>utils.tar.gz
 pnpm add https://github.com/Luke-zhang-04/utils/releases/download/v<version>utils.tar.gz
@@ -41,3 +42,7 @@ Make sure the commits are specifically from the dist branch.
 ## Usage
 
 Visit the [wiki](https://github.com/Luke-zhang-04/utils/wiki) for documentation
+
+### Importing
+
+It is recommened that either named or star imports are used. Default imports may not be tree-shaken properly

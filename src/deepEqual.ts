@@ -13,7 +13,7 @@
  * Checks if val1 and val2 are equal. Works like lodash isEqual, and is just as fast.
  *
  * BEFORE YOU USE THIS: think to yourself, "Do I need this?" If there's another way, it's problably
- * faster. Deep equality checking is a very constly operation and should be used sparingly
+ * faster. Deep equality checking is a very costly operation and should be used sparingly
  *
  * @param val1 - Value to check for equality
  * @param val2 - Value to compare against val1
