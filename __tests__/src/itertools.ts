@@ -224,4 +224,29 @@ describe("itertools", () => {
             expect(isEqualArray(result, expected)).toBe(true)
         })
     })
+
+    describe("compress", () => {
+        it.each<[Iterable<number | string>, Iterable<unknown>, any[]]>([
+            ["abcdef", [1, 0, 1, 0, 1, 1], ["a", "c", "e", "f"]],
+            [
+                [1, 2, 3, 4, 5, 6],
+                [true, false, true, false],
+                [1, 3],
+            ],
+            [generator1(), [], []],
+            [generator2(), [true, true, true, true], [1, 2, 3]],
+        ])("should compress data", (data, selectors, expected) => {
+            const iterator = itertools.compress(data, selectors)
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            const _test: (number | string)[] = result
+
+            _test
+
+            expect(isEqualArray(result, expected)).toBe(true)
+        })
+    })
 })

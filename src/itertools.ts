@@ -254,3 +254,32 @@ export function* increment(start = 0, step = 1): Generator<number, void, void> {
         yield current
     }
 }
+
+/**
+ * Make an iterator that filters elements from `data` returning only those that have a
+ * corresponding element in `selectors` that is truthy. Stops when either the `data` or `selectors`
+ * iterables has been exhausted.
+ *
+ * Based on [Pythons `itertools.compress`
+ * function](https://docs.python.org/3/library/itertools.html#itertools.compress)
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(compress("abcdef", [1, 0, 1, 0, 1, 1])) // ["a", "c", "e", "f"]
+ * Array.from(compress([1, 2, 3, 4, 5, 6], [true, false, true, false])) // [1, 3]
+ * ```
+ *
+ * @param data - Iterable data to "compress"
+ * @param selectors - Selectors which dictate if a value of `data` should be included
+ */
+export function* compress<T>(
+    data: Iterable<T>,
+    selectors: Iterable<unknown>,
+): Generator<T, void, void> {
+    for (const [item, selector] of zip(data, selectors)) {
+        if (selector) {
+            yield item as T
+        }
+    }
+}
