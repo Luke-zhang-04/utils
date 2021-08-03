@@ -13,12 +13,26 @@ Included are also wrappers around existing APIs. For example, the Node Crypto AP
 
 Install directly from Github.
 
+**To install with semver:**
+
+```
+npm i Luke-zhang-04/utils#semver:<semver>
+pnpm add Luke-zhang-04/utils#semver:<semver>
+yarn add Luke-zhang-04/utils#semver:<semver>
+```
+
+E.g
+
+```
+npm i Luke-zhang-04/utils#semver:^1.0.0
+```
+
 **To install a specific version:**
 
 ```
-npm i Luke-zhang-04/utilities#v<version>
-pnpm add Luke-zhang-04/utilities#v<version>
-yarn add Luke-zhang-04/utilities#v<version>
+npm i Luke-zhang-04/utils#v<version>
+pnpm add Luke-zhang-04/utils#v<version>
+yarn add Luke-zhang-04/utils#v<version>
 ```
 
 Or
@@ -32,17 +46,17 @@ yarn add https://github.com/Luke-zhang-04/utils/releases/download/v<version>util
 **"Rolling release"**
 
 ```
-npm i Luke-zhang-04/utilities#dist
-pnpm add Luke-zhang-04/utilities#dist
-yarn add Luke-zhang-04/utilities#dist
+npm i Luke-zhang-04/utils#dist
+pnpm add Luke-zhang-04/utils#dist
+yarn add Luke-zhang-04/utils#dist
 ```
 
 **To install a specific commit:**
 
 ```
-npm i Luke-zhang-04/utilities#<Commit hash>
-pnpm add Luke-zhang-04/utilities#<Commit hash>
-yarn add Luke-zhang-04/utilities#<Commit hash>
+npm i Luke-zhang-04/utils#<Commit hash>
+pnpm add Luke-zhang-04/utils#<Commit hash>
+yarn add Luke-zhang-04/utils#<Commit hash>
 ```
 
 Make sure the commits are specifically from the dist branch.
