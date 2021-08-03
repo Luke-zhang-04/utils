@@ -444,3 +444,127 @@ export const reduce = <T>(
 }
 
 export {reduce as ireduce}
+
+/**
+ * Make an iterator that returns all the elements from `iterable` consecutively
+ *
+ * Based on [Python's `itertools.islice`
+ * function](https://docs.python.org/3/library/itertools.html#itertools.islice)
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(islice("abcdefg")) // ["a", "b", "c", "d", "e", "f", "g"]
+ * ```
+ *
+ * @template T - Type of the iterable's items
+ * @param iterable - Iterable to get elements from
+ * @returns Generator of each element of iterable
+ */
+export function islice<T>(iterable: Iterable<T>): Generator<T, void, void>
+
+/**
+ * Make an iterator that returns the elements from `iterable` consecutively, from 0 - `end`, not
+ * inclusive of `end`, where `end` is a non-negative number
+ *
+ * Based on [Python's `itertools.islice`
+ * function](https://docs.python.org/3/library/itertools.html#itertools.islice)
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(islice("abcdefg", 2)) // ["a", "b"]
+ * ```
+ *
+ * @param iterable - Iterable to get elements from
+ * @param end - The index at which to stop slicing the iterable, non-inclusive
+ * @returns Generator of the elements from `iterable` sliced from 0 to `end`
+ */
+export function islice<T>(iterable: Iterable<T>, end: number): Generator<T, void, void>
+
+/**
+ * Make an iterator that returns the elements from `iterable` consecutively, from `start` - `end`,
+ * not inclusive of `end`, where `start` and `end` are non-negative numbers. If `end` is null,
+ * slice from `start` to the end of the iterator
+ *
+ * Based on [Python's `itertools.islice`
+ * function](https://docs.python.org/3/library/itertools.html#itertools.islice)
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(islice("abcdefg", 2, 4)) // ["c", "d"]
+ * Array.from(islice("abcdefg", 2, null)) // ["c", "d", "e", "f", "g"]
+ * ```
+ *
+ * @param iterable - Iterable to get elements from
+ * @param start - The index at which to start slicing the iterable
+ * @param end - The index at which to stop slicing the iterable, non-inclusive
+ * @returns Generator of the elements from `iterable` sliced from 0 to `end`
+ */
+export function islice<T>(
+    iterable: Iterable<T>,
+    start: number,
+    end: number | null,
+): Generator<T, void, void>
+
+/**
+ * Make an iterator that returns the elements from `iterable` for every `step`th element, from
+ * `start` - `end`, not inclusive of `end`, where `start`, `end`, and `step` are non-negative
+ * numbers. If `end` is null, slice from `start` to the end of the iterator
+ *
+ * Based on [Python's `itertools.islice`
+ * function](https://docs.python.org/3/library/itertools.html#itertools.islice)
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(islice("abcdefg", 0, null, 2)) // ["a", "c", "e", "g"]
+ * Array.from(islice("abcdefg", 0, 4, 2)) // ["a", "c"]
+ * ```
+ *
+ * @param iterable - Iterable to get elements from
+ * @param start - The index at which to start slicing the iterable
+ * @param end - The index at which to stop slicing the iterable, non-inclusive
+ * @param step - The increment at which to slice items
+ * @returns Generator of the elements from `iterable` sliced from 0 to `end`
+ */
+export function islice<T>(
+    iterable: Iterable<T>,
+    start: number,
+    end: number | null,
+    step: number,
+): Generator<T, void, void>
+
+export function* islice<T>(
+    iterable: Iterable<T>,
+    start?: number,
+    end?: number | null,
+    step?: number,
+): Generator<T, void, void> {
+    const _start = end === undefined || start === undefined ? 0 : start
+    const _end = end === undefined ? start : end
+
+    if (_end === undefined) {
+        for (const item of iterable) {
+            yield item
+        }
+
+        return
+    }
+
+    let nextIndex = _start
+    let currentIndex = 0
+
+    for (const item of iterable) {
+        if (_end !== null && nextIndex >= _end) {
+            return
+        } else if (currentIndex === nextIndex) {
+            nextIndex += step === undefined ? 1 : step
+
+            yield item
+        }
+
+        currentIndex++
+    }
+}

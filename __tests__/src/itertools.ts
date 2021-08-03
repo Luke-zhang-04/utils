@@ -369,4 +369,41 @@ describe("itertools", () => {
             expect(result).toBeInstanceOf(TypeError)
         })
     })
+
+    describe("islice", () => {
+        it.each([
+            [
+                ["abcdefg", undefined, undefined, undefined],
+                ["a", "b", "c", "d", "e", "f", "g"],
+            ],
+            [
+                ["abcdefg", 2, undefined, undefined],
+                ["a", "b"],
+            ],
+            [
+                ["abcdefg", 2, 4, undefined],
+                ["c", "d"],
+            ],
+            [
+                ["abcdefg", 2, null, undefined],
+                ["c", "d", "e", "f", "g"],
+            ],
+            [
+                [["a", "b", "c", "d", "e", "f", "g"], 0, null, 2],
+                ["a", "c", "e", "g"],
+            ],
+            [
+                [[1, 2, 3, 4, 5, 6, 7], 0, 4, 2],
+                [1, 3],
+            ],
+        ])("should slice iterable", (args, expected) => {
+            const iterator = itertools.islice(...(args as Parameters<typeof itertools.islice>))
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            expect(isEqualArray(result, expected)).toBe(true)
+        })
+    })
 })
