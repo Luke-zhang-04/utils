@@ -16,7 +16,7 @@
  * ```
  *
  * @param first - First number to get GCD for
- * @param second- Second number to get GCD for
+ * @param second - Second number to get GCD for
  * @returns Gcd of first and second
  */
 export declare const baseGcd: (first: number, second: number) => number;

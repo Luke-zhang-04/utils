@@ -17,8 +17,8 @@ exports.omit = exports.pick = void 0;
  * pick({a: 1, b: 2, c: 3}, "a", "b") // {a: 1, b: 2}
  * ```
  *
- * @template T - Type of the object to pick items from
- * @template K - Type of the keys used to pick out items
+ * @typeParam T - Type of the object to pick items from
+ * @typeParam K - Type of the keys used to pick out items
  * @param obj - Object to pick keys from
  * @param keys - Keys to pick
  * @returns Object from picked values
@@ -42,8 +42,8 @@ exports.pick = pick;
  * omit({a: 1, b: 2, c: 3}, "a", "b") // {c: 3}
  * ```
  *
- * @template T - Type of the object to omit items from
- * @template K - Type of the keys used to omit items
+ * @typeParam T - Type of the object to omit items from
+ * @typeParam K - Type of the keys used to omit items
  * @param obj - Object to omit keys from
  * @param keys - Keys to omit
  * @returns Object from omitted values

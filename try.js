@@ -21,7 +21,7 @@
  * inlineTry(() => 1, false) // 1
  * ```
  *
- * @template T - Type of data that will be returned by the callback
+ * @typeParam T - Type of data that will be returned by the callback
  * @param func - Callback function
  * @param shouldKeepError - If error should be returned
  * @returns Return value of func. If an error is thrown, return it if `shouldKeepError` is true,
@@ -56,10 +56,10 @@ export const inlineTry = (func, shouldKeepError = true) => {
  * await inlineTryPromise(async () => await Promise.resolve(1), true) // 1
  * ```
  *
- * @template T - Type of data that will be returned by the callback
+ * @typeParam T - Type of data that will be returned by the callback
  * @param func - Callback function
  * @param shouldKeepError - If error should be returned
- * @returnsReturn value of func. If an error is thrown, return it if `shouldKeepError` is true,
+ * @returns Return value of func. If an error is thrown, return it if `shouldKeepError` is true,
  *   else discard it
  */
 export const inlineTryPromise = async (func, shouldKeepError = true) => {

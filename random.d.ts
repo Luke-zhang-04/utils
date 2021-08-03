@@ -12,7 +12,7 @@
  * @param max - Largest random integer possible, non-inclusive
  * @returns Random integer between `min` and `max`
  */
-export declare const randInt: (min: number, max: number) => number;
+export declare const randint: (min: number, max: number) => number;
 /**
  * Generates a pseudo-random floating point number N, such that `min <= N < max`
  *
