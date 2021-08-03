@@ -295,7 +295,7 @@ export function* compress<T>(
 }
 
 /**
- * Make an iterator that drops elements from the iterable as long as the predicate is `true`;
+ * Make an iterator that drops elements from `iterable` as long as the predicate is `true`;
  * afterwards, returns every element
  *
  * Based on [Python's `itertools.dropwhile`
@@ -328,6 +328,37 @@ export function* dropWhile<T>(
             didFulfillPredicate = true
 
             yield item
+        }
+    }
+}
+
+/**
+ * Make an iterator that returns elements from `iterable` as long as the predicate is `true`, and
+ * stops after it returns `false`
+ *
+ * Based on [Python's `itertools.takewhile`
+ * function](https://docs.python.org/3/library/itertools.html#itertools.takewhile)
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(takeWhile([1, 4, 6, 4, 1], (val) => val < 5)) // [1, 4]
+ * Array.from(takeWhile("abcdefg", (val) => val !== "d")) // ["a", "b", "c"]
+ * ```
+ *
+ * @param iterable - Iterable to get and take items from
+ * @param predicate - Function that determines from which values to include
+ * @returns Generator of each item until `predicate` returns `false`
+ */
+export function* takeWhile<T>(
+    iterable: Iterable<T>,
+    predicate: (val: T) => boolean,
+): Generator<T> {
+    for (const item of iterable) {
+        if (predicate(item)) {
+            yield item
+        } else {
+            return
         }
     }
 }

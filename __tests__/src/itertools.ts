@@ -277,6 +277,31 @@ describe("itertools", () => {
         })
     })
 
+    describe("takeWhile", () => {
+        it.each([
+            [[1, 4, 6, 4, 1], (val: number) => val < 5, [1, 4]],
+            [generator2(), (val: number) => val !== 3, [1, 2]],
+        ])("should take data as long predicate is true", (iterable, predicate, expected) => {
+            const iterator = itertools.takeWhile(iterable, predicate)
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            expect(isEqualArray(result, expected)).toBe(true)
+        })
+
+        it("should take data as long predicate is true", () => {
+            const iterator = itertools.takeWhile("abcdefg", (val: string) => val !== "d")
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            expect(isEqualArray(result, ["a", "b", "c"])).toBe(true)
+        })
+    })
+
     describe("enumerate", () => {
         it.each<[[Iterable<unknown>, number?], unknown[][]]>([
             [
