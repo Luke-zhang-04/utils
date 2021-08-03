@@ -18,18 +18,18 @@
  * @param val1 - Value to check for equality
  * @param val2 - Value to compare against val1
  * @param maxDepth - Max recursion depth to crawl an object. After max depth is reached, the two
- *   values are simply compared with `===`. By default, it is set to Infinity. It may be a good
- *   idea to set this value to prevent a catastrophe.
+ *   values are simply compared with `===`. If undefined, it will be treated as `Infinity`. It may
+ *   be a good idea to set this value to prevent a catastrophe.
  * @param maxLength - Max length of an array to crawl. If max length is reached, two arrays will
- *   simply be compared with `===`. By default, it is set to Infinity. It may be a good idea to set
- *   this value to prevent a catastrophe.
+ *   simply be compared with `===`. If undefined, it will be treated as `Infinity`. It may be a
+ *   good idea to set this value to prevent a catastrophe.
  * @returns If val1 is deeply equal to val2
  */
 export const isEqual = (
     val1: unknown,
     val2: unknown,
-    maxDepth = Infinity,
-    maxLength = Infinity,
+    maxDepth?: number,
+    maxLength?: number,
 ): boolean => {
     if (maxDepth === 0) {
         // If maxDepth reached, just run ===
@@ -59,20 +59,18 @@ export const isEqual = (
  * @param obj1 - Object to check for equality
  * @param obj2 - Object to compare against val1
  * @param maxDepth - Max recursion depth to crawl an object. After max depth is reached, the two
- *   values are simply compared with `===`. By default, it is set to Infinity. It may be a good
- *   idea to set this value to prevent a catastrophe.
+ *   values are simply compared with `===`. If undefined, it will be treated as `Infinity`. It may
+ *   be a good idea to set this value to prevent a catastrophe.
  * @param maxLength - Max length of an array to crawl. If max length is reached, two arrays will
- *   simply be compared with `===`. By default, it is set to Infinity. It may be a good idea to set
- *   this value to prevent a catastrophe.
+ *   simply be compared with `===`. If undefined, it will be treated as `Infinity`. It may be a
+ *   good idea to set this value to prevent a catastrophe.
  * @returns If obj1 is deeply equal to obj2
  */
 export const isEqualObject = (
     obj1: object,
     obj2: object,
-    // istanbul ignore next
-    maxDepth = Infinity,
-    // istanbul ignore next
-    maxLength = Infinity,
+    maxDepth?: number,
+    maxLength?: number,
 ): boolean => {
     for (const key in obj2) {
         if (!(key in obj1)) {
@@ -84,7 +82,15 @@ export const isEqualObject = (
         // Go through and test each value
         type Obj = {[key: string]: unknown}
 
-        if (!isEqual((obj1 as Obj)[key], (obj2 as Obj)[key], maxDepth - 1, maxLength)) {
+        if (
+            !isEqual(
+                (obj1 as Obj)[key],
+                (obj2 as Obj)[key],
+                // istanbul ignore next
+                maxDepth === undefined ? undefined : maxDepth - 1,
+                maxLength,
+            )
+        ) {
             return false
         }
     }
@@ -98,32 +104,38 @@ export const isEqualObject = (
  * @param arr1 - Array to check for equality
  * @param arr2 - Array to compare against val1
  * @param maxDepth - Max recursion depth to crawl an object. After max depth is reached, the two
- *   values are simply compared with `===`. By default, it is set to Infinity. It may be a good
- *   idea to set this value to prevent a catastrophe.
+ *   values are simply compared with `===`. If undefined, it will be treated as `Infinity`. It may
+ *   be a good idea to set this value to prevent a catastrophe.
  * @param maxLength - Max length of an array to crawl. If max length is reached, two arrays will
- *   simply be compared with `===`. By default, it is set to Infinity. It may be a good idea to set
- *   this value to prevent a catastrophe.
+ *   simply be compared with `===`. If undefined, it will be treated as `Infinity`. It may be a
+ *   good idea to set this value to prevent a catastrophe.
  * @returns If arr1 is deeply equal to arr2
  */
 export const isEqualArray = (
     obj1: unknown[],
     obj2: unknown[],
-    // istanbul ignore next
-    maxDepth = Infinity,
-    // istanbul ignore next
-    maxLength = Infinity,
+    maxDepth?: number,
+    maxLength?: number,
 ): boolean => {
     if (obj1.length !== obj2.length) {
         // If arrays have different lengths
         return false
-    } else if (obj1.length > maxLength || obj2.length > maxLength) {
+    } else if (maxLength !== undefined && (obj1.length > maxLength || obj2.length > maxLength)) {
         // If array is too big
         return obj1 === obj2
     }
 
     for (let index = 0; index < obj1.length; index++) {
         // Go through each item
-        if (!isEqual(obj1[index], obj2[index], maxDepth - 1, maxLength)) {
+        if (
+            !isEqual(
+                obj1[index],
+                obj2[index],
+                // istanbul ignore next
+                maxDepth === undefined ? undefined : maxDepth - 1,
+                maxLength,
+            )
+        ) {
             // Test if two array items are equal
             return false
         }

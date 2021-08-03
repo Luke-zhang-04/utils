@@ -55,10 +55,10 @@ export const arrayToChunks = <T>(array: T[], chunkSize = 3): T[][] => {
  * @param max - Max number of items to count
  * @returns Number of counted items
  */
-export const count = <T>(array: T[], predicate: (value: T) => unknown, max = Infinity): number => {
+export const count = <T>(array: T[], predicate: (value: T) => unknown, max?: number): number => {
     let total = 0
 
-    for (let index = 0; index < array.length && total < max; index++) {
+    for (let index = 0; index < array.length && (max === undefined || total < max); index++) {
         const item = array[index]!
 
         if (predicate(item)) {
