@@ -1,0 +1,47 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+    name: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+          registry-url: "https://registry.npmjs.org"
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.10.3
+
+      - name: install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: build
+        run: pnpm build
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: lib
+          path: lib
+
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: lib
+          path: lib
+
+      - name: deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: dist
+          folder: dist
+          commit-message: "deploy for ${{ github.sha }}"

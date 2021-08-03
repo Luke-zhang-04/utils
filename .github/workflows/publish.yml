@@ -4,45 +4,6 @@ on:
     types: [published]
 
 jobs:
-  publish:
-    name: "deploy to branch and release"
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: "14.x"
-          registry-url: "https://registry.npmjs.org"
-      - uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 6.10.3
-
-      - name: install deps
-        run: pnpm install --frozen-lockfile
-
-      - name: build
-        run: pnpm build:prod
-
-      - name: archive files
-        run: tar -czvf utils.tar.gz dist
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        continue-on-error: true
-        with:
-          files: |
-            ./utils.tar.gz
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.0
-        with:
-          branch: dist
-          folder: dist
-          commit-message: "deploy for ${{ github.sha }}"
-
   typedoc:
     name: "typedoc"
     runs-on: ubuntu-latest
