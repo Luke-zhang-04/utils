@@ -5,6 +5,7 @@
  */
 
 import * as array from "../../lib/array"
+import {isEqualArray} from "../../lib/deepEqual"
 
 describe("array", () => {
     describe("arrayToChunks", () => {
@@ -63,6 +64,28 @@ describe("array", () => {
 
             expect(newArray).toHaveLength(testArrayTrueCount)
             expect(newArray[0]).toBe(0)
+        })
+    })
+
+    describe("shuffle", () => {
+        it.each([[undefined], [2], [3]])("should shuffle array", (cycles) => {
+            const testArray = new Array(300).fill(undefined).map((_, index) => index)
+
+            array.shuffle(testArray, cycles)
+
+            expect(
+                isEqualArray(
+                    testArray,
+                    new Array(300).fill(undefined).map((_, index) => index),
+                ),
+            ).toBe(false)
+
+            expect(
+                isEqualArray(
+                    testArray.sort((a, b) => a - b),
+                    new Array(300).fill(undefined).map((_, index) => index),
+                ),
+            ).toBe(true)
         })
     })
 })

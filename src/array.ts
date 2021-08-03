@@ -6,6 +6,8 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
+import {randint} from "./random"
+
 /*
 Notes:
     - The use of for-loops using indexes is encouraged because of the performance gain involved
@@ -127,3 +129,24 @@ export const filterMap = <T, K>(array: T[], callbackFn: FilterMapCallback<T, K>)
 }
 
 export {filter} from "./itertools"
+
+/**
+ * Shuffles an array in-place and returns the array
+ *
+ * @param array - Array to shuffle
+ * @param cycles - Number of shuffle cycles to go through
+ * @returns Reference to array
+ */
+export const shuffle = <T>(array: T[], cycles = 1): T[] => {
+    for (let _ = 0; _ < cycles; _++) {
+        for (let index = array.length - 1; index > 0; index--) {
+            const randonIndex = randint(0, index + 1)
+            const temp = array[index]!
+
+            array[index] = array[randonIndex]!
+            array[randonIndex] = temp
+        }
+    }
+
+    return array
+}
