@@ -13,7 +13,23 @@ Included are also wrappers around existing APIs. For example, the Node Crypto AP
 
 Install directly from Github.
 
-"Rolling release"
+**To install a specific version:**
+
+```
+npm i Luke-zhang-04/utilities#v<version>
+pnpm add Luke-zhang-04/utilities#v<version>
+yarn add Luke-zhang-04/utilities#v<version>
+```
+
+Or
+
+```
+npm i https://github.com/Luke-zhang-04/utils/releases/download/v<version>utils.tar.gz
+pnpm add https://github.com/Luke-zhang-04/utils/releases/download/v<version>utils.tar.gz
+yarn add https://github.com/Luke-zhang-04/utils/releases/download/v<version>utils.tar.gz
+```
+
+**"Rolling release"**
 
 ```
 npm i Luke-zhang-04/utilities#dist
@@ -21,20 +37,12 @@ pnpm add Luke-zhang-04/utilities#dist
 yarn add Luke-zhang-04/utilities#dist
 ```
 
-To install a specific commit:
+**To install a specific commit:**
 
 ```
 npm i Luke-zhang-04/utilities#<Commit hash>
 pnpm add Luke-zhang-04/utilities#<Commit hash>
 yarn add Luke-zhang-04/utilities#<Commit hash>
-```
-
-To install a specific version:
-
-```
-npm i https://github.com/Luke-zhang-04/utils/releases/download/v<version>utils.tar.gz
-pnpm add https://github.com/Luke-zhang-04/utils/releases/download/v<version>utils.tar.gz
-yarn add https://github.com/Luke-zhang-04/utils/releases/download/v<version>utils.tar.gz
 ```
 
 Make sure the commits are specifically from the dist branch.
