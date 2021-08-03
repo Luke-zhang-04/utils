@@ -22,7 +22,7 @@ Notes:
  * arrayToChunks([1, 2, 3, 4, 5, 5], 2) // [[1, 2], [3, 4], [5, 6]]
  * ```
  *
- * @template T - Type of items in the array
+ * @typeParam T - Type of items in the array
  * @param array - Array to split
  * @param chunkSize - Size of array chunks
  * @returns Array of each chunk in the form of arrays
@@ -49,7 +49,7 @@ export const arrayToChunks = <T>(array: T[], chunkSize = 3): T[][] => {
  * count(array, (val) => !val, 2) // 2
  * ```
  *
- * @template T - Type of value in the array
+ * @typeParam T - Type of value in the array
  * @param array - Array to count items from
  * @param predicate- Function to determine if item matches predicate
  * @param max - Max number of items to count
@@ -104,8 +104,8 @@ type FilterMapCallback<T, K> = (
  * })) // [3, 4, 5, 6]
  * ```
  *
- * @template T - Type of original values in the array
- * @template K - Typeof the new, filtered and mapped values
+ * @typeParam T - Type of original values in the array
+ * @typeParam K - Typeof the new, filtered and mapped values
  * @param array - Array to filter and map
  * @param callbackFn - Callback to call on every item, which should return an object that indicates
  *   whether or not the value should be shouldIncluded, and what the new value is

@@ -7,6 +7,8 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
+/* eslint-disable max-lines */
+
 import type {IterableValue, Tuple} from "./types"
 
 /**
@@ -53,12 +55,13 @@ export function* zip<T, K extends Iterable<T>[] = Iterable<T>[]>(
 
 /**
  * Chains `iterables` together into one iterable, from the first iterable until it is exhausted,
- * then proceeds to the next iterable, until all of the iterables are exhausted. Used for treating
- * consecutive sequences as a single sequence.
+ * then proceeds to the next iterable, until all of the iterables are exhausted.
+ *
+ * @remarks
+ * Used for treating consecutive sequences as a single sequence.
  *
  * Based on [Python's `itertools.chain`
  * function](https://docs.python.org/3/library/itertools.html#itertools.chain)
- *
  * @example
  *
  * ```ts
@@ -286,12 +289,14 @@ export function* compress<T>(
 
 /**
  * Make an iterator that drops elements from the iterable as long as the predicate is `true`;
- * afterwards, returns every element. Note, the iterator does not produce *any* output until the
- * predicate first becomes false, so it may have a lengthy start-up time.
+ * afterwards, returns every element
  *
  * Based on [Python's `itertools.dropwhile`
  * function](https://docs.python.org/3/library/itertools.html#itertools.dropwhile)
  *
+ * @remarks
+ * The iterator does not produce *any* output until the predicate first becomes false, so it may
+ * have a lengthy start-up time.
  * @example
  *
  * ```ts
@@ -310,13 +315,11 @@ export function* dropWhile<T>(
     let didFulfillPredicate = false
 
     for (const item of iterable) {
-        if (!didFulfillPredicate) {
-            if (!predicate(item)) {
-                didFulfillPredicate = true
+        if (didFulfillPredicate) {
+            yield item
+        } else if (!predicate(item)) {
+            didFulfillPredicate = true
 
-                yield item
-            }
-        } else {
             yield item
         }
     }
@@ -334,7 +337,7 @@ export function* dropWhile<T>(
  * Array.from(filter("abcdefg", (val) => val !== "a", 3)) // ["b", "c", "d"]
  * ```
  *
- * @template T - Type of the iterable's items
+ * @typeParam T - Type of the iterable's items
  * @param iterable - Iterable to filter
  * @param predicate - Function to determine if item is filtered out or not
  * @param maxSize - Max number of items in filter; stop after this number is reached
@@ -375,8 +378,8 @@ export {filter as ifilter}
  * Array.from(map("abc", (val: string) => val + "a")) // ["aa", "ba", "ca"]
  * ```
  *
- * @template T - Type of the iterable's items
- * @template K - Type of the transformer function's return
+ * @typeParam T - Type of the iterable's items
+ * @typeParam K - Type of the transformer function's return
  * @param iterable - Iterable with items to map
  * @param transformer - Function to transform each item in iterable
  * @returns Generator of each item, passed through the `transformer` function
@@ -407,8 +410,8 @@ export {map as imap}
  * reduce("abcdef", (prev, current) => (current === "c" ? prev : prev + current)) // "abdef"
  * ```
  *
- * @template T - Type of the iterable's items
- * @template K - Type of the transformer function's return
+ * @typeParam T - Type of the iterable's items
+ * @typeParam K - Type of the transformer function's return
  * @param iterable - Iterable with items to map
  * @param transformer - Function to transform each item in iterable
  * @returns Generator of each item, passed through the `transformer` function
@@ -457,25 +460,27 @@ export {reduce as ireduce}
  * Array.from(islice("abcdefg")) // ["a", "b", "c", "d", "e", "f", "g"]
  * ```
  *
- * @template T - Type of the iterable's items
+ * @typeParam T - Type of the iterable's items
  * @param iterable - Iterable to get elements from
  * @returns Generator of each element of iterable
  */
 export function islice<T>(iterable: Iterable<T>): Generator<T, void, void>
 
 /**
- * Make an iterator that returns the elements from `iterable` consecutively, from 0 - `end`, not
- * inclusive of `end`, where `end` is a non-negative number
+ * Make an iterator that returns the elements from `iterable` consecutively, from 0 - `end`
+ *
+ * @remarks
+ * Sliced iterable is non-inclusive of `end`, where `end` is a non-negative number
  *
  * Based on [Python's `itertools.islice`
  * function](https://docs.python.org/3/library/itertools.html#itertools.islice)
- *
  * @example
  *
  * ```ts
  * Array.from(islice("abcdefg", 2)) // ["a", "b"]
  * ```
  *
+ * @typeParam T - Type of the iterable's items
  * @param iterable - Iterable to get elements from
  * @param end - The index at which to stop slicing the iterable, non-inclusive
  * @returns Generator of the elements from `iterable` sliced from 0 to `end`
@@ -484,12 +489,13 @@ export function islice<T>(iterable: Iterable<T>, end: number): Generator<T, void
 
 /**
  * Make an iterator that returns the elements from `iterable` consecutively, from `start` - `end`,
- * not inclusive of `end`, where `start` and `end` are non-negative numbers. If `end` is null,
- * slice from `start` to the end of the iterator
+ *
+ * @remarks
+ * Slice is non-inclusive of `end`, where `start` and `end` are non-negative numbers. If `end` is
+ * null, slice from `start` to the end of the iterator
  *
  * Based on [Python's `itertools.islice`
  * function](https://docs.python.org/3/library/itertools.html#itertools.islice)
- *
  * @example
  *
  * ```ts
@@ -497,6 +503,7 @@ export function islice<T>(iterable: Iterable<T>, end: number): Generator<T, void
  * Array.from(islice("abcdefg", 2, null)) // ["c", "d", "e", "f", "g"]
  * ```
  *
+ * @typeParam T - Type of the iterable's items
  * @param iterable - Iterable to get elements from
  * @param start - The index at which to start slicing the iterable
  * @param end - The index at which to stop slicing the iterable, non-inclusive
@@ -510,12 +517,14 @@ export function islice<T>(
 
 /**
  * Make an iterator that returns the elements from `iterable` for every `step`th element, from
- * `start` - `end`, not inclusive of `end`, where `start`, `end`, and `step` are non-negative
- * numbers. If `end` is null, slice from `start` to the end of the iterator
+ * `start` - `end`
+ *
+ * @remarks
+ * Slice is non-inclusive of `end`, where `start`, `end`, and `step` are non-negative numbers. If
+ * `end` is null, slice from `start` to the end of the iterator
  *
  * Based on [Python's `itertools.islice`
  * function](https://docs.python.org/3/library/itertools.html#itertools.islice)
- *
  * @example
  *
  * ```ts
@@ -523,6 +532,7 @@ export function islice<T>(
  * Array.from(islice("abcdefg", 0, 4, 2)) // ["a", "c"]
  * ```
  *
+ * @typeParam T - Type of the iterable's items
  * @param iterable - Iterable to get elements from
  * @param start - The index at which to start slicing the iterable
  * @param end - The index at which to stop slicing the iterable, non-inclusive

@@ -12,9 +12,9 @@
 /**
  * Checks if val1 and val2 are equal. Works like lodash isEqual, and is just as fast.
  *
+ * @remarks
  * BEFORE YOU USE THIS: think to yourself, "Do I need this?" If there's another way, it's problably
  * faster. Deep equality checking is a very costly operation and should be used sparingly
- *
  * @param val1 - Value to check for equality
  * @param val2 - Value to compare against val1
  * @param maxDepth - Max recursion depth to crawl an object. After max depth is reached, the two

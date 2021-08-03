@@ -7,8 +7,8 @@
  * type MyTuple = Tuple<string, 3> // [string, string, string]
  * ```
  *
- * @template T - Type that the tuple will contain
- * @template L - Length of tuple
+ * @typeParam T - Type that the tuple will contain
+ * @typeParam L - Length of tuple
  */
 export type Tuple<T, L extends number> = L extends L
     ? number extends L
@@ -23,7 +23,7 @@ type TupleOf<T, N extends number, R extends unknown[]> = R["length"] extends N
 /**
  * Extracts the value of an iterable
  *
- * @template T - Iterable to extract value frome
+ * @typeParam T - Iterable to extract value frome
  */
 export type IterableValue<T extends Iterable<any>> = Exclude<
     ReturnType<ReturnType<T[typeof Symbol.iterator]>["next"]>,
