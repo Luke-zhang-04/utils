@@ -23,12 +23,12 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: build
-        run: pnpm build
+        run: pnpm build:prod
 
       - uses: actions/upload-artifact@v2
         with:
-          name: lib
-          path: lib
+          name: dist
+          path: dist
 
   deploy:
     name: deploy
@@ -38,8 +38,8 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: lib
-          path: lib
+          name: dist
+          path: dist
 
       - name: deploy
         uses: JamesIves/github-pages-deploy-action@4.1.0
