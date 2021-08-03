@@ -31,7 +31,7 @@ export const isEqual = (
     maxDepth?: number,
     maxLength?: number,
 ): boolean => {
-    if (maxDepth === 0) {
+    if (maxDepth !== undefined && maxDepth <= 0) {
         // If maxDepth reached, just run ===
         return val1 === val2
     } else if (val1 === val2) {
@@ -86,7 +86,6 @@ export const isEqualObject = (
             !isEqual(
                 (obj1 as Obj)[key],
                 (obj2 as Obj)[key],
-                // istanbul ignore next
                 maxDepth === undefined ? undefined : maxDepth - 1,
                 maxLength,
             )
@@ -131,7 +130,6 @@ export const isEqualArray = (
             !isEqual(
                 obj1[index],
                 obj2[index],
-                // istanbul ignore next
                 maxDepth === undefined ? undefined : maxDepth - 1,
                 maxLength,
             )

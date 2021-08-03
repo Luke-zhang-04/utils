@@ -84,7 +84,7 @@ describe("itertools", () => {
 
             const result = Array.from(iterator)
 
-            let _test: string | number = result[0]!
+            const _test: string | number = result[0]!
 
             _test
 
@@ -98,7 +98,7 @@ describe("itertools", () => {
 
             const result = Array.from(iterator)
 
-            let _test: string | number = result[0]!
+            const _test: string | number = result[0]!
 
             _test
 
@@ -315,9 +315,9 @@ describe("itertools", () => {
 
     describe("map", () => {
         it.each([
-            ["abc", (val: string) => val + "a", ["aa", "ba", "ca"]],
-            [generator1(), (val: string) => val + "a", ["aa", "ba"]],
-            [["a", "b"], (val: string) => val + "a", ["aa", "ba"]],
+            ["abc", (val: string): string => `${val}a`, ["aa", "ba", "ca"]],
+            [generator1(), (val: string): string => `${val}a`, ["aa", "ba"]],
+            [["a", "b"], (val: string): string => `${val}a`, ["aa", "ba"]],
         ])("should map iterable", (iterable, transformer, expected) => {
             const iterator = itertools.map(iterable, transformer)
 
@@ -362,9 +362,9 @@ describe("itertools", () => {
         })
 
         it("should throw error on empty array with no initial value", () => {
-            const result = inlineTry(() => {
-                return itertools.reduce([], (prev: number, current: number) => prev + current)
-            })
+            const result = inlineTry(() =>
+                itertools.reduce([], (prev: number, current: number) => prev + current),
+            )
 
             expect(result).toBeInstanceOf(TypeError)
         })
