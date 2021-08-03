@@ -9,7 +9,14 @@
 
 /* eslint-disable max-lines */
 
-import type {IterableValue, Tuple} from "./types"
+import type {IterableValue} from "./types"
+
+/**
+ * Takes a tuple of iterators `K`, and returns a tuple of the iterator return types from `K`
+ */
+type GetIteratorTupleValues<T extends Iterable<unknown>[]> = {
+    [K in keyof T]: IterableValue<T[K] extends Iterable<unknown> ? T[K] : never>
+}
 
 /**
  * Creates a generator of the n'th element of *each* iterable, such that `n < length of smallest iterable`
@@ -37,9 +44,9 @@ import type {IterableValue, Tuple} from "./types"
  * @param iterables - Array of iterables to zip together
  * @returns Generator of the n'th element of each iterable, such that `n < length of smallest iterable`
  */
-export function* zip<T, K extends Iterable<T>[] = Iterable<T>[]>(
-    ...iterables: K
-): Generator<Tuple<IterableValue<K[number]>, K["length"]>, void, void> {
+export function* zip<T extends Iterable<unknown>[] = Iterable<unknown>[]>(
+    ...iterables: T
+): Generator<GetIteratorTupleValues<T>, void, void> {
     const iterators = iterables.map((iterator) => iterator[Symbol.iterator]())
 
     while (true) {
@@ -49,7 +56,7 @@ export function* zip<T, K extends Iterable<T>[] = Iterable<T>[]>(
             return
         }
 
-        yield results.map((result) => result.value) as Tuple<IterableValue<K[number]>, K["length"]>
+        yield results.map((result) => result.value) as GetIteratorTupleValues<T>
     }
 }
 
@@ -282,7 +289,7 @@ export function* compress<T>(
 ): Generator<T, void, void> {
     for (const [item, selector] of zip(data, selectors)) {
         if (selector) {
-            yield item as T
+            yield item
         }
     }
 }
