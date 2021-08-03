@@ -13,7 +13,7 @@
  * @param max - Largest random integer possible, non-inclusive
  * @returns Random integer between `min` and `max`
  */
-export const randInt = (min: number, max: number): number => {
+export const randint = (min: number, max: number): number => {
     const _min = Math.ceil(min)
     const _max = Math.floor(max)
 
@@ -35,4 +35,4 @@ export const uniform = (min: number, max: number): number => Math.random() * (ma
  * @param arr - Array to pick items from
  * @returns Random item chosen from arr
  */
-export const choice = <T>(arr: T[]): T => arr[randInt(0, arr.length)]!
+export const choice = <T>(arr: T[]): T => arr[randint(0, arr.length)]!

@@ -7,7 +7,7 @@ describe("random", () => {
             [0, 1],
             [10, 11],
         ])("should generate random integer between %i and %i", (min, max) => {
-            const randint = random.randInt(min, max)
+            const randint = random.randint(min, max)
 
             expect(randint).toBeLessThan(max)
             expect(randint).toBeGreaterThanOrEqual(min)
