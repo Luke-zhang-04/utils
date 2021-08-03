@@ -277,6 +277,44 @@ describe("itertools", () => {
         })
     })
 
+    describe("enumerate", () => {
+        it.each<[[Iterable<unknown>, number?], unknown[][]]>([
+            [
+                ["abc", undefined],
+                [
+                    [0, "a"],
+                    [1, "b"],
+                    [2, "c"],
+                ],
+            ],
+            [
+                [[1, 2, 3, 4], 1],
+                [
+                    [1, 1],
+                    [2, 2],
+                    [3, 3],
+                    [4, 4],
+                ],
+            ],
+            [
+                [generator2(), 10],
+                [
+                    [10, 1],
+                    [11, 2],
+                    [12, 3],
+                ],
+            ],
+        ])("should enumerate items", (args, expected) => {
+            const iterator = itertools.enumerate(...args)
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            expect(isEqualArray(result, expected)).toBe(true)
+        })
+    })
+
     describe("filter", () => {
         it.each([[1], [10], [100], [undefined]])(
             "should an array of booleans up to %s",

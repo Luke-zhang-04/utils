@@ -333,6 +333,29 @@ export function* dropWhile<T>(
 }
 
 /**
+ * Array.entries equivalent with support for iterables
+ *
+ * Based on [Python's enumerate](https://docs.python.org/3/library/functions.html#enumerate)
+ *
+ * @example
+ *
+ * ```ts
+ * const seasons = ["Spring", "Summer", "Fall", "Winter"]
+ *
+ * Array.from(enumerate(seasons)) // [[0, 'Spring'], [1, 'Summer'], [2, 'Fall'], [3, 'Winter']]
+ * Array.from(enumerate(seasons, 1)) // [[1, 'Spring'], [2, 'Summer'], [3, 'Fall'], [4, 'Winter']]
+ * ```
+ *
+ * @typeParam T - Type of the iterable's items
+ * @param iterable - Iterable to enumerate
+ * @returns Iterable with a tuple containing the index and value of the iterable item
+ */
+export const enumerate = <T>(
+    iterable: Iterable<T>,
+    start = 0,
+): Iterable<[index: number, value: T]> => zip(increment(start), iterable)
+
+/**
  * Array.filter equivalent with size limit and support for iterables
  *
  * @example
