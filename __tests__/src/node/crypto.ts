@@ -31,6 +31,18 @@ describe("crypto", () => {
                     expect(hash1).not.toBe(hash3)
                 },
             )
+
+            it(`should hash with ${algo} and no encoding`, async () => {
+                const hash1 = crypto.hash(data, algo, "raw")
+                const hash2 = crypto.hash(data, algo, "raw")
+                const hash3 = crypto.hash("abc", algo, "raw")
+
+                // Hashes should be deterministic
+                expect(Buffer.compare(hash1, hash2)).toBe(0)
+
+                // Hashes should be uniqute
+                expect(Buffer.compare(hash1, hash3)).not.toBe(0)
+            })
         })
     })
 
@@ -83,6 +95,22 @@ describe("crypto", () => {
                     expect(hash1).not.toBe(hash4)
                 },
             )
+
+            it(`should hash with HMAC ${algo} and no encoding`, async () => {
+                const hash1 = crypto.hmacHash(data, algo, key1, "raw")
+                const hash2 = crypto.hmacHash(data, algo, key1, "raw")
+                const hash3 = crypto.hmacHash("abc", algo, key1, "raw")
+                const hash4 = crypto.hmacHash(data, algo, key2, "raw")
+
+                // Hashes should be deterministic
+                expect(Buffer.compare(hash1, hash2)).toBe(0)
+
+                // Hashes should be uniqute
+                expect(Buffer.compare(hash1, hash3)).not.toBe(0)
+
+                // Hashes should be different for each key
+                expect(Buffer.compare(hash1, hash4)).not.toBe(0)
+            })
         })
     })
 
@@ -141,6 +169,34 @@ describe("crypto", () => {
                     expect(decrypted).toBe(data)
                 },
             )
+
+            it(`should encrypt and decrypt with ${algo} using no encoding`, async () => {
+                const key = nodeCrypto.randomBytes(keyLength).toString("hex").slice(0, keyLength)
+                const badKey = nodeCrypto
+                    .randomBytes(keyLength)
+                    .toString("hex")
+                    .slice(0, keyLength)
+                const data = nodeCrypto.randomBytes(256).toString("base64")
+                const encrypted = await crypto.encrypt(data, algo, key, "raw")
+                const decrypted = await crypto.decrypt(encrypted, algo, key, "raw")
+
+                // If given a bad key, the decrypt function will throw an error, or return deformed data
+                let errorOrBadData: string | Error
+
+                try {
+                    errorOrBadData = await crypto.decrypt(encrypted, algo, badKey, "raw")
+                } catch (err: unknown) {
+                    errorOrBadData = err instanceof Error ? err : new Error(String(err))
+                }
+
+                if (typeof errorOrBadData === "string") {
+                    expect(errorOrBadData).not.toBe(data)
+                } else {
+                    expect(errorOrBadData).toBeInstanceOf(Error)
+                }
+
+                expect(decrypted).toBe(data)
+            })
         })
     })
 })
