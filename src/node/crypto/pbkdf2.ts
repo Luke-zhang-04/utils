@@ -32,6 +32,7 @@ const iterations = 2000
 export const deriveKey = async (
     secretKey: string,
     salt: Buffer,
+    keyLength?: number,
     // istanbul ignore next
     algorithm: HashAlgorithms = "sha256",
 ): Promise<Buffer> =>
@@ -40,7 +41,8 @@ export const deriveKey = async (
             secretKey,
             salt,
             iterations,
-            secretKey.length,
+            // istanbul ignore next
+            keyLength ?? secretKey.length,
             algorithm,
             (err, derivedKey) =>
                 // istanbul ignore next
@@ -48,6 +50,7 @@ export const deriveKey = async (
         )
     })
 
+// istanbul ignore next
 /**
  * Provides an synchronous Password-Based Key Derivation Function 2 (PBKDF2) implementation.
  *

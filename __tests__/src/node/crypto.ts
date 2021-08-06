@@ -116,39 +116,35 @@ describe("crypto", () => {
 
     describe("encryption and decryption", () => {
         describe.each<[algo: Parameters<typeof crypto.encrypt>[1], keyLength: number]>([
-            ["aes-128-cbc", 16],
-            ["aes-128-ctr", 16],
-            ["aes-128-gcm", 16],
-            ["aes-192-cbc", 24],
-            ["aes-192-ctr", 24],
-            ["aes-192-gcm", 24],
-            ["aes-256-cbc", 32],
-            ["aes-256-ctr", 32],
-            ["aes-256-gcm", 32],
+            ["aes-128-cbc", 128 / 8],
+            ["aes-128-ctr", 128 / 8],
+            ["aes-128-gcm", 128 / 8],
+            ["aes-192-cbc", 192 / 8],
+            ["aes-192-ctr", 192 / 8],
+            ["aes-192-gcm", 192 / 8],
+            ["aes-256-cbc", 256 / 8],
+            ["aes-256-ctr", 256 / 8],
+            ["aes-256-gcm", 256 / 8],
         ])("encrypt and decrypt with %s", (algo, keyLength) => {
-            it.each<Parameters<typeof crypto.encrypt>[3]>(["hex", "base64"])(
+            it.each<Parameters<typeof crypto.encrypt>[3]>(["hex", "base64", "binary"])(
                 `should encrypt and decrypt with ${algo} using %s encoding`,
                 async (enc) => {
-                    const key = nodeCrypto
-                        .randomBytes(keyLength)
-                        .toString("hex")
-                        .slice(0, keyLength)
-                    const badKey = nodeCrypto
-                        .randomBytes(keyLength)
-                        .toString("hex")
-                        .slice(0, keyLength)
+                    const key = nodeCrypto.randomBytes(keyLength).toString(enc)
+                    const badKey = nodeCrypto.randomBytes(keyLength).toString(enc)
                     const data = nodeCrypto.randomBytes(256).toString("base64")
                     const encrypted = await crypto.encrypt(
                         data,
                         algo,
                         key,
                         enc === "hex" ? undefined : enc,
+                        enc,
                     )
                     const decrypted = await crypto.decrypt(
                         encrypted,
                         algo,
                         key,
                         enc === "hex" ? undefined : enc,
+                        enc,
                     )
 
                     // If given a bad key, the decrypt function will throw an error, or return deformed data
@@ -171,14 +167,11 @@ describe("crypto", () => {
             )
 
             it(`should encrypt and decrypt with ${algo} using no encoding`, async () => {
-                const key = nodeCrypto.randomBytes(keyLength).toString("hex").slice(0, keyLength)
-                const badKey = nodeCrypto
-                    .randomBytes(keyLength)
-                    .toString("hex")
-                    .slice(0, keyLength)
+                const key = nodeCrypto.randomBytes(keyLength).toString("hex")
+                const badKey = nodeCrypto.randomBytes(keyLength).toString("hex")
                 const data = nodeCrypto.randomBytes(256).toString("base64")
-                const encrypted = await crypto.encrypt(data, algo, key, "raw")
-                const decrypted = await crypto.decrypt(encrypted, algo, key, "raw")
+                const encrypted = await crypto.encrypt(data, algo, key, "raw", "hex")
+                const decrypted = await crypto.decrypt(encrypted, algo, key, "raw", "hex")
 
                 // If given a bad key, the decrypt function will throw an error, or return deformed data
                 let errorOrBadData: string | Error
