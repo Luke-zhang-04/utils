@@ -15,13 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.encrypt = void 0;
 const crypto_1 = __importDefault(require("crypto"));
 const pbkdf2_1 = require("./pbkdf2");
-async function encrypt(contents, algo, secretKey, enc = "hex", keyEnc) {
+const helper_1 = require("./helper");
+async function encrypt(contents, algo, secretKey, enc = "hex", keyLength) {
+    const _keyLength = keyLength !== null && keyLength !== void 0 ? keyLength : helper_1.getKeyLengthFromAlgo(algo);
+    if (_keyLength === undefined) {
+        throw new TypeError(`Could not infer key length from algorithm ${algo}. Please specify.`);
+    }
     const iv = crypto_1.default.randomBytes(16);
-    if (algo.endsWith("gcm")) {
-        const salt = crypto_1.default.randomBytes(64);
-        const key = await pbkdf2_1.deriveKey(secretKey, salt, 
-        // istanbul ignore next
-        keyEnc ? Buffer.from(secretKey, keyEnc).length : undefined, "sha512");
+    const salt = crypto_1.default.randomBytes(64);
+    const key = await pbkdf2_1.deriveKey(secretKey, salt, 
+    // istanbul ignore next
+    _keyLength, "sha512");
+    if (/gcm$/iu.test(algo)) {
         const cipher = crypto_1.default.createCipheriv(algo, key, iv, {
             authTagLength: 16,
         });
@@ -31,10 +36,10 @@ async function encrypt(contents, algo, secretKey, enc = "hex", keyEnc) {
         const resultBuffer = Buffer.concat([salt, iv, tag, encrypted]);
         return enc === "raw" ? resultBuffer : resultBuffer.toString(enc);
     }
-    const cipher = crypto_1.default.createCipheriv(algo, Buffer.from(secretKey, keyEnc), iv);
+    const cipher = crypto_1.default.createCipheriv(algo, key, iv);
     const ciphered = cipher.update(contents);
     const encrypted = Buffer.concat([ciphered, cipher.final()]);
-    const resultBuffer = Buffer.concat([iv, encrypted]);
+    const resultBuffer = Buffer.concat([salt, iv, encrypted]);
     return enc === "raw" ? resultBuffer : resultBuffer.toString(enc);
 }
 exports.encrypt = encrypt;

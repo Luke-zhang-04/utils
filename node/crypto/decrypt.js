@@ -9,26 +9,30 @@
  */
 import crypto from "crypto";
 import { deriveKey } from "./pbkdf2";
-export async function decrypt(encryptedData, algo, secretKey, enc = "hex", keyEnc) {
+import { getKeyLengthFromAlgo } from "./helper";
+export async function decrypt(encryptedData, algo, secretKey, enc = "hex", keyLength) {
+    const _keyLength = keyLength !== null && keyLength !== void 0 ? keyLength : getKeyLengthFromAlgo(algo);
+    if (_keyLength === undefined) {
+        throw new TypeError(`Could not infer key length from algorithm ${algo}. Please specify.`);
+    }
     const bData = enc === "raw" ? encryptedData : Buffer.from(encryptedData, enc);
-    if (algo.endsWith("gcm")) {
-        /* eslint-disable @typescript-eslint/no-magic-numbers */
-        const salt = bData.slice(0, 64);
-        const iv = bData.slice(64, 80);
+    /* eslint-disable @typescript-eslint/no-magic-numbers */
+    const salt = bData.slice(0, 64);
+    const iv = bData.slice(64, 80);
+    const key = await deriveKey(secretKey, salt, 
+    // istanbul ignore next
+    _keyLength, "sha512");
+    if (/gcm$/iu.test(algo)) {
         const tag = bData.slice(80, 96);
         const encryptedText = bData.slice(96);
-        /* eslint-enable @typescript-eslint/no-magic-numbers */
-        const key = await deriveKey(secretKey, salt, 
-        // istanbul ignore next
-        keyEnc ? Buffer.from(secretKey, keyEnc).length : undefined, "sha512");
         const decipher = crypto.createDecipheriv(algo, key, iv);
         decipher.setAuthTag(tag);
         const decrypted = Buffer.concat([decipher.update(encryptedText), decipher.final()]);
         return decrypted.toString();
     }
-    const iv = bData.slice(0, 16);
-    const encryptedText = bData.slice(16);
-    const decipher = crypto.createDecipheriv(algo, Buffer.from(secretKey, keyEnc), iv);
+    const encryptedText = bData.slice(80);
+    /* eslint-enable @typescript-eslint/no-magic-numbers */
+    const decipher = crypto.createDecipheriv(algo, key, iv);
     const deciphered = decipher.update(encryptedText);
     const decrypted = Buffer.concat([deciphered, decipher.final()]);
     return decrypted.toString();
