@@ -1,7 +1,7 @@
 #!/bin/sh
 
 tsc --outDir dist --incremental false --tsBuildInfoFile null
-tsc --outDir dist/cjs --module commonjs --incremental false --tsBuildInfoFile null --sourceMap false
+tsc --outDir dist/cjs --module commonjs --incremental false --tsBuildInfoFile null
 
 # for f in dist/cjs/*.js; do
 #     mv -- "$f" "${f%.js}.cjs"
