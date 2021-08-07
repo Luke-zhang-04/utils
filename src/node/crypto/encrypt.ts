@@ -140,7 +140,9 @@ export async function encrypt(
             keyEnc ? Buffer.from(secretKey, keyEnc).length : undefined,
             "sha512",
         )
-        const cipher = crypto.createCipheriv(algo as crypto.CipherGCMTypes, key, iv)
+        const cipher = crypto.createCipheriv(algo as crypto.CipherGCMTypes, key, iv, {
+            authTagLength: 16,
+        })
         const ciphered = cipher.update(contents)
         const encrypted = Buffer.concat([ciphered, cipher.final()])
         const tag = cipher.getAuthTag()
