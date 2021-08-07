@@ -38,4 +38,3 @@ exports.uniform = uniform;
  */
 const choice = (arr) => arr[exports.randint(0, arr.length)];
 exports.choice = choice;
-//# sourceMappingURL=random.js.map

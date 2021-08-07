@@ -101,4 +101,3 @@ function* getPrimesUpTo(max) {
     }
 }
 exports.getPrimesUpTo = getPrimesUpTo;
-//# sourceMappingURL=math.js.map

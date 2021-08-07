@@ -65,4 +65,3 @@ const deriveKeySync = (secretKey, salt,
 algorithm = "sha256") => crypto_1.default.pbkdf2Sync(secretKey, salt, iterations, secretKey.length, algorithm);
 exports.deriveKeySync = deriveKeySync;
 exports.default = exports.deriveKey;
-//# sourceMappingURL=pbkdf2.js.map

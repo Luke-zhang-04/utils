@@ -28,4 +28,3 @@ const toHex = (bytes) => Array.from(bytes)
     .map((bite) => bite.toString(16).padStart(2, "0"))
     .join("");
 exports.toHex = toHex;
-//# sourceMappingURL=encoding.js.map

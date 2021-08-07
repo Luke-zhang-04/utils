@@ -40,4 +40,3 @@ exports.capitalizeFirst = capitalizeFirst;
  */
 const toTitleCase = (str) => str.replace(/\w\S*/gu, (text) => text[0].toUpperCase() + text.slice(1).toLowerCase());
 exports.toTitleCase = toTitleCase;
-//# sourceMappingURL=string.js.map

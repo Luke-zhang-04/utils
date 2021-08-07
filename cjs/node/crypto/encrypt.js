@@ -40,4 +40,3 @@ async function encrypt(contents, algo, secretKey, enc = "hex", keyEnc) {
 exports.encrypt = encrypt;
 exports.default = encrypt;
 /* eslint-enable prefer-arrow/prefer-arrow-functions */
-//# sourceMappingURL=encrypt.js.map
