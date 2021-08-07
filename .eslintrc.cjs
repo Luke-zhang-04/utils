@@ -31,6 +31,7 @@ module.exports = {
         "max-len": "off",
         "max-lines": ["warn", 500],
         "max-statements": ["warn", {max: 25}],
+        "no-console": "warn",
         "no-else-return": "warn",
         "no-empty": ["warn", {allowEmptyCatch: true}],
         "no-extra-semi": "off",

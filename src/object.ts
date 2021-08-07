@@ -83,6 +83,7 @@ export function* objectEntries<T extends {[key: string]: unknown}>(
 ): Generator<{[K in keyof T]: [K, T[K]]}[keyof T], void, void> {
     for (const key in obj) {
         // istanbul ignore else
+        /* eslint-disable-next-line no-prototype-builtins */
         if (obj.hasOwnProperty(key)) {
             yield [key, obj[key]]
         }
