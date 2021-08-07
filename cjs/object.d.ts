@@ -41,3 +41,21 @@ export declare const pick: <T extends {
 export declare const omit: <T extends {
     [key: string]: unknown;
 }, K extends (keyof T)[]>(obj: T, ...keys: K) => Omit<T, K[number]>;
+/**
+ * Better `Object.entries`, which is faster, returns an iterator instead of an array, and is typed better
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(objectEntries({a: 1, b: 2})) // [["a", 1], ["b", 2]]
+ * ```
+ *
+ * @param obj - Object to get entries for
+ * @returns Generator producing the key and value of each item
+ */
+export declare function objectEntries<T extends {
+    [key: string]: unknown;
+}>(obj: T): Generator<{
+    [K in keyof T]: [K, T[K]];
+}[keyof T], void, void>;
+export { objectEntries as entries };

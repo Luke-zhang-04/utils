@@ -288,6 +288,7 @@ export { map as imap };
  * @param iterable - Iterable with items to map
  * @param transformer - Function to transform each item in iterable
  * @returns Generator of each item, passed through the `transformer` function
+ * @throws TypeError - if an empty array is given with no initial value
  */
 export declare const reduce: <T>(iterable: Iterable<T>, reducer: (accumulated: T, currentValue: T, index: number) => T, defaultValue?: T | undefined) => T;
 export { reduce as ireduce };

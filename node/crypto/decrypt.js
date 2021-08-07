@@ -9,7 +9,7 @@
  */
 import crypto from "crypto";
 import { deriveKey } from "./pbkdf2";
-export async function decrypt(encryptedData, algo, secretKey, enc = "hex") {
+export async function decrypt(encryptedData, algo, secretKey, enc = "hex", keyEnc) {
     const bData = enc === "raw" ? encryptedData : Buffer.from(encryptedData, enc);
     if (algo.endsWith("gcm")) {
         /* eslint-disable @typescript-eslint/no-magic-numbers */
@@ -18,7 +18,9 @@ export async function decrypt(encryptedData, algo, secretKey, enc = "hex") {
         const tag = bData.slice(80, 96);
         const encryptedText = bData.slice(96);
         /* eslint-enable @typescript-eslint/no-magic-numbers */
-        const key = await deriveKey(secretKey, salt, "sha512");
+        const key = await deriveKey(secretKey, salt, 
+        // istanbul ignore next
+        keyEnc ? Buffer.from(secretKey, keyEnc).length : undefined, "sha512");
         const decipher = crypto.createDecipheriv(algo, key, iv);
         decipher.setAuthTag(tag);
         const decrypted = Buffer.concat([decipher.update(encryptedText), decipher.final()]);
@@ -26,7 +28,7 @@ export async function decrypt(encryptedData, algo, secretKey, enc = "hex") {
     }
     const iv = bData.slice(0, 16);
     const encryptedText = bData.slice(16);
-    const decipher = crypto.createDecipheriv(algo, Buffer.from(secretKey), iv);
+    const decipher = crypto.createDecipheriv(algo, Buffer.from(secretKey, keyEnc), iv);
     const deciphered = decipher.update(encryptedText);
     const decrypted = Buffer.concat([deciphered, decipher.final()]);
     return decrypted.toString();

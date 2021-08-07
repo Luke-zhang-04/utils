@@ -53,4 +53,27 @@ export const omit = (obj, ...keys) => {
     }
     return newObj;
 };
+/**
+ * Better `Object.entries`, which is faster, returns an iterator instead of an array, and is typed better
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(objectEntries({a: 1, b: 2})) // [["a", 1], ["b", 2]]
+ * ```
+ *
+ * @param obj - Object to get entries for
+ * @returns Generator producing the key and value of each item
+ */
+export function* objectEntries(obj) {
+    for (const key in obj) {
+        // istanbul ignore else
+        /* eslint-disable-next-line no-prototype-builtins */
+        if (obj.hasOwnProperty(key)) {
+            yield [key, obj[key]];
+        }
+    }
+    return;
+}
+export { objectEntries as entries };
 //# sourceMappingURL=object.js.map

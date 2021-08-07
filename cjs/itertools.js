@@ -419,6 +419,7 @@ exports.imap = map;
  * @param iterable - Iterable with items to map
  * @param transformer - Function to transform each item in iterable
  * @returns Generator of each item, passed through the `transformer` function
+ * @throws TypeError - if an empty array is given with no initial value
  */
 const reduce = (iterable, reducer, defaultValue) => {
     const iterator = iterable[Symbol.iterator]();

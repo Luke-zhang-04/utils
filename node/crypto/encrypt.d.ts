@@ -17,17 +17,18 @@ import type { EncryptionAlgorithms } from "./types";
  *   supported by the version of OpenSSL on the platform. `openssl list -cipher-algorithms ` will
  *   display the available cipher algorithms.
  * @param secretKey - Secret key for encryption. The key length is dependent on the algorithm of
- *   choice. The key length in bytes (characters) is equal to the key length in bits divided by the
- *   number of bits in a byte (8)
+ *   choice. Note that bytes does not equal characters. Different encodings will have different
+ *   bytes per character. Currently, only hex keys are supported.
  *
- *   - AES-128 - 16 bytes
- *   - AES-192 - 24 bytes
- *   - AES-256 - 32 bytes
+ *   - AES-128 - 128 bits - 16 bytes
+ *   - AES-192 - 192 bits - 24 bytes
+ *   - AES-256 - 256 bits - 32 bytes
  *
  * @param enc - Encoding for the final data, including the initialization vector and data
+ * @param keyEnc - Encoding for `secretKey`
  * @returns Encrypted contents as a buffer
  */
-export declare function encrypt(contents: string, algo: EncryptionAlgorithms, secretKey: string, enc: "raw"): Promise<Buffer>;
+export declare function encrypt(contents: string, algo: EncryptionAlgorithms, secretKey: string, enc: "raw", keyEnc?: BufferEncoding): Promise<Buffer>;
 /**
  * Encrypts contents with algorithm, key, and initialization vector (iv)
  *
@@ -36,17 +37,18 @@ export declare function encrypt(contents: string, algo: EncryptionAlgorithms, se
  *   supported by the version of OpenSSL on the platform. `openssl list -cipher-algorithms ` will
  *   display the available cipher algorithms.
  * @param secretKey - Secret key for encryption. The key length is dependent on the algorithm of
- *   choice. The key length in bytes (characters) is equal to the key length in bits divided by the
- *   number of bits in a byte (8)
+ *   choice. Note that bytes does not equal characters. Different encodings will have different
+ *   bytes per character. Currently, only hex keys are supported.
  *
- *   - AES-128 - 16 bytes
- *   - AES-192 - 24 bytes
- *   - AES-256 - 32 bytes
+ *   - AES-128 - 128 bits - 16 bytes
+ *   - AES-192 - 192 bits - 24 bytes
+ *   - AES-256 - 256 bits - 32 bytes
  *
  * @param enc - Encoding for the final data, including the initialization vector and data
+ * @param keyEnc - Encoding for `secretKey`
  * @returns Encrypted contents as a buffer
  */
-export declare function encrypt(contents: string, algo: string, secretKey: string, enc: "raw"): Promise<Buffer>;
+export declare function encrypt(contents: string, algo: string, secretKey: string, enc: "raw", keyEnc?: BufferEncoding): Promise<Buffer>;
 /**
  * Encrypts contents with algorithm, key, and initialization vector (iv)
  *
@@ -55,17 +57,18 @@ export declare function encrypt(contents: string, algo: string, secretKey: strin
  *   supported by the version of OpenSSL on the platform. `openssl list -cipher-algorithms ` will
  *   display the available cipher algorithms.
  * @param secretKey - Secret key for encryption. The key length is dependent on the algorithm of
- *   choice. The key length in bytes (characters) is equal to the key length in bits divided by the
- *   number of bits in a byte (8)
+ *   choice. Note that bytes does not equal characters. Different encodings will have different
+ *   bytes per character. Currently, only hex keys are supported.
  *
- *   - AES-128 - 16 bytes
- *   - AES-192 - 24 bytes
- *   - AES-256 - 32 bytes
+ *   - AES-128 - 128 bits - 16 bytes
+ *   - AES-192 - 192 bits - 24 bytes
+ *   - AES-256 - 256 bits - 32 bytes
  *
  * @param enc - Encoding for the final data, including the initialization vector and data
+ * @param keyEnc - Encoding for `secretKey`
  * @returns Encrypted string
  */
-export declare function encrypt(contents: string, algo: EncryptionAlgorithms, secretKey: string, enc?: BufferEncoding): Promise<string>;
+export declare function encrypt(contents: string, algo: EncryptionAlgorithms, secretKey: string, enc?: BufferEncoding, keyEnc?: BufferEncoding): Promise<string>;
 /**
  * Encrypts contents with algorithm, key, and initialization vector (iv)
  *
@@ -74,15 +77,16 @@ export declare function encrypt(contents: string, algo: EncryptionAlgorithms, se
  *   supported by the version of OpenSSL on the platform. `openssl list -cipher-algorithms ` will
  *   display the available cipher algorithms.
  * @param secretKey - Secret key for encryption. The key length is dependent on the algorithm of
- *   choice. The key length in bytes (characters) is equal to the key length in bits divided by the
- *   number of bits in a byte (8)
+ *   choice. Note that bytes does not equal characters. Different encodings will have different
+ *   bytes per character. Currently, only hex keys are supported.
  *
- *   - AES-128 - 16 bytes
- *   - AES-192 - 24 bytes
- *   - AES-256 - 32 bytes
+ *   - AES-128 - 128 bits - 16 bytes
+ *   - AES-192 - 192 bits - 24 bytes
+ *   - AES-256 - 256 bits - 32 bytes
  *
  * @param enc - Encoding for the final data, including the initialization vector and data
+ * @param keyEnc - Encoding for `secretKey`
  * @returns Encrypted string
  */
-export declare function encrypt(contents: string, algo: string, secretKey: string, enc?: BufferEncoding): Promise<string>;
+export declare function encrypt(contents: string, algo: string, secretKey: string, enc?: BufferEncoding, keyEnc?: BufferEncoding): Promise<string>;
 export default encrypt;

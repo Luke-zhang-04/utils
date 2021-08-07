@@ -7,7 +7,7 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.omit = exports.pick = void 0;
+exports.entries = exports.objectEntries = exports.omit = exports.pick = void 0;
 /**
  * Picks values from an object and creates a new object
  *
@@ -58,4 +58,28 @@ const omit = (obj, ...keys) => {
     return newObj;
 };
 exports.omit = omit;
+/**
+ * Better `Object.entries`, which is faster, returns an iterator instead of an array, and is typed better
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(objectEntries({a: 1, b: 2})) // [["a", 1], ["b", 2]]
+ * ```
+ *
+ * @param obj - Object to get entries for
+ * @returns Generator producing the key and value of each item
+ */
+function* objectEntries(obj) {
+    for (const key in obj) {
+        // istanbul ignore else
+        /* eslint-disable-next-line no-prototype-builtins */
+        if (obj.hasOwnProperty(key)) {
+            yield [key, obj[key]];
+        }
+    }
+    return;
+}
+exports.objectEntries = objectEntries;
+exports.entries = objectEntries;
 //# sourceMappingURL=object.js.map
