@@ -11,6 +11,7 @@
 import type {EncryptionAlgorithms} from "./types"
 import crypto from "crypto"
 import {deriveKey} from "./pbkdf2"
+import {getKeyLengthFromAlgo} from "./helper"
 
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
@@ -21,16 +22,15 @@ import {deriveKey} from "./pbkdf2"
  * @param algo- Algorithm identifier. The algorithm is dependent on the available algorithms
  *   supported by the version of OpenSSL on the platform. `openssl list -cipher-algorithms ` will
  *   display the available cipher algorithms.
- * @param secretKey - Secret key for encryption. The key length is dependent on the algorithm of
- *   choice. Note that bytes does not equal characters. Different encodings will have different
- *   bytes per character. Currently, only hex keys are supported.
+ * @param secretKey - Secret key for encryption.
+ * @param enc - Encoding for the final data, including the initialization vector and data
+ * @param keyLength - The length of the key used for encryption in **bytes**. In this case, the key
+ *   length can be inferred, and is optional. The key length is dependent on the algorithm of choice.
  *
  *   - AES-128 - 128 bits - 16 bytes
  *   - AES-192 - 192 bits - 24 bytes
  *   - AES-256 - 256 bits - 32 bytes
  *
- * @param enc - Encoding for the final data, including the initialization vector and data
- * @param keyEnc - Encoding for `secretKey`
  * @returns Encrypted contents as a buffer
  */
 export function encrypt(
@@ -38,7 +38,7 @@ export function encrypt(
     algo: EncryptionAlgorithms,
     secretKey: string,
     enc: "raw",
-    keyEnc?: BufferEncoding,
+    keyLength?: number,
 ): Promise<Buffer>
 
 /**
@@ -48,16 +48,15 @@ export function encrypt(
  * @param algo- Algorithm identifier. The algorithm is dependent on the available algorithms
  *   supported by the version of OpenSSL on the platform. `openssl list -cipher-algorithms ` will
  *   display the available cipher algorithms.
- * @param secretKey - Secret key for encryption. The key length is dependent on the algorithm of
- *   choice. Note that bytes does not equal characters. Different encodings will have different
- *   bytes per character. Currently, only hex keys are supported.
+ * @param secretKey - Secret key for encryption.
+ * @param enc - Encoding for the final data, including the initialization vector and data
+ * @param keyLength - The length of the key used for encryption in **bytes**. The key length is
+ *   dependent on the algorithm of choice.
  *
  *   - AES-128 - 128 bits - 16 bytes
  *   - AES-192 - 192 bits - 24 bytes
  *   - AES-256 - 256 bits - 32 bytes
  *
- * @param enc - Encoding for the final data, including the initialization vector and data
- * @param keyEnc - Encoding for `secretKey`
  * @returns Encrypted contents as a buffer
  */
 export function encrypt(
@@ -65,7 +64,7 @@ export function encrypt(
     algo: string,
     secretKey: string,
     enc: "raw",
-    keyEnc?: BufferEncoding,
+    keyLength: number,
 ): Promise<Buffer>
 
 /**
@@ -75,16 +74,15 @@ export function encrypt(
  * @param algo- Algorithm identifier. The algorithm is dependent on the available algorithms
  *   supported by the version of OpenSSL on the platform. `openssl list -cipher-algorithms ` will
  *   display the available cipher algorithms.
- * @param secretKey - Secret key for encryption. The key length is dependent on the algorithm of
- *   choice. Note that bytes does not equal characters. Different encodings will have different
- *   bytes per character. Currently, only hex keys are supported.
+ * @param secretKey - Secret key for encryption.
+ * @param enc - Encoding for the final data, including the initialization vector and data
+ * @param keyLength - The length of the key used for encryption in **bytes**. In this case, the key
+ *   length can be inferred, and is optional. The key length is dependent on the algorithm of choice.
  *
  *   - AES-128 - 128 bits - 16 bytes
  *   - AES-192 - 192 bits - 24 bytes
  *   - AES-256 - 256 bits - 32 bytes
  *
- * @param enc - Encoding for the final data, including the initialization vector and data
- * @param keyEnc - Encoding for `secretKey`
  * @returns Encrypted string
  */
 export function encrypt(
@@ -92,7 +90,7 @@ export function encrypt(
     algo: EncryptionAlgorithms,
     secretKey: string,
     enc?: BufferEncoding,
-    keyEnc?: BufferEncoding,
+    keyLength?: number,
 ): Promise<string>
 
 /**
@@ -102,24 +100,23 @@ export function encrypt(
  * @param algo- Algorithm identifier. The algorithm is dependent on the available algorithms
  *   supported by the version of OpenSSL on the platform. `openssl list -cipher-algorithms ` will
  *   display the available cipher algorithms.
- * @param secretKey - Secret key for encryption. The key length is dependent on the algorithm of
- *   choice. Note that bytes does not equal characters. Different encodings will have different
- *   bytes per character. Currently, only hex keys are supported.
+ * @param secretKey - Secret key for encryption.
+ * @param enc - Encoding for the final data, including the initialization vector and data
+ * @param keyLength - The length of the key used for encryption in **bytes**. The key length is
+ *   dependent on the algorithm of choice.
  *
  *   - AES-128 - 128 bits - 16 bytes
  *   - AES-192 - 192 bits - 24 bytes
  *   - AES-256 - 256 bits - 32 bytes
  *
- * @param enc - Encoding for the final data, including the initialization vector and data
- * @param keyEnc - Encoding for `secretKey`
  * @returns Encrypted string
  */
 export function encrypt(
     contents: string,
     algo: string,
     secretKey: string,
-    enc?: BufferEncoding,
-    keyEnc?: BufferEncoding,
+    enc: BufferEncoding | undefined,
+    keyLength: number,
 ): Promise<string>
 
 export async function encrypt(
@@ -127,20 +124,26 @@ export async function encrypt(
     algo: string,
     secretKey: string,
     enc: BufferEncoding | "raw" = "hex",
-    keyEnc?: BufferEncoding,
+    keyLength?: number,
 ): Promise<Buffer | string> {
-    const iv = crypto.randomBytes(16)
+    const _keyLength = keyLength ?? getKeyLengthFromAlgo(algo)
 
-    if (algo.endsWith("gcm")) {
-        const salt = crypto.randomBytes(64)
-        const key = await deriveKey(
-            secretKey,
-            salt,
-            // istanbul ignore next
-            keyEnc ? Buffer.from(secretKey, keyEnc).length : undefined,
-            "sha512",
-        )
-        const cipher = crypto.createCipheriv(algo as crypto.CipherGCMTypes, key, iv, {
+    if (_keyLength === undefined) {
+        throw new TypeError(`Could not infer key length from algorithm ${algo}. Please specify.`)
+    }
+
+    const iv = crypto.randomBytes(16)
+    const salt = crypto.randomBytes(64)
+    const key = await deriveKey(
+        secretKey,
+        salt,
+        // istanbul ignore next
+        _keyLength,
+        "sha512",
+    )
+
+    if ((/gcm$/iu.test as (str: string) => str is crypto.CipherGCMTypes)(algo)) {
+        const cipher = crypto.createCipheriv(algo, key, iv, {
             authTagLength: 16,
         })
         const ciphered = cipher.update(contents)
@@ -151,10 +154,10 @@ export async function encrypt(
         return enc === "raw" ? resultBuffer : resultBuffer.toString(enc)
     }
 
-    const cipher = crypto.createCipheriv(algo, Buffer.from(secretKey, keyEnc), iv)
+    const cipher = crypto.createCipheriv(algo, key, iv)
     const ciphered = cipher.update(contents)
     const encrypted = Buffer.concat([ciphered, cipher.final()])
-    const resultBuffer = Buffer.concat([iv, encrypted])
+    const resultBuffer = Buffer.concat([salt, iv, encrypted])
 
     return enc === "raw" ? resultBuffer : resultBuffer.toString(enc)
 }

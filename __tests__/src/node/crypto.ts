@@ -115,7 +115,7 @@ describe("crypto", () => {
     })
 
     describe("encryption and decryption", () => {
-        describe.each<[algo: Parameters<typeof crypto.encrypt>[1], keyLength: number]>([
+        describe.each<[algo: crypto.EncryptionAlgorithms, keyLength: number]>([
             ["aes-128-cbc", 128 / 8],
             ["aes-128-ctr", 128 / 8],
             ["aes-128-gcm", 128 / 8],
@@ -137,14 +137,12 @@ describe("crypto", () => {
                         algo,
                         key,
                         enc === "hex" ? undefined : enc,
-                        enc,
                     )
                     const decrypted = await crypto.decrypt(
                         encrypted,
                         algo,
                         key,
                         enc === "hex" ? undefined : enc,
-                        enc,
                     )
 
                     // If given a bad key, the decrypt function will throw an error, or return deformed data
@@ -170,14 +168,89 @@ describe("crypto", () => {
                 const key = nodeCrypto.randomBytes(keyLength).toString("hex")
                 const badKey = nodeCrypto.randomBytes(keyLength).toString("hex")
                 const data = nodeCrypto.randomBytes(256).toString("base64")
-                const encrypted = await crypto.encrypt(data, algo, key, "raw", "hex")
-                const decrypted = await crypto.decrypt(encrypted, algo, key, "raw", "hex")
+                const encrypted = await crypto.encrypt(data, algo, key, "raw")
+                const decrypted = await crypto.decrypt(encrypted, algo, key, "raw")
 
                 // If given a bad key, the decrypt function will throw an error, or return deformed data
                 let errorOrBadData: string | Error
 
                 try {
                     errorOrBadData = await crypto.decrypt(encrypted, algo, badKey, "raw")
+                } catch (err: unknown) {
+                    errorOrBadData = err instanceof Error ? err : new Error(String(err))
+                }
+
+                if (typeof errorOrBadData === "string") {
+                    expect(errorOrBadData).not.toBe(data)
+                } else {
+                    expect(errorOrBadData).toBeInstanceOf(Error)
+                }
+
+                expect(decrypted).toBe(data)
+            })
+        })
+
+        describe("encrypt and decrypt with id-aes256-gcm", () => {
+            const algo = "id-aes256-gcm"
+            const enc = "hex"
+
+            it("should throw error if no length given", async () => {
+                const keyLength = 256 / 8
+                const key = nodeCrypto.randomBytes(keyLength).toString("base64")
+                const data = nodeCrypto.randomBytes(256).toString("base64")
+                let error: Error | undefined
+
+                try {
+                    await crypto.encrypt(
+                        data,
+                        // @ts-expect-error
+                        algo,
+                        key,
+                        enc === "hex" ? undefined : enc,
+                    )
+                } catch (err) {
+                    error = err
+                }
+
+                expect(error).toBeInstanceOf(TypeError)
+                expect(error?.message).toContain("Could not infer key length")
+
+                try {
+                    // @ts-expect-error
+                    await crypto.decrypt(data, algo, key, enc === "hex" ? undefined : enc)
+                } catch (err) {
+                    error = err
+                }
+
+                expect(error).toBeInstanceOf(TypeError)
+                expect(error?.message).toContain("Could not infer key length")
+            })
+
+            it("should encrypt other algorithms", async () => {
+                const keyLength = 256 / 8
+                const key = nodeCrypto.randomBytes(keyLength).toString("base64")
+                const badKey = nodeCrypto.randomBytes(keyLength).toString("base64")
+                const data = nodeCrypto.randomBytes(256).toString("base64")
+                const encrypted = await crypto.encrypt(
+                    data,
+                    algo,
+                    key,
+                    enc === "hex" ? undefined : enc,
+                    keyLength,
+                )
+                const decrypted = await crypto.decrypt(
+                    encrypted,
+                    algo,
+                    key,
+                    enc === "hex" ? undefined : enc,
+                    keyLength,
+                )
+
+                // If given a bad key, the decrypt function will throw an error, or return deformed data
+                let errorOrBadData: string | Error
+
+                try {
+                    errorOrBadData = await crypto.decrypt(encrypted, algo, badKey, enc, keyLength)
                 } catch (err: unknown) {
                     errorOrBadData = err instanceof Error ? err : new Error(String(err))
                 }
