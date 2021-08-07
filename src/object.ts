@@ -65,3 +65,30 @@ export const omit = <T extends {[key: string]: unknown}, K extends (keyof T)[]>(
 
     return newObj
 }
+
+/**
+ * Better `Object.entries`, which is faster, returns an iterator instead of an array, and is typed better
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(objectEntries({a: 1, b: 2})) // [["a", 1], ["b", 2]]
+ * ```
+ *
+ * @param obj - Object to get entries for
+ * @returns Generator producing the key and value of each item
+ */
+export function* objectEntries<T extends {[key: string]: unknown}>(
+    obj: T,
+): Generator<{[K in keyof T]: [K, T[K]]}[keyof T], void, void> {
+    for (const key in obj) {
+        // istanbul ignore else
+        if (obj.hasOwnProperty(key)) {
+            yield [key, obj[key]]
+        }
+    }
+
+    return
+}
+
+export {objectEntries as entries}

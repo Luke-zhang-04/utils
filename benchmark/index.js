@@ -5,6 +5,11 @@ const data = {
     filterMap: {
         array: new Array(1_000_000).fill(undefined).map((_, index) => index),
     },
+    objectEntries: {
+        object: Object.fromEntries(
+            new Array(100_000).fill(Math.random()).map((val, index) => [index.toString(), val]),
+        ),
+    },
 }
 
 const cases = {
@@ -17,6 +22,26 @@ const cases = {
         },
         native: () => {
             data.filterMap.array.filter((val) => val % 2 === 0).map((val) => val)
+        },
+    },
+    objectEntries: {
+        util: () => {
+            for (const [key, val] of utils.objectEntries(data.objectEntries.object)) {
+                key
+                val
+            }
+        },
+        utilProto: () => {
+            for (const [key, val] of utils.objectEntries(data.objectEntries.object, true)) {
+                key
+                val
+            }
+        },
+        native: () => {
+            for (const [key, val] of Object.entries(data.objectEntries.object)) {
+                key
+                val
+            }
         },
     },
 }

@@ -5,6 +5,7 @@
  */
 
 import * as object from "../../lib/object"
+import {isEqualArray} from "../../lib"
 
 describe("object", () => {
     const testObject = {
@@ -53,6 +54,41 @@ describe("object", () => {
             const newObj = object.omit(testObject, "")
 
             expect(Object.keys(newObj)).toHaveLength(6)
+        })
+    })
+
+    describe("objectEntries", () => {
+        it.each([
+            [{} as {[key: string]: string}, [] as [string, string][]],
+            [
+                {a: 1, b: 2, c: 3, d: 4},
+                [
+                    ["a", 1],
+                    ["b", 2],
+                    ["c", 3],
+                    ["d", 4],
+                ],
+            ],
+            [
+                {a: 1, b: 2, c: 3},
+                [
+                    ["a", 1],
+                    ["b", 2],
+                    ["c", 3],
+                ],
+            ],
+        ])("should return object entries", (obj, expected) => {
+            const iterator: Generator<
+                [string, string] | ["a", number] | ["b", number] | ["c", number],
+                void,
+                void
+            > = object.entries(obj)
+
+            expect(typeof iterator[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iterator)
+
+            expect(isEqualArray(result.sort(), expected.sort())).toBe(true)
         })
     })
 })
