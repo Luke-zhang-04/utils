@@ -1,6 +1,11 @@
 #!/bin/sh
 
 tsc --outDir dist --incremental false --tsBuildInfoFile null
-tsc --outDir dist/cjs --module commonjs --incremental false --tsBuildInfoFile null
+tsc --outDir dist/cjs --module commonjs --incremental false --tsBuildInfoFile null --sourceMap false
+
+# for f in dist/cjs/*.js; do
+#     mv -- "$f" "${f%.js}.cjs"
+# done
+
 cp LICENSE package.json README.md dist
-node -e "console.log(JSON.stringify({...$(cat package.json), type: \"commonjs\"}, null, 2))" > dist/cjs/package.json
+echo '{"private": false, "type": "commonjs"}' > dist/cjs/package.json
