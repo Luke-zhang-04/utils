@@ -20,3 +20,4 @@ var hmacHash_1 = require("./hmacHash");
 Object.defineProperty(exports, "hmacHash", { enumerable: true, get: function () { return hmacHash_1.hmacHash; } });
 var pbkdf2_1 = require("./pbkdf2");
 Object.defineProperty(exports, "deriveKey", { enumerable: true, get: function () { return pbkdf2_1.deriveKey; } });
+//# sourceMappingURL=index.js.map

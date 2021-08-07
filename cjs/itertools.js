@@ -464,3 +464,4 @@ function* islice(iterable, start, end, step) {
     }
 }
 exports.islice = islice;
+//# sourceMappingURL=itertools.js.map

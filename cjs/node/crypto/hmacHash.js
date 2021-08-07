@@ -21,3 +21,4 @@ function hmacHash(contents, algo, secretKey, enc = "hex") {
 exports.hmacHash = hmacHash;
 exports.default = hmacHash;
 /* eslint-enable prefer-arrow/prefer-arrow-functions */
+//# sourceMappingURL=hmacHash.js.map

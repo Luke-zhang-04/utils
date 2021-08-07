@@ -62,3 +62,4 @@ exports.isObject = isObject;
  */
 const isErrorLike = (obj) => exports.isObject(obj) && typeof obj.message === "string" && typeof obj.name === "string";
 exports.isErrorLike = isErrorLike;
+//# sourceMappingURL=typeGuards.js.map

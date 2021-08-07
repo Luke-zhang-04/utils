@@ -82,3 +82,4 @@ function* objectEntries(obj) {
 }
 exports.objectEntries = objectEntries;
 exports.entries = objectEntries;
+//# sourceMappingURL=object.js.map
