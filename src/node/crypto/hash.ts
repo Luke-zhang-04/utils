@@ -23,7 +23,7 @@ import crypto from "crypto"
  * @param enc - Encoding of the output
  * @returns Hashed contents as a buffer
  */
-export function hash(contents: string, algo: string, enc: "raw"): Buffer
+export function hash(contents: crypto.BinaryLike, algo: string, enc: "raw"): Buffer
 
 /**
  * Hashes contents with algorithm and outputs them as a buffer
@@ -35,7 +35,7 @@ export function hash(contents: string, algo: string, enc: "raw"): Buffer
  * @param enc - Encoding of the output
  * @returns Hashed contents as a buffer
  */
-export function hash(contents: string, algo: HashAlgorithms, enc: "raw"): Buffer
+export function hash(contents: crypto.BinaryLike, algo: HashAlgorithms, enc: "raw"): Buffer
 
 /**
  * Hashes contents with algorithm and outputs them based on `enc`
@@ -47,7 +47,11 @@ export function hash(contents: string, algo: HashAlgorithms, enc: "raw"): Buffer
  * @param enc - Encoding of the output, default hex
  * @returns Hashed contents encoded with `enc`
  */
-export function hash(contents: string, algo: string | HashAlgorithms, enc?: BufferEncoding): string
+export function hash(
+    contents: crypto.BinaryLike,
+    algo: string | HashAlgorithms,
+    enc?: BufferEncoding,
+): string
 
 /**
  * Hashes contents with algorithm and outputs them based on `enc`
@@ -59,10 +63,14 @@ export function hash(contents: string, algo: string | HashAlgorithms, enc?: Buff
  * @param enc - Encoding of the output, default hex
  * @returns Hashed contents encoded with `enc`
  */
-export function hash(contents: string, algo: HashAlgorithms, enc?: BufferEncoding): string
+export function hash(
+    contents: crypto.BinaryLike,
+    algo: HashAlgorithms,
+    enc?: BufferEncoding,
+): string
 
 export function hash(
-    contents: string,
+    contents: crypto.BinaryLike,
     algo: string,
     enc: BufferEncoding | "raw" = "hex",
 ): Buffer | string {

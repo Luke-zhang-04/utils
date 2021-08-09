@@ -25,7 +25,12 @@ import crypto from "crypto"
  * @param format - Format; `base64` or `hex`
  * @returns Hashed contents as a buffer
  */
-export function hmacHash(contents: string, algo: string, secretKey: string, enc: "raw"): Buffer
+export function hmacHash(
+    contents: crypto.BinaryLike,
+    algo: string,
+    secretKey: string,
+    enc: "raw",
+): Buffer
 
 /**
  * Hashes contents with algorithm, salts them with `secretKey` and HMAC, and output a buffer of the
@@ -40,7 +45,7 @@ export function hmacHash(contents: string, algo: string, secretKey: string, enc:
  * @returns Hashed contents as a buffer
  */
 export function hmacHash(
-    contents: string,
+    contents: crypto.BinaryLike,
     algo: HashAlgorithms,
     secretKey: string,
     enc: "raw",
@@ -58,7 +63,7 @@ export function hmacHash(
  * @returns Hashed contents
  */
 export function hmacHash(
-    contents: string,
+    contents: crypto.BinaryLike,
     algo: string,
     secretKey: string,
     enc?: BufferEncoding,
@@ -76,14 +81,14 @@ export function hmacHash(
  * @returns Hashed contents
  */
 export function hmacHash(
-    contents: string,
+    contents: crypto.BinaryLike,
     algo: HashAlgorithms,
     secretKey: string,
     enc?: BufferEncoding,
 ): string
 
 export function hmacHash(
-    contents: string,
+    contents: crypto.BinaryLike,
     algo: string,
     secretKey: string,
     enc: BufferEncoding | "raw" = "hex",
