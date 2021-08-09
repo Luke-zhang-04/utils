@@ -13,8 +13,10 @@ import {hmacHash} from "./hmacHash"
 
 const getHashLengthFromAlgo = (algo: HashAlgorithms): number => {
     if (algo === "sha1") {
-        return 20
-    } else if (/^sha3-/.test(algo)) {
+        const sha1Length = 20
+
+        return sha1Length
+    } else if (/^sha3-/u.test(algo)) {
         // Ignore optional chains
         // istanbul ignore next
         const length = Number(algo.match(/sha3-(?<length>[0-9]{3})/u)?.groups?.length)
