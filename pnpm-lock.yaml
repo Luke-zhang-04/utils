@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@types/node': '>= 12.20.19'
+      '@types/node': ^12.20.19
       '@typescript-eslint/eslint-plugin': ^4.28.5
       '@typescript-eslint/parser': ^4.28.5
       eslint: ^7.31.0
@@ -20,7 +20,7 @@ importers:
       typedoc-plugin-markdown: ^3.10.4
       typescript: ^4.3.5
     devDependencies:
-      '@types/node': 16.4.3
+      '@types/node': 12.20.19
       '@typescript-eslint/eslint-plugin': 4.28.5_514553717ff968e20f6d1c6e521f8616
       '@typescript-eslint/parser': 4.28.5_eslint@7.31.0+typescript@4.3.5
       eslint: 7.31.0
@@ -835,6 +835,10 @@ packages:
     resolution: {integrity: sha512-YwR7OK8aPmaBvMMUi+pZXBNoW2unbVbfok4YRqGMJBe1dpDlzpRkJrYEYmvjxgs5JhuQmKfDexrN98u941Zasg==}
     dependencies:
       '@types/unist': 2.0.6
+    dev: true
+
+  /@types/node/12.20.19:
+    resolution: {integrity: sha512-niAuZrwrjKck4+XhoCw6AAVQBENHftpXw9F4ryk66fTgYaKQ53R4FI7c9vUGGw5vQis1HKBHDR1gcYI/Bq1xvw==}
     dev: true
 
   /@types/node/16.4.3:
