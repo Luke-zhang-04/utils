@@ -132,8 +132,18 @@ export async function encrypt(
         throw new TypeError(`Could not infer key length from algorithm ${algo}. Please specify.`)
     }
 
-    const iv = crypto.randomBytes(16)
-    const salt = crypto.randomBytes(64)
+    const iv = await new Promise<Buffer>((resolve, reject) =>
+        crypto.randomBytes(16, (err, buffer) =>
+            // istanbul ignore next
+            err ? reject(err) : resolve(buffer),
+        ),
+    )
+    const salt = await new Promise<Buffer>((resolve, reject) =>
+        crypto.randomBytes(64, (err, buffer) =>
+            // istanbul ignore next
+            err ? reject(err) : resolve(buffer),
+        ),
+    )
     const key = await deriveKey(
         secretKey,
         salt,
