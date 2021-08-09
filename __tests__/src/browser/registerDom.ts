@@ -13,5 +13,5 @@ const dom = new JSDOM("<!DOCTYPE html><html></html>")
 ;(dom.window as {[key: string]: unknown}).crypto = crypto
 
 // Register crypto object
-;(global as {[key: string]: unknown}).crypto = crypto
-;(global as {[key: string]: unknown}).window = dom.window
+global.crypto = crypto
+;(global as unknown as {[key: string]: unknown}).window = dom.window
