@@ -18,7 +18,7 @@ describe("crypto", () => {
             ["sha384"],
             ["sha512"],
         ])("hash with %s", (algo) => {
-            it.each<Parameters<typeof crypto.hash>[2][]>([["hex"], ["base64"]])(
+            it.each<Parameters<typeof crypto.hash>[2][]>([["hex"], ["base64"], ["base64url"]])(
                 `should hash with ${algo} and %s encoding`,
                 async (enc) => {
                     const hash1 = crypto.hash(data, algo, enc === "hex" ? undefined : enc)
@@ -59,7 +59,7 @@ describe("crypto", () => {
             ["sha512"],
             ["sha3-256"],
         ])("hash with HMAC %s", (algo) => {
-            it.each<Parameters<typeof crypto.hash>[2][]>([["hex"], ["base64"]])(
+            it.each<Parameters<typeof crypto.hash>[2][]>([["hex"], ["base64"], ["base64url"]])(
                 `should hash with HMAC ${algo} and %s encoding`,
                 async (enc) => {
                     const hash1 = crypto.hmacHash(
@@ -280,7 +280,7 @@ describe("crypto", () => {
             ["sha512"],
             ["sha3-256"],
         ])("hash with HMAC %s", (algo) => {
-            it.each<Parameters<typeof crypto.hash>[2][]>([["hex"], ["base64"]])(
+            it.each<Parameters<typeof crypto.hash>[2][]>([["hex"], ["base64"], ["base64url"]])(
                 `should hash with HMAC ${algo} and %s encoding`,
                 async (enc) => {
                     const encodedData = await crypto.encodeAndSign(data, algo, key1, enc)

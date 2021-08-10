@@ -9,6 +9,7 @@
  */
 
 import type {HashAlgorithms} from "./types"
+import {bufferToString} from "./helper"
 import crypto from "crypto"
 
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
@@ -66,7 +67,7 @@ export function hmacHash(
     contents: crypto.BinaryLike,
     algo: string,
     secretKey: string,
-    enc?: BufferEncoding,
+    enc?: BufferEncoding | "base64url",
 ): string
 
 /**
@@ -84,18 +85,16 @@ export function hmacHash(
     contents: crypto.BinaryLike,
     algo: HashAlgorithms,
     secretKey: string,
-    enc?: BufferEncoding,
+    enc?: BufferEncoding | "base64url",
 ): string
 
 export function hmacHash(
     contents: crypto.BinaryLike,
     algo: string,
     secretKey: string,
-    enc: BufferEncoding | "raw" = "hex",
+    enc: BufferEncoding | "base64url" | "raw" = "hex",
 ): Buffer | string {
-    const buffer = crypto.createHmac(algo, secretKey).update(contents).digest()
-
-    return enc === "raw" ? buffer : buffer.toString(enc)
+    return bufferToString(crypto.createHmac(algo, secretKey).update(contents).digest(), enc)
 }
 
 export default hmacHash

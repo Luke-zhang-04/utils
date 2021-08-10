@@ -10,6 +10,7 @@
 
 import type {HashAlgorithms} from "./types"
 import {hmacHash} from "./hmacHash"
+import {stringToBuffer} from "./helper"
 
 const getHashLengthFromAlgo = (algo: HashAlgorithms): number => {
     if (algo === "sha1") {
@@ -84,17 +85,18 @@ export function decodeAndVerify(
     encodedData: string,
     algo: HashAlgorithms,
     secretKey: string,
-    enc?: BufferEncoding,
+    enc?: BufferEncoding | "base64url",
 ): string
 
 export function decodeAndVerify(
     encodedData: string | Buffer,
     algo: HashAlgorithms,
     secretKey: string,
-    enc?: BufferEncoding | "raw",
+    // istanbul ignore next
+    enc: BufferEncoding | "base64url" | "raw" = "hex",
 ): string {
     const hashLen = getHashLengthFromAlgo(algo)
-    const bData = enc === "raw" ? (encodedData as Buffer) : Buffer.from(encodedData as string, enc)
+    const bData = stringToBuffer(encodedData, enc)
 
     /* eslint-disable @typescript-eslint/no-magic-numbers */
     const salt = bData.slice(0, 64)

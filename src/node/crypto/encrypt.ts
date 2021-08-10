@@ -8,10 +8,10 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
+import {bufferToString, getKeyLengthFromAlgo} from "./helper"
 import type {EncryptionAlgorithms} from "./types"
 import crypto from "crypto"
 import {deriveKey} from "./pbkdf2"
-import {getKeyLengthFromAlgo} from "./helper"
 
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
@@ -161,7 +161,7 @@ export async function encrypt(
         const tag = cipher.getAuthTag()
         const resultBuffer = Buffer.concat([salt, iv, tag, encrypted])
 
-        return enc === "raw" ? resultBuffer : resultBuffer.toString(enc)
+        return bufferToString(resultBuffer, enc)
     }
 
     const cipher = crypto.createCipheriv(algo, key, iv)
@@ -169,7 +169,7 @@ export async function encrypt(
     const encrypted = Buffer.concat([ciphered, cipher.final()])
     const resultBuffer = Buffer.concat([salt, iv, encrypted])
 
-    return enc === "raw" ? resultBuffer : resultBuffer.toString(enc)
+    return bufferToString(resultBuffer, enc)
 }
 
 export default encrypt

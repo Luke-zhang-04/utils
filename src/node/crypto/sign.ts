@@ -9,6 +9,7 @@
  */
 
 import type {HashAlgorithms} from "./types"
+import {bufferToString} from "./helper"
 import crypto from "crypto"
 import {hmacHash} from "./hmacHash"
 
@@ -53,14 +54,15 @@ export function encodeAndSign(
     data: string | Buffer,
     algo: HashAlgorithms,
     secretKey: string,
-    enc?: BufferEncoding,
+    enc?: BufferEncoding | "base64url",
 ): Promise<string>
 
 export async function encodeAndSign(
     data: string | Buffer,
     algo: HashAlgorithms,
     secretKey: string,
-    enc?: BufferEncoding | "raw",
+    // istanbul ignore next
+    enc: BufferEncoding | "base64url" | "raw" = "hex",
 ): Promise<Buffer | string> {
     const salt = await new Promise<Buffer>((resolve, reject) =>
         crypto.randomBytes(64, (err, buffer) =>
@@ -72,7 +74,7 @@ export async function encodeAndSign(
     const hash = hmacHash(Buffer.concat([salt, bufferData]), algo, secretKey, "raw")
     const result = Buffer.concat([salt, hash, bufferData])
 
-    return enc === "raw" ? result : result.toString(enc)
+    return bufferToString(result, enc)
 }
 
 /* eslint-enable prefer-arrow/prefer-arrow-functions */

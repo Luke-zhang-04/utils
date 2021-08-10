@@ -9,6 +9,7 @@
  */
 
 import type {HashAlgorithms} from "./types"
+import {bufferToString} from "./helper"
 import crypto from "crypto"
 
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
@@ -50,7 +51,7 @@ export function hash(contents: crypto.BinaryLike, algo: HashAlgorithms, enc: "ra
 export function hash(
     contents: crypto.BinaryLike,
     algo: string | HashAlgorithms,
-    enc?: BufferEncoding,
+    enc?: BufferEncoding | "base64url",
 ): string
 
 /**
@@ -66,17 +67,15 @@ export function hash(
 export function hash(
     contents: crypto.BinaryLike,
     algo: HashAlgorithms,
-    enc?: BufferEncoding,
+    enc?: BufferEncoding | "base64url",
 ): string
 
 export function hash(
     contents: crypto.BinaryLike,
     algo: string,
-    enc: BufferEncoding | "raw" = "hex",
+    enc: BufferEncoding | "base64url" | "raw" = "hex",
 ): Buffer | string {
-    const buffer = crypto.createHash(algo).update(contents).digest()
-
-    return enc === "raw" ? buffer : buffer.toString(enc)
+    return bufferToString(crypto.createHash(algo).update(contents).digest(), enc)
 }
 
 export default hash

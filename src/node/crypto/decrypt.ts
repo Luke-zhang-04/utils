@@ -8,10 +8,10 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
+import {getKeyLengthFromAlgo, stringToBuffer} from "./helper"
 import type {EncryptionAlgorithms} from "./types"
 import crypto from "crypto"
 import {deriveKey} from "./pbkdf2"
-import {getKeyLengthFromAlgo} from "./helper"
 
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
@@ -89,7 +89,7 @@ export function decrypt(
     encryptedData: string,
     algo: EncryptionAlgorithms,
     secretKey: string,
-    enc?: BufferEncoding,
+    enc?: BufferEncoding | "base64url",
     keyLength?: number,
 ): Promise<string>
 
@@ -115,7 +115,7 @@ export function decrypt(
     encryptedData: string,
     algo: string,
     secretKey: string,
-    enc: BufferEncoding | undefined,
+    enc: BufferEncoding | "base64url" | undefined,
     keyLength: number,
 ): Promise<string>
 
@@ -123,7 +123,7 @@ export async function decrypt(
     encryptedData: string | Buffer,
     algo: string,
     secretKey: string,
-    enc: BufferEncoding | "raw" = "hex",
+    enc: BufferEncoding | "base64url" | "raw" = "hex",
     keyLength?: number,
 ): Promise<string> {
     const _keyLength = keyLength ?? getKeyLengthFromAlgo(algo)
@@ -132,8 +132,7 @@ export async function decrypt(
         throw new TypeError(`Could not infer key length from algorithm ${algo}. Please specify.`)
     }
 
-    const bData =
-        enc === "raw" ? (encryptedData as Buffer) : Buffer.from(encryptedData as string, enc)
+    const bData = stringToBuffer(encryptedData, enc)
 
     /* eslint-disable @typescript-eslint/no-magic-numbers */
     const salt = bData.slice(0, 64)
