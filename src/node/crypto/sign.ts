@@ -27,6 +27,7 @@ import {hmacHash} from "./hmacHash"
  * @param algo - Algorithm to use for signing
  * @param secretKey - Key to use for HMAC-`algo`
  * @param enc - Encoding for the final data
+ * @param shouldSalt - If a random salt should be added to the hash and data
  * @returns Buffer of signed contents and their signature
  */
 export function encodeAndSign(
@@ -34,6 +35,7 @@ export function encodeAndSign(
     algo: HashAlgorithms,
     secretKey: string,
     enc: "raw",
+    shouldSalt?: boolean,
 ): Promise<Buffer>
 
 /**
@@ -48,6 +50,7 @@ export function encodeAndSign(
  * @param algo - Algorithm to use for signing
  * @param secretKey - Key to use for HMAC-`algo`
  * @param enc - Encoding for the final data
+ * @param shouldSalt - If a random salt should be added to the hash and data
  * @returns String of signed contents and their signature, encoded with `enc`
  */
 export function encodeAndSign(
@@ -55,6 +58,7 @@ export function encodeAndSign(
     algo: HashAlgorithms,
     secretKey: string,
     enc?: BufferEncoding | "base64url",
+    shouldSalt?: boolean,
 ): Promise<string>
 
 export async function encodeAndSign(
@@ -63,13 +67,16 @@ export async function encodeAndSign(
     secretKey: string,
     // istanbul ignore next
     enc: BufferEncoding | "base64url" | "raw" = "hex",
+    shouldSalt = true,
 ): Promise<Buffer | string> {
-    const salt = await new Promise<Buffer>((resolve, reject) =>
-        crypto.randomBytes(64, (err, buffer) =>
-            // istanbul ignore next
-            err ? reject(err) : resolve(buffer),
-        ),
-    )
+    const salt = shouldSalt
+        ? await new Promise<Buffer>((resolve, reject) =>
+              crypto.randomBytes(64, (err, buffer) =>
+                  // istanbul ignore next
+                  err ? reject(err) : resolve(buffer),
+              ),
+          )
+        : Buffer.from("")
     const bufferData = typeof data === "string" ? Buffer.from(data, "utf-8") : data
     const hash = hmacHash(Buffer.concat([salt, bufferData]), algo, secretKey, "raw")
     const result = Buffer.concat([salt, hash, bufferData])

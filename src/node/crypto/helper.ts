@@ -4,7 +4,6 @@
  * Wraps the existing Node Crypto API
  *
  * @license 0BSD
- * @private
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  * @internal
  */
@@ -25,6 +24,8 @@ export const unescapeBase64 = (str: string) =>
 export const escapeBase64 = (str: string) =>
     str.replace(/\+/g, "-").replace(/\//g, "_").replace(/=/g, "")
 /* eslint-enable */
+
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
 
 export function stringToBuffer(data: Buffer, enc: "raw"): Buffer
 export function stringToBuffer(data: string, enc: BufferEncoding | "base64url"): Buffer
@@ -65,3 +66,5 @@ export function bufferToString(
 
     return data.toString(enc)
 }
+
+/* eslint-enable prefer-arrow/prefer-arrow-functions */

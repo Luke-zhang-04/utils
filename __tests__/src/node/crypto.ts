@@ -280,17 +280,43 @@ describe("crypto", () => {
             ["sha512"],
             ["sha3-256"],
         ])("hash with HMAC %s", (algo) => {
-            it.each<Parameters<typeof crypto.hash>[2][]>([["hex"], ["base64"], ["base64url"]])(
-                `should hash with HMAC ${algo} and %s encoding`,
-                async (enc) => {
-                    const encodedData = await crypto.encodeAndSign(data, algo, key1, enc)
-                    const decodedData = crypto.decodeAndVerify(encodedData, algo, key1, enc)
+            it.each<[Parameters<typeof crypto.hash>[2], boolean]>([
+                ["hex", true],
+                ["base64", true],
+                ["base64url", true],
+                ["hex", false],
+                ["base64", false],
+                ["base64url", false],
+            ])(
+                `should hash with HMAC ${algo} and %s encoding with salt as %b`,
+                async (enc, shouldSalt) => {
+                    const encodedData = await crypto.encodeAndSign(
+                        data,
+                        algo,
+                        key1,
+                        enc,
+                        shouldSalt,
+                    )
+                    const decodedData = crypto.decodeAndVerify(
+                        encodedData,
+                        algo,
+                        key1,
+                        enc,
+                        shouldSalt,
+                    )
                     const rejectedData = inlineTry(
-                        () => crypto.decodeAndVerify(encodedData, algo, key2, enc),
+                        () => crypto.decodeAndVerify(encodedData, algo, key2, enc, shouldSalt),
                         false,
                     )
                     const rejectedData2 = inlineTry(
-                        () => crypto.decodeAndVerify("A" + encodedData.slice(1), algo, key2, enc),
+                        () =>
+                            crypto.decodeAndVerify(
+                                "A" + encodedData.slice(1),
+                                algo,
+                                key2,
+                                enc,
+                                shouldSalt,
+                            ),
                         false,
                     )
 

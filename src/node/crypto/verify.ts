@@ -55,6 +55,7 @@ const getHashLengthFromAlgo = (algo: HashAlgorithms): number => {
  * @param algo - Algorithm to use for verification
  * @param secretKey - Key to use for HMAC-`algo`
  * @param enc - Encoding for `encodedData`
+ * @param isSalted - If a salt was used to hash the data
  * @returns Buffer of decoded contents
  * @throws Error if the data cannot be verified, i.e the data has been tampered with and the hashes
  *   don't match
@@ -64,6 +65,7 @@ export function decodeAndVerify(
     algo: HashAlgorithms,
     secretKey: string,
     enc: "raw",
+    isSalted?: boolean,
 ): string
 
 /**
@@ -77,6 +79,7 @@ export function decodeAndVerify(
  * @param algo - Algorithm to use for verification
  * @param secretKey - Key to use for HMAC-`algo`
  * @param enc - Encoding for `encodedData`
+ * @param isSalted - If a salt was used to hash the data
  * @returns Buffer of decoded contents
  * @throws Error if the data cannot be verified, i.e the data has been tampered with and the hashes
  *   don't match
@@ -86,6 +89,7 @@ export function decodeAndVerify(
     algo: HashAlgorithms,
     secretKey: string,
     enc?: BufferEncoding | "base64url",
+    isSalted?: boolean,
 ): string
 
 export function decodeAndVerify(
@@ -94,15 +98,16 @@ export function decodeAndVerify(
     secretKey: string,
     // istanbul ignore next
     enc: BufferEncoding | "base64url" | "raw" = "hex",
+    isSalted = true,
 ): string {
     const hashLen = getHashLengthFromAlgo(algo)
     const bData = stringToBuffer(encodedData, enc)
+    const saltLength = isSalted ? 64 : 0
 
-    /* eslint-disable @typescript-eslint/no-magic-numbers */
-    const salt = bData.slice(0, 64)
-    const hash = bData.slice(64, 64 + hashLen)
-    const data = bData.slice(64 + hashLen)
-    /* eslint-enable @typescript-eslint/no-magic-numbers */
+    const salt = bData.slice(0, saltLength)
+    const hash = bData.slice(saltLength, saltLength + hashLen)
+    const data = bData.slice(saltLength + hashLen)
+
     const newHash = hmacHash(Buffer.concat([salt, data]), algo, secretKey, "raw")
 
     if (hash.compare(newHash) !== 0) {
