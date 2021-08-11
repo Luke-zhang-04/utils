@@ -13,15 +13,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.decrypt = void 0;
+const helper_1 = require("./helper");
 const crypto_1 = __importDefault(require("crypto"));
 const pbkdf2_1 = require("./pbkdf2");
-const helper_1 = require("./helper");
 async function decrypt(encryptedData, algo, secretKey, enc = "hex", keyLength) {
     const _keyLength = keyLength !== null && keyLength !== void 0 ? keyLength : helper_1.getKeyLengthFromAlgo(algo);
     if (_keyLength === undefined) {
         throw new TypeError(`Could not infer key length from algorithm ${algo}. Please specify.`);
     }
-    const bData = enc === "raw" ? encryptedData : Buffer.from(encryptedData, enc);
+    const bData = helper_1.stringToBuffer(encryptedData, enc);
     /* eslint-disable @typescript-eslint/no-magic-numbers */
     const salt = bData.slice(0, 64);
     const iv = bData.slice(64, 80);

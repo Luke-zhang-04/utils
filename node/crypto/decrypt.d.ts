@@ -65,7 +65,7 @@ export declare function decrypt(encryptedData: Buffer, algo: string, secretKey: 
  *
  * @returns Object with the decrypted data in string form
  */
-export declare function decrypt(encryptedData: string, algo: EncryptionAlgorithms, secretKey: string, enc?: BufferEncoding, keyLength?: number): Promise<string>;
+export declare function decrypt(encryptedData: string, algo: EncryptionAlgorithms, secretKey: string, enc?: BufferEncoding | "base64url", keyLength?: number): Promise<string>;
 /**
  * Decrypts encryptedData with an initialization vector, algorithm, and secretKey
  *
@@ -84,5 +84,5 @@ export declare function decrypt(encryptedData: string, algo: EncryptionAlgorithm
  *
  * @returns Object with the decrypted data in string form
  */
-export declare function decrypt(encryptedData: string, algo: string, secretKey: string, enc: BufferEncoding | undefined, keyLength: number): Promise<string>;
+export declare function decrypt(encryptedData: string, algo: string, secretKey: string, enc: BufferEncoding | "base64url" | undefined, keyLength: number): Promise<string>;
 export default decrypt;

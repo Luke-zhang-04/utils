@@ -7,15 +7,15 @@
  * @license 0BSD
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
+import { getKeyLengthFromAlgo, stringToBuffer } from "./helper";
 import crypto from "crypto";
 import { deriveKey } from "./pbkdf2";
-import { getKeyLengthFromAlgo } from "./helper";
 export async function decrypt(encryptedData, algo, secretKey, enc = "hex", keyLength) {
     const _keyLength = keyLength !== null && keyLength !== void 0 ? keyLength : getKeyLengthFromAlgo(algo);
     if (_keyLength === undefined) {
         throw new TypeError(`Could not infer key length from algorithm ${algo}. Please specify.`);
     }
-    const bData = enc === "raw" ? encryptedData : Buffer.from(encryptedData, enc);
+    const bData = stringToBuffer(encryptedData, enc);
     /* eslint-disable @typescript-eslint/no-magic-numbers */
     const salt = bData.slice(0, 64);
     const iv = bData.slice(64, 80);

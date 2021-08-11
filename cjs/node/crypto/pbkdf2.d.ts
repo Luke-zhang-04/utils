@@ -25,12 +25,10 @@ import type { HashAlgorithms } from "./types";
  * @param algorithm - Digest algorithm
  * @returns Derived secret key
  */
-export declare const deriveKey: (secretKey: string, salt: Buffer, keyLength?: number | undefined, algorithm?: HashAlgorithms) => Promise<Buffer>;
+export declare const deriveKey: (secretKey: string, salt: Buffer, keyLength?: number | undefined, algorithm?: HashAlgorithms, iterations?: number) => Promise<Buffer>;
 /**
  * Provides an synchronous Password-Based Key Derivation Function 2 (PBKDF2) implementation.
  *
- * @remarks
- * Synchronous operations block the main thread and may cause performance issues in larger applications
  * @param secretKey - Secret key for encryption. The key length is dependent on the algorithm of
  *   choice. The key length in bytes (characters) is equal to the key length in bits divided by the
  *   number of bits in a byte (8)
@@ -44,5 +42,5 @@ export declare const deriveKey: (secretKey: string, salt: Buffer, keyLength?: nu
  * @param algorithm - Digest algorithm
  * @returns Derived secret key
  */
-export declare const deriveKeySync: (secretKey: string, salt: Buffer, algorithm?: HashAlgorithms) => Buffer;
+export declare const deriveKeySync: (secretKey: string, salt: Buffer, keyLength?: number | undefined, algorithm?: HashAlgorithms, iterations?: number) => Buffer;
 export default deriveKey;

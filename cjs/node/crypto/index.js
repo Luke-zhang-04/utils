@@ -19,7 +19,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deriveKey = exports.hmacHash = exports.hash = exports.encrypt = exports.decrypt = void 0;
+exports.decodeAndVerify = exports.encodeAndSign = exports.deriveKey = exports.hmacHash = exports.hash = exports.encrypt = exports.decrypt = void 0;
 var decrypt_1 = require("./decrypt");
 Object.defineProperty(exports, "decrypt", { enumerable: true, get: function () { return decrypt_1.decrypt; } });
 var encrypt_1 = require("./encrypt");
@@ -30,5 +30,9 @@ var hmacHash_1 = require("./hmacHash");
 Object.defineProperty(exports, "hmacHash", { enumerable: true, get: function () { return hmacHash_1.hmacHash; } });
 var pbkdf2_1 = require("./pbkdf2");
 Object.defineProperty(exports, "deriveKey", { enumerable: true, get: function () { return pbkdf2_1.deriveKey; } });
+var sign_1 = require("./sign");
+Object.defineProperty(exports, "encodeAndSign", { enumerable: true, get: function () { return sign_1.encodeAndSign; } });
+var verify_1 = require("./verify");
+Object.defineProperty(exports, "decodeAndVerify", { enumerable: true, get: function () { return verify_1.decodeAndVerify; } });
 __exportStar(require("./types"), exports);
 //# sourceMappingURL=index.js.map
