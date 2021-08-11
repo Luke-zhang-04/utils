@@ -11,7 +11,7 @@
 import type {HashAlgorithms} from "./types"
 import crypto from "crypto"
 
-const iterations = 2000
+const defaultIterations = 2000
 
 /**
  * Provides an asynchronous Password-Based Key Derivation Function 2 (PBKDF2) implementation.
@@ -35,6 +35,7 @@ export const deriveKey = async (
     keyLength?: number,
     // istanbul ignore next
     algorithm: HashAlgorithms = "sha256",
+    iterations = defaultIterations,
 ): Promise<Buffer> =>
     await new Promise<Buffer>((resolve, reject) => {
         crypto.pbkdf2(
@@ -54,8 +55,6 @@ export const deriveKey = async (
 /**
  * Provides an synchronous Password-Based Key Derivation Function 2 (PBKDF2) implementation.
  *
- * @remarks
- * Synchronous operations block the main thread and may cause performance issues in larger applications
  * @param secretKey - Secret key for encryption. The key length is dependent on the algorithm of
  *   choice. The key length in bytes (characters) is equal to the key length in bits divided by the
  *   number of bits in a byte (8)
@@ -72,8 +71,10 @@ export const deriveKey = async (
 export const deriveKeySync = (
     secretKey: string,
     salt: Buffer,
-    // istanbul ignore next
+    keyLength?: number,
     algorithm: HashAlgorithms = "sha256",
-): Buffer => crypto.pbkdf2Sync(secretKey, salt, iterations, secretKey.length, algorithm)
+    iterations = defaultIterations,
+): Buffer =>
+    crypto.pbkdf2Sync(secretKey, salt, iterations, keyLength ?? secretKey.length, algorithm)
 
 export default deriveKey

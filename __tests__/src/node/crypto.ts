@@ -5,6 +5,7 @@
  */
 
 import * as crypto from "../../../lib/node/crypto"
+import {inlineTry} from "../../../lib"
 import nodeCrypto from "crypto"
 
 describe("crypto", () => {
@@ -17,7 +18,7 @@ describe("crypto", () => {
             ["sha384"],
             ["sha512"],
         ])("hash with %s", (algo) => {
-            it.each<Parameters<typeof crypto.hash>[2][]>([["hex"], ["base64"]])(
+            it.each<Parameters<typeof crypto.hash>[2][]>([["hex"], ["base64"], ["base64url"]])(
                 `should hash with ${algo} and %s encoding`,
                 async (enc) => {
                     const hash1 = crypto.hash(data, algo, enc === "hex" ? undefined : enc)
@@ -56,8 +57,9 @@ describe("crypto", () => {
             ["sha256"],
             ["sha384"],
             ["sha512"],
+            ["sha3-256"],
         ])("hash with HMAC %s", (algo) => {
-            it.each<Parameters<typeof crypto.hash>[2][]>([["hex"], ["base64"]])(
+            it.each<Parameters<typeof crypto.hash>[2][]>([["hex"], ["base64"], ["base64url"]])(
                 `should hash with HMAC ${algo} and %s encoding`,
                 async (enc) => {
                     const hash1 = crypto.hmacHash(
@@ -262,6 +264,94 @@ describe("crypto", () => {
                 }
 
                 expect(decrypted).toBe(data)
+            })
+        })
+    })
+
+    describe("sign", () => {
+        const data = Date.now().toString()
+        const key1 = "key1"
+        const key2 = "key2"
+
+        describe.each<Parameters<typeof crypto.hash>[1][]>([
+            ["sha1"],
+            ["sha256"],
+            ["sha384"],
+            ["sha512"],
+            ["sha3-256"],
+        ])("hash with HMAC %s", (algo) => {
+            it.each<[Parameters<typeof crypto.hash>[2], boolean]>([
+                ["hex", true],
+                ["base64", true],
+                ["base64url", true],
+                ["hex", false],
+                ["base64", false],
+                ["base64url", false],
+            ])(
+                `should hash with HMAC ${algo} and %s encoding with salt as %b`,
+                async (enc, shouldSalt) => {
+                    const encodedData = await crypto.encodeAndSign(
+                        data,
+                        algo,
+                        key1,
+                        enc,
+                        shouldSalt,
+                    )
+                    const decodedData = crypto.decodeAndVerify(
+                        encodedData,
+                        algo,
+                        key1,
+                        enc,
+                        shouldSalt,
+                    )
+                    const rejectedData = inlineTry(
+                        () => crypto.decodeAndVerify(encodedData, algo, key2, enc, shouldSalt),
+                        false,
+                    )
+                    const rejectedData2 = inlineTry(
+                        () =>
+                            crypto.decodeAndVerify(
+                                "A" + encodedData.slice(1),
+                                algo,
+                                key2,
+                                enc,
+                                shouldSalt,
+                            ),
+                        false,
+                    )
+
+                    expect(decodedData).toBe(data)
+                    expect(rejectedData).toBeUndefined()
+                    expect(rejectedData2).toBeUndefined()
+                },
+            )
+
+            it(`should hash with HMAC ${algo} and no encoding`, async () => {
+                const encodedData = await crypto.encodeAndSign(
+                    Buffer.from(data, "utf-8"),
+                    algo,
+                    key1,
+                    "raw",
+                )
+                const decodedData = crypto.decodeAndVerify(encodedData, algo, key1, "raw")
+                const rejectedData = inlineTry(
+                    () => crypto.decodeAndVerify(encodedData, algo, key2, "raw"),
+                    false,
+                )
+                const rejectedData2 = inlineTry(
+                    () =>
+                        crypto.decodeAndVerify(
+                            Buffer.concat([Buffer.from("A"), encodedData]).slice(1),
+                            algo,
+                            key2,
+                            "raw",
+                        ),
+                    false,
+                )
+
+                expect(decodedData).toBe(data)
+                expect(rejectedData).toBeUndefined()
+                expect(rejectedData2).toBeUndefined()
             })
         })
     })

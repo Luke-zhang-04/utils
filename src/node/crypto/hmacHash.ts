@@ -9,6 +9,7 @@
  */
 
 import type {HashAlgorithms} from "./types"
+import {bufferToString} from "./helper"
 import crypto from "crypto"
 
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
@@ -25,7 +26,12 @@ import crypto from "crypto"
  * @param format - Format; `base64` or `hex`
  * @returns Hashed contents as a buffer
  */
-export function hmacHash(contents: string, algo: string, secretKey: string, enc: "raw"): Buffer
+export function hmacHash(
+    contents: crypto.BinaryLike,
+    algo: string,
+    secretKey: string,
+    enc: "raw",
+): Buffer
 
 /**
  * Hashes contents with algorithm, salts them with `secretKey` and HMAC, and output a buffer of the
@@ -40,7 +46,7 @@ export function hmacHash(contents: string, algo: string, secretKey: string, enc:
  * @returns Hashed contents as a buffer
  */
 export function hmacHash(
-    contents: string,
+    contents: crypto.BinaryLike,
     algo: HashAlgorithms,
     secretKey: string,
     enc: "raw",
@@ -58,10 +64,10 @@ export function hmacHash(
  * @returns Hashed contents
  */
 export function hmacHash(
-    contents: string,
+    contents: crypto.BinaryLike,
     algo: string,
     secretKey: string,
-    enc?: BufferEncoding,
+    enc?: BufferEncoding | "base64url",
 ): string
 
 /**
@@ -76,21 +82,19 @@ export function hmacHash(
  * @returns Hashed contents
  */
 export function hmacHash(
-    contents: string,
+    contents: crypto.BinaryLike,
     algo: HashAlgorithms,
     secretKey: string,
-    enc?: BufferEncoding,
+    enc?: BufferEncoding | "base64url",
 ): string
 
 export function hmacHash(
-    contents: string,
+    contents: crypto.BinaryLike,
     algo: string,
     secretKey: string,
-    enc: BufferEncoding | "raw" = "hex",
+    enc: BufferEncoding | "base64url" | "raw" = "hex",
 ): Buffer | string {
-    const buffer = crypto.createHmac(algo, secretKey).update(contents).digest()
-
-    return enc === "raw" ? buffer : buffer.toString(enc)
+    return bufferToString(crypto.createHmac(algo, secretKey).update(contents).digest(), enc)
 }
 
 export default hmacHash
