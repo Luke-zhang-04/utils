@@ -19,7 +19,7 @@
   },
   "keywords": [],
   "peerDependencies": {
-    "@types/node": ">= 12.20.19"
+    "@types/node": ">= 12"
   },
   "peerDependenciesMeta": {
     "@types/node": {
