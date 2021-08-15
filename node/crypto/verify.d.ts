@@ -13,9 +13,6 @@ import type { HashAlgorithms } from "./types";
  * Decodes and verifies data from `encodeAndSign` by decoding `encodedData` into it's original form
  * and making sure it hasn't been tampered with.
  *
- * @remarks
- * This is not a replacement for standard signing. This is meant for an integrity check generated
- * via a hash to be bundled together into a single piece of data instead of having a seperate hash
  * @param encodedData - Data to decode and verify
  * @param algo - Algorithm to use for verification
  * @param secretKey - Key to use for HMAC-`algo`
@@ -30,9 +27,6 @@ export declare function decodeAndVerify(encodedData: Buffer, algo: HashAlgorithm
  * Decodes and verifies data from `encodeAndSign` by decoding `encodedData` into it's original form
  * and making sure it hasn't been tampered with.
  *
- * @remarks
- * This is not a replacement for standard signing. This is meant for an integrity check generated
- * via a hash to be bundled together into a single piece of data instead of having a seperate hash
  * @param encodedData - Data to decode and verify
  * @param algo - Algorithm to use for verification
  * @param secretKey - Key to use for HMAC-`algo`

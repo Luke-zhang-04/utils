@@ -65,7 +65,7 @@ export declare function encrypt(contents: string, algo: string, secretKey: strin
  *
  * @returns Encrypted string
  */
-export declare function encrypt(contents: string, algo: EncryptionAlgorithms, secretKey: string, enc?: BufferEncoding, keyLength?: number): Promise<string>;
+export declare function encrypt(contents: string, algo: EncryptionAlgorithms, secretKey: string, enc?: BufferEncoding | "base64url", keyLength?: number): Promise<string>;
 /**
  * Encrypts contents with algorithm, key, and initialization vector (iv)
  *
@@ -84,5 +84,5 @@ export declare function encrypt(contents: string, algo: EncryptionAlgorithms, se
  *
  * @returns Encrypted string
  */
-export declare function encrypt(contents: string, algo: string, secretKey: string, enc: BufferEncoding | undefined, keyLength: number): Promise<string>;
+export declare function encrypt(contents: string, algo: string, secretKey: string, enc: BufferEncoding | "base64url" | undefined, keyLength: number): Promise<string>;
 export default encrypt;
