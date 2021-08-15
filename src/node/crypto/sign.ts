@@ -16,13 +16,10 @@ import {hmacHash} from "./hmacHash"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
 /**
- * Provides a convenient way to do some basic signing with HMAC hashing. The hash for `data` is
- * first generated with HMAC and `algo`, and then the hash and `data` are put into a single buffer
- * and returned
+ * Provides a convenient way to prepend a one-way signature to a piece of data. The hash for `data`
+ * is first generated with HMAC and `algo`, and then the hash and `data` are put into a single
+ * buffer and returned
  *
- * @remarks
- * This is not a replacement for standard signing. This is meant for an integrity check generated
- * via a hash to be bundled together into a single piece of data instead of having a seperate hash
  * @param data - Data to sign and encode
  * @param algo - Algorithm to use for signing
  * @param secretKey - Key to use for HMAC-`algo`
@@ -39,13 +36,10 @@ export function encodeAndSign(
 ): Promise<Buffer>
 
 /**
- * Provides a convenient way to do some basic signing with HMAC hashing. The hash for `data` is
- * first generated with HMAC and `algo`, and then the hash and `data` are put into a single buffer
- * and returned
+ * Provides a convenient way to prepend a one-way signature to a piece of data. The hash for `data`
+ * is first generated with HMAC and `algo`, and then the hash and `data` are put into a single
+ * buffer and returned
  *
- * @remarks
- * This is not a replacement for standard signing. This is meant for an integrity check generated
- * via a hash to be bundled together into a single piece of data instead of having a seperate hash
  * @param data - Data to sign and encode
  * @param algo - Algorithm to use for signing
  * @param secretKey - Key to use for HMAC-`algo`
