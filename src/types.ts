@@ -29,3 +29,17 @@ export type IterableValue<T extends Iterable<any>> = Exclude<
     ReturnType<ReturnType<T[typeof Symbol.iterator]>["next"]>,
     IteratorReturnResult<any>
 >["value"]
+
+/**
+ * Takes type param `T` and creates a type that's either `Promise<T>` or `T`
+ *
+ * @example
+ *
+ * ```ts
+ * const myVar: MaybePromise<number> = 3
+ * const myVar: MaybePromise<number> = Promise.resolve(3)
+ * ```
+ *
+ * @typeParam T - Type that may be a promise
+ */
+export type MaybePromise<T> = Promise<T> | T
