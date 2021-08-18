@@ -18,4 +18,17 @@ declare type TupleOf<T, N extends number, R extends unknown[]> = R["length"] ext
  * @typeParam T - Iterable to extract value frome
  */
 export declare type IterableValue<T extends Iterable<any>> = Exclude<ReturnType<ReturnType<T[typeof Symbol.iterator]>["next"]>, IteratorReturnResult<any>>["value"];
+/**
+ * Takes type param `T` and creates a type that's either `Promise<T>` or `T`
+ *
+ * @example
+ *
+ * ```ts
+ * const myVar: MaybePromise<number> = 3
+ * const myVar: MaybePromise<number> = Promise.resolve(3)
+ * ```
+ *
+ * @typeParam T - Type that may be a promise
+ */
+export declare type MaybePromise<T> = Promise<T> | T;
 export {};
