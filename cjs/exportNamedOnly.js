@@ -27,9 +27,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.types = exports.typeGuards = exports.try = exports.string = exports.object = exports.math = exports.iter = exports.deepEqual = exports.array = void 0;
+exports.types = exports.typeGuards = exports.try = exports.string = exports.object = exports.math = exports.iter = exports.http = exports.deepEqual = exports.array = void 0;
 exports.array = __importStar(require("./array"));
 exports.deepEqual = __importStar(require("./deepEqual"));
+exports.http = __importStar(require("./http"));
 exports.iter = __importStar(require("./itertools"));
 exports.math = __importStar(require("./math"));
 exports.object = __importStar(require("./object"));

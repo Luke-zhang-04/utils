@@ -8,6 +8,7 @@
  */
 export * as array from "./array";
 export * as deepEqual from "./deepEqual";
+export * as http from "./http";
 export * as iter from "./itertools";
 export * as math from "./math";
 export * as object from "./object";

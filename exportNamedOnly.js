@@ -10,6 +10,8 @@ import * as array_1 from "./array";
 export { array_1 as array };
 import * as deepEqual_1 from "./deepEqual";
 export { deepEqual_1 as deepEqual };
+import * as http_1 from "./http";
+export { http_1 as http };
 import * as iter_1 from "./itertools";
 export { iter_1 as iter };
 import * as math_1 from "./math";
