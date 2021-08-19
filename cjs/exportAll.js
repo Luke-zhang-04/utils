@@ -18,9 +18,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.statuses = exports.status = void 0;
 __exportStar(require("./array"), exports);
 __exportStar(require("./deepEqual"), exports);
-__exportStar(require("./http"), exports);
+var http_1 = require("./http");
+Object.defineProperty(exports, "status", { enumerable: true, get: function () { return http_1.status; } });
+Object.defineProperty(exports, "statuses", { enumerable: true, get: function () { return http_1.statuses; } });
 __exportStar(require("./itertools"), exports);
 __exportStar(require("./math"), exports);
 __exportStar(require("./object"), exports);
