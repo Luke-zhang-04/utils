@@ -9,6 +9,7 @@
 
 export * from "./array"
 export * from "./deepEqual"
+export * from "./http"
 export * from "./itertools"
 export * from "./math"
 export * from "./object"

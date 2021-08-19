@@ -1,0 +1,25 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "license": "0BSD",
+  "author": "Luke Zhang",
+  "type": "module",
+  "engines": {
+    "node": ">= 14"
+  },
+  "scripts": {
+    "generateHttp": "node generateHttp.js"
+  },
+  "dependencies": {
+    "case": "^1.6.3",
+    "jsdom": "^16.6.0",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^16.2.13",
+    "@types/node-fetch": "^2.5.12",
+    "turndown": "^7.1.1"
+  }
+}
