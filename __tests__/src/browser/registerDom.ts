@@ -21,3 +21,6 @@ global.crypto = crypto
 
 // Register window object
 ;(global as unknown as {[key: string]: unknown}).window = dom.window
+
+// Register abort controller
+;(global as unknown as {[key: string]: unknown}).AbortController = dom.window.AbortController
