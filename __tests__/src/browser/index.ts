@@ -6,3 +6,4 @@
 
 import "./registerDom"
 import "./crypto"
+import "./fetch"
