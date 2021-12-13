@@ -13,7 +13,8 @@
   },
   "keywords": [],
   "dependencies": {
-    "@peculiar/webcrypto": "^1.1.7"
+    "@peculiar/webcrypto": "^1.1.7",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",

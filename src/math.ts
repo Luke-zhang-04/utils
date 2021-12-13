@@ -105,3 +105,85 @@ export function* getPrimesUpTo(max: number): Generator<number> {
         }
     }
 }
+
+const runMathFunction = (
+    num: number,
+    precision: number,
+    func: (num: number) => number,
+): number => {
+    const coefficient = 10 ** precision
+
+    return func(num * coefficient) / coefficient
+}
+
+/**
+ * Round `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * round(123.456, 2) // 123.46
+ * round(123.456, 1) // 123.5
+ * round(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to round
+ * @param precision - Decimal place to round to
+ * @returns Rounded number
+ */
+export const round = (num: number, precision = 0): number =>
+    runMathFunction(num, precision, Math.round)
+
+/**
+ * Floors `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * floor(123.456, 2) // 123.45
+ * floor(123.456, 1) // 123.4
+ * floor(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to floor
+ * @param precision - Decimal place to floor to
+ * @returns Floored number
+ */
+export const floor = (num: number, precision = 0): number =>
+    runMathFunction(num, precision, Math.floor)
+
+/**
+ * Ceils `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * ceil(123.456, 2) // 123.46
+ * ceil(123.456, 1) // 123.5
+ * ceil(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to ceil
+ * @param precision - Decimal place to ceil to
+ * @returns Ceiled number
+ */
+export const ceil = (num: number, precision = 0): number =>
+    runMathFunction(num, precision, Math.ceil)
+
+/**
+ * Truncate `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * trunc(123.456, 2) // 123.46
+ * trunc(123.456, 1) // 123.5
+ * trunc(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to truncate
+ * @param precision - Decimal place to truncate to
+ * @returns Truncated number
+ */
+export const trunc = (num: number, precision = 0): number =>
+    runMathFunction(num, precision, Math.trunc)
