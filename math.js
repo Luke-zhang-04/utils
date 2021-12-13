@@ -94,4 +94,72 @@ export function* getPrimesUpTo(max) {
         }
     }
 }
+const runMathFunction = (num, precision, func) => {
+    const coefficient = 10 ** precision;
+    return func(num * coefficient) / coefficient;
+};
+/**
+ * Round `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * round(123.456, 2) // 123.46
+ * round(123.456, 1) // 123.5
+ * round(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to round
+ * @param precision - Decimal place to round to
+ * @returns Rounded number
+ */
+export const round = (num, precision = 0) => runMathFunction(num, precision, Math.round);
+/**
+ * Floors `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * floor(123.456, 2) // 123.45
+ * floor(123.456, 1) // 123.4
+ * floor(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to floor
+ * @param precision - Decimal place to floor to
+ * @returns Floored number
+ */
+export const floor = (num, precision = 0) => runMathFunction(num, precision, Math.floor);
+/**
+ * Ceils `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * ceil(123.456, 2) // 123.46
+ * ceil(123.456, 1) // 123.5
+ * ceil(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to ceil
+ * @param precision - Decimal place to ceil to
+ * @returns Ceiled number
+ */
+export const ceil = (num, precision = 0) => runMathFunction(num, precision, Math.ceil);
+/**
+ * Truncate `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * trunc(123.456, 2) // 123.46
+ * trunc(123.456, 1) // 123.5
+ * trunc(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to truncate
+ * @param precision - Decimal place to truncate to
+ * @returns Truncated number
+ */
+export const trunc = (num, precision = 0) => runMathFunction(num, precision, Math.trunc);
 //# sourceMappingURL=math.js.map

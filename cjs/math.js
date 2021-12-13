@@ -7,7 +7,7 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPrimesUpTo = exports.isPrime = exports.gcd = exports.baseGcd = void 0;
+exports.trunc = exports.ceil = exports.floor = exports.round = exports.getPrimesUpTo = exports.isPrime = exports.gcd = exports.baseGcd = void 0;
 /**
  * Recursive implementation of Euclid's GCD algorithm
  *
@@ -101,4 +101,76 @@ function* getPrimesUpTo(max) {
     }
 }
 exports.getPrimesUpTo = getPrimesUpTo;
+const runMathFunction = (num, precision, func) => {
+    const coefficient = 10 ** precision;
+    return func(num * coefficient) / coefficient;
+};
+/**
+ * Round `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * round(123.456, 2) // 123.46
+ * round(123.456, 1) // 123.5
+ * round(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to round
+ * @param precision - Decimal place to round to
+ * @returns Rounded number
+ */
+const round = (num, precision = 0) => runMathFunction(num, precision, Math.round);
+exports.round = round;
+/**
+ * Floors `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * floor(123.456, 2) // 123.45
+ * floor(123.456, 1) // 123.4
+ * floor(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to floor
+ * @param precision - Decimal place to floor to
+ * @returns Floored number
+ */
+const floor = (num, precision = 0) => runMathFunction(num, precision, Math.floor);
+exports.floor = floor;
+/**
+ * Ceils `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * ceil(123.456, 2) // 123.46
+ * ceil(123.456, 1) // 123.5
+ * ceil(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to ceil
+ * @param precision - Decimal place to ceil to
+ * @returns Ceiled number
+ */
+const ceil = (num, precision = 0) => runMathFunction(num, precision, Math.ceil);
+exports.ceil = ceil;
+/**
+ * Truncate `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * trunc(123.456, 2) // 123.46
+ * trunc(123.456, 1) // 123.5
+ * trunc(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to truncate
+ * @param precision - Decimal place to truncate to
+ * @returns Truncated number
+ */
+const trunc = (num, precision = 0) => runMathFunction(num, precision, Math.trunc);
+exports.trunc = trunc;
 //# sourceMappingURL=math.js.map

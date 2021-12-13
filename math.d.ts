@@ -64,3 +64,67 @@ export declare const isPrime: (num: number) => boolean;
  * @returns Generator of each prime number
  */
 export declare function getPrimesUpTo(max: number): Generator<number>;
+/**
+ * Round `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * round(123.456, 2) // 123.46
+ * round(123.456, 1) // 123.5
+ * round(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to round
+ * @param precision - Decimal place to round to
+ * @returns Rounded number
+ */
+export declare const round: (num: number, precision?: number) => number;
+/**
+ * Floors `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * floor(123.456, 2) // 123.45
+ * floor(123.456, 1) // 123.4
+ * floor(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to floor
+ * @param precision - Decimal place to floor to
+ * @returns Floored number
+ */
+export declare const floor: (num: number, precision?: number) => number;
+/**
+ * Ceils `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * ceil(123.456, 2) // 123.46
+ * ceil(123.456, 1) // 123.5
+ * ceil(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to ceil
+ * @param precision - Decimal place to ceil to
+ * @returns Ceiled number
+ */
+export declare const ceil: (num: number, precision?: number) => number;
+/**
+ * Truncate `num` to `n` decimal place
+ *
+ * @example
+ *
+ * ```ts
+ * trunc(123.456, 2) // 123.46
+ * trunc(123.456, 1) // 123.5
+ * trunc(123.456, -2) // 100
+ * ```
+ *
+ * @param num - Number to truncate
+ * @param precision - Decimal place to truncate to
+ * @returns Truncated number
+ */
+export declare const trunc: (num: number, precision?: number) => number;

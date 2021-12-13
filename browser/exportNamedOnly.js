@@ -10,4 +10,6 @@ import * as crypto_1 from "./crypto";
 export { crypto_1 as crypto };
 import * as encoding_1 from "./encoding";
 export { encoding_1 as encoding };
+import * as fetch_1 from "./fetch";
+export { fetch_1 as fetch };
 //# sourceMappingURL=exportNamedOnly.js.map
