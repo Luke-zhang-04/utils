@@ -3,4 +3,6 @@
  *
  * 0BSD License
  */
+
 import "./crypto"
+import "./fetch"

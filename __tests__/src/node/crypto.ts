@@ -211,7 +211,7 @@ describe("crypto", () => {
                         enc === "hex" ? undefined : enc,
                     )
                 } catch (err) {
-                    error = err
+                    error = err as Error
                 }
 
                 expect(error).toBeInstanceOf(TypeError)
@@ -221,7 +221,7 @@ describe("crypto", () => {
                     // @ts-expect-error
                     await crypto.decrypt(data, algo, key, enc === "hex" ? undefined : enc)
                 } catch (err) {
-                    error = err
+                    error = err as Error
                 }
 
                 expect(error).toBeInstanceOf(TypeError)
