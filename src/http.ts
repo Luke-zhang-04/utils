@@ -80,8 +80,6 @@ export const enum Status {
     /**
      * ## 103 Early Hints
      *
-     * This page is not complete.
-     *
      * The HTTP **`103 Early Hints`** information response status code is primarily intended to be
      * used with the [`Link`](/en-US/docs/Web/HTTP/Headers/Link) header to allow the user agent to
      * start preloading resources while the server is still preparing a response.
@@ -414,8 +412,8 @@ export const enum Status {
      *
      * The HyperText Transfer Protocol (HTTP) **`400 Bad Request`** response status code indicates
      * that the server cannot or will not process the request due to something that is perceived to
-     * be a client error (e.g., malformed request syntax, invalid request message framing, or
-     * deceptive request routing).
+     * be a client error (for example, malformed request syntax, invalid request message framing,
+     * or deceptive request routing).
      *
      * **Warning:** The client should not repeat this request without modification.
      *
@@ -426,15 +424,18 @@ export const enum Status {
     /**
      * ## 401 Unauthorized
      *
-     * The HTTP **`401 Unauthorized`** client error status response code indicates that the request
-     * has not been applied because it lacks valid authentication credentials for the target resource.
+     * The HyperText Transfer Protocol (HTTP) **`401 Unauthorized`** response status code indicates
+     * that the client request has not been completed because it lacks valid authentication
+     * credentials for the requested resource.
      *
-     * This status is sent with a
-     * [`WWW-Authenticate`](/en-US/docs/Web/HTTP/Headers/WWW-Authenticate) header that contains
-     * information on how to authorize correctly.
+     * This status code is sent with an HTTP
+     * [`WWW-Authenticate`](/en-US/docs/Web/HTTP/Headers/WWW-Authenticate) response header that
+     * contains information on how the client can request for the resource again after prompting
+     * the user for authentication credentials.
      *
-     * This status is similar to [`403`](/en-US/docs/Web/HTTP/Status/403), but in this case,
-     * authentication is possible.
+     * This status code is similar to the [`403 Forbidden`](/en-US/docs/Web/HTTP/Status/403) status
+     * code, except that in situations resulting in this status code, user authentication can allow
+     * access to the resource.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401}
      */
@@ -443,17 +444,18 @@ export const enum Status {
     /**
      * ## 402 Payment Required
      *
-     * **This is an [experimental
+     * **Experimental:** **This is an [experimental
      * technology](/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)** Check the
      * [Browser compatibility table](#browser_compatibility) carefully before using this in production.
      *
-     * The HTTP **`402 Payment Required`** is a nonstandard client error status response code that
-     * is reserved for future use.
+     * The HTTP **`402 Payment Required`** is a nonstandard response status code that is reserved
+     * for future use. This status code was created to enable digital cash or (micro) payment
+     * systems and would indicate that the requested content is not available until the client
+     * makes a payment.
      *
-     * Sometimes, this code indicates that the request can not be processed until the client makes
-     * a payment. Originally it was created to enable digital cash or (micro) payment systems and
-     * would indicate that the requested content is not available until the client makes a payment.
-     * However, no standard use convention exists and different entities use it in different contexts.
+     * Sometimes, this status code indicates that the request cannot be processed until the client
+     * makes a payment. However, no standard use convention exists and different entities use it in
+     * different contexts.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402}
      */
@@ -462,12 +464,12 @@ export const enum Status {
     /**
      * ## 403 Forbidden
      *
-     * The HTTP **`403 Forbidden`** client error status response code indicates that the server
-     * understood the request but refuses to authorize it.
+     * The HTTP **`403 Forbidden`** response status code indicates that the server understands the
+     * request but refuses to authorize it.
      *
-     * This status is similar to [`401`](/en-US/docs/Web/HTTP/Status/401), but in this case,
-     * re-authenticating will make no difference. The access is permanently forbidden and tied to
-     * the application logic, such as insufficient rights to a resource.
+     * This status is similar to [`401`](/en-US/docs/Web/HTTP/Status/401), but for the **`403
+     * Forbidden`** status code re-authenticating makes no difference. The access is permanently
+     * forbidden and tied to the application logic, such as insufficient rights to a resource.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403}
      */
@@ -476,13 +478,13 @@ export const enum Status {
     /**
      * ## 404 Not Found
      *
-     * The HTTP **`404 Not Found`** client error response code indicates that the server can't find
-     * the requested resource. Links that lead to a 404 page are often called broken or dead links
-     * and can be subject to [link rot](https://en.wikipedia.org/wiki/Link_rot).
+     * The HTTP **`404 Not Found`** response status code indicates that the server cannot find the
+     * requested resource. Links that lead to a 404 page are often called broken or dead links and
+     * can be subject to [link rot](https://en.wikipedia.org/wiki/Link_rot).
      *
-     * A 404 status code does not indicate whether the resource is temporarily or permanently
-     * missing. But if a resource is permanently removed, a
-     * [`410`](/en-US/docs/Web/HTTP/Status/410) (Gone) should be used instead of a 404 status.
+     * A 404 status code only indicates that the resource is missing: not whether the absence is
+     * temporary or permanent. If a resource is permanently removed, use the
+     * [`410`](/en-US/docs/Web/HTTP/Status/410) (Gone) status instead.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404}
      */
@@ -492,10 +494,11 @@ export const enum Status {
      * ## 405 Method Not Allowed
      *
      * The HyperText Transfer Protocol (HTTP) **`405 Method Not Allowed`** response status code
-     * indicates that the request method is known by the server but is not supported by the target resource.
+     * indicates that the server knows the request method, but the target resource doesn't support
+     * this method.
      *
-     * The server **must** generate an **`Allow`** header field in a 405 response containing a list
-     * of the target resource's currently supported methods.
+     * The server **must** generate an **`Allow`** header field in a 405 status code response. The
+     * field must contain a list of methods that the target resource currently supports.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405}
      */
@@ -1123,8 +1126,6 @@ export const status = {
     /**
      * ## 103 Early Hints
      *
-     * This page is not complete.
-     *
      * The HTTP **`103 Early Hints`** information response status code is primarily intended to be
      * used with the [`Link`](/en-US/docs/Web/HTTP/Headers/Link) header to allow the user agent to
      * start preloading resources while the server is still preparing a response.
@@ -1135,8 +1136,6 @@ export const status = {
 
     /**
      * ## 103 Early Hints
-     *
-     * This page is not complete.
      *
      * The HTTP **`103 Early Hints`** information response status code is primarily intended to be
      * used with the [`Link`](/en-US/docs/Web/HTTP/Headers/Link) header to allow the user agent to
@@ -1789,8 +1788,8 @@ export const status = {
      *
      * The HyperText Transfer Protocol (HTTP) **`400 Bad Request`** response status code indicates
      * that the server cannot or will not process the request due to something that is perceived to
-     * be a client error (e.g., malformed request syntax, invalid request message framing, or
-     * deceptive request routing).
+     * be a client error (for example, malformed request syntax, invalid request message framing,
+     * or deceptive request routing).
      *
      * **Warning:** The client should not repeat this request without modification.
      *
@@ -1803,8 +1802,8 @@ export const status = {
      *
      * The HyperText Transfer Protocol (HTTP) **`400 Bad Request`** response status code indicates
      * that the server cannot or will not process the request due to something that is perceived to
-     * be a client error (e.g., malformed request syntax, invalid request message framing, or
-     * deceptive request routing).
+     * be a client error (for example, malformed request syntax, invalid request message framing,
+     * or deceptive request routing).
      *
      * **Warning:** The client should not repeat this request without modification.
      *
@@ -1815,15 +1814,18 @@ export const status = {
     /**
      * ## 401 Unauthorized
      *
-     * The HTTP **`401 Unauthorized`** client error status response code indicates that the request
-     * has not been applied because it lacks valid authentication credentials for the target resource.
+     * The HyperText Transfer Protocol (HTTP) **`401 Unauthorized`** response status code indicates
+     * that the client request has not been completed because it lacks valid authentication
+     * credentials for the requested resource.
      *
-     * This status is sent with a
-     * [`WWW-Authenticate`](/en-US/docs/Web/HTTP/Headers/WWW-Authenticate) header that contains
-     * information on how to authorize correctly.
+     * This status code is sent with an HTTP
+     * [`WWW-Authenticate`](/en-US/docs/Web/HTTP/Headers/WWW-Authenticate) response header that
+     * contains information on how the client can request for the resource again after prompting
+     * the user for authentication credentials.
      *
-     * This status is similar to [`403`](/en-US/docs/Web/HTTP/Status/403), but in this case,
-     * authentication is possible.
+     * This status code is similar to the [`403 Forbidden`](/en-US/docs/Web/HTTP/Status/403) status
+     * code, except that in situations resulting in this status code, user authentication can allow
+     * access to the resource.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401}
      */
@@ -1832,15 +1834,18 @@ export const status = {
     /**
      * ## 401 Unauthorized
      *
-     * The HTTP **`401 Unauthorized`** client error status response code indicates that the request
-     * has not been applied because it lacks valid authentication credentials for the target resource.
+     * The HyperText Transfer Protocol (HTTP) **`401 Unauthorized`** response status code indicates
+     * that the client request has not been completed because it lacks valid authentication
+     * credentials for the requested resource.
      *
-     * This status is sent with a
-     * [`WWW-Authenticate`](/en-US/docs/Web/HTTP/Headers/WWW-Authenticate) header that contains
-     * information on how to authorize correctly.
+     * This status code is sent with an HTTP
+     * [`WWW-Authenticate`](/en-US/docs/Web/HTTP/Headers/WWW-Authenticate) response header that
+     * contains information on how the client can request for the resource again after prompting
+     * the user for authentication credentials.
      *
-     * This status is similar to [`403`](/en-US/docs/Web/HTTP/Status/403), but in this case,
-     * authentication is possible.
+     * This status code is similar to the [`403 Forbidden`](/en-US/docs/Web/HTTP/Status/403) status
+     * code, except that in situations resulting in this status code, user authentication can allow
+     * access to the resource.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401}
      */
@@ -1849,17 +1854,18 @@ export const status = {
     /**
      * ## 402 Payment Required
      *
-     * **This is an [experimental
+     * **Experimental:** **This is an [experimental
      * technology](/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)** Check the
      * [Browser compatibility table](#browser_compatibility) carefully before using this in production.
      *
-     * The HTTP **`402 Payment Required`** is a nonstandard client error status response code that
-     * is reserved for future use.
+     * The HTTP **`402 Payment Required`** is a nonstandard response status code that is reserved
+     * for future use. This status code was created to enable digital cash or (micro) payment
+     * systems and would indicate that the requested content is not available until the client
+     * makes a payment.
      *
-     * Sometimes, this code indicates that the request can not be processed until the client makes
-     * a payment. Originally it was created to enable digital cash or (micro) payment systems and
-     * would indicate that the requested content is not available until the client makes a payment.
-     * However, no standard use convention exists and different entities use it in different contexts.
+     * Sometimes, this status code indicates that the request cannot be processed until the client
+     * makes a payment. However, no standard use convention exists and different entities use it in
+     * different contexts.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402}
      */
@@ -1868,17 +1874,18 @@ export const status = {
     /**
      * ## 402 Payment Required
      *
-     * **This is an [experimental
+     * **Experimental:** **This is an [experimental
      * technology](/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)** Check the
      * [Browser compatibility table](#browser_compatibility) carefully before using this in production.
      *
-     * The HTTP **`402 Payment Required`** is a nonstandard client error status response code that
-     * is reserved for future use.
+     * The HTTP **`402 Payment Required`** is a nonstandard response status code that is reserved
+     * for future use. This status code was created to enable digital cash or (micro) payment
+     * systems and would indicate that the requested content is not available until the client
+     * makes a payment.
      *
-     * Sometimes, this code indicates that the request can not be processed until the client makes
-     * a payment. Originally it was created to enable digital cash or (micro) payment systems and
-     * would indicate that the requested content is not available until the client makes a payment.
-     * However, no standard use convention exists and different entities use it in different contexts.
+     * Sometimes, this status code indicates that the request cannot be processed until the client
+     * makes a payment. However, no standard use convention exists and different entities use it in
+     * different contexts.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402}
      */
@@ -1887,12 +1894,12 @@ export const status = {
     /**
      * ## 403 Forbidden
      *
-     * The HTTP **`403 Forbidden`** client error status response code indicates that the server
-     * understood the request but refuses to authorize it.
+     * The HTTP **`403 Forbidden`** response status code indicates that the server understands the
+     * request but refuses to authorize it.
      *
-     * This status is similar to [`401`](/en-US/docs/Web/HTTP/Status/401), but in this case,
-     * re-authenticating will make no difference. The access is permanently forbidden and tied to
-     * the application logic, such as insufficient rights to a resource.
+     * This status is similar to [`401`](/en-US/docs/Web/HTTP/Status/401), but for the **`403
+     * Forbidden`** status code re-authenticating makes no difference. The access is permanently
+     * forbidden and tied to the application logic, such as insufficient rights to a resource.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403}
      */
@@ -1901,12 +1908,12 @@ export const status = {
     /**
      * ## 403 Forbidden
      *
-     * The HTTP **`403 Forbidden`** client error status response code indicates that the server
-     * understood the request but refuses to authorize it.
+     * The HTTP **`403 Forbidden`** response status code indicates that the server understands the
+     * request but refuses to authorize it.
      *
-     * This status is similar to [`401`](/en-US/docs/Web/HTTP/Status/401), but in this case,
-     * re-authenticating will make no difference. The access is permanently forbidden and tied to
-     * the application logic, such as insufficient rights to a resource.
+     * This status is similar to [`401`](/en-US/docs/Web/HTTP/Status/401), but for the **`403
+     * Forbidden`** status code re-authenticating makes no difference. The access is permanently
+     * forbidden and tied to the application logic, such as insufficient rights to a resource.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403}
      */
@@ -1915,13 +1922,13 @@ export const status = {
     /**
      * ## 404 Not Found
      *
-     * The HTTP **`404 Not Found`** client error response code indicates that the server can't find
-     * the requested resource. Links that lead to a 404 page are often called broken or dead links
-     * and can be subject to [link rot](https://en.wikipedia.org/wiki/Link_rot).
+     * The HTTP **`404 Not Found`** response status code indicates that the server cannot find the
+     * requested resource. Links that lead to a 404 page are often called broken or dead links and
+     * can be subject to [link rot](https://en.wikipedia.org/wiki/Link_rot).
      *
-     * A 404 status code does not indicate whether the resource is temporarily or permanently
-     * missing. But if a resource is permanently removed, a
-     * [`410`](/en-US/docs/Web/HTTP/Status/410) (Gone) should be used instead of a 404 status.
+     * A 404 status code only indicates that the resource is missing: not whether the absence is
+     * temporary or permanent. If a resource is permanently removed, use the
+     * [`410`](/en-US/docs/Web/HTTP/Status/410) (Gone) status instead.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404}
      */
@@ -1930,13 +1937,13 @@ export const status = {
     /**
      * ## 404 Not Found
      *
-     * The HTTP **`404 Not Found`** client error response code indicates that the server can't find
-     * the requested resource. Links that lead to a 404 page are often called broken or dead links
-     * and can be subject to [link rot](https://en.wikipedia.org/wiki/Link_rot).
+     * The HTTP **`404 Not Found`** response status code indicates that the server cannot find the
+     * requested resource. Links that lead to a 404 page are often called broken or dead links and
+     * can be subject to [link rot](https://en.wikipedia.org/wiki/Link_rot).
      *
-     * A 404 status code does not indicate whether the resource is temporarily or permanently
-     * missing. But if a resource is permanently removed, a
-     * [`410`](/en-US/docs/Web/HTTP/Status/410) (Gone) should be used instead of a 404 status.
+     * A 404 status code only indicates that the resource is missing: not whether the absence is
+     * temporary or permanent. If a resource is permanently removed, use the
+     * [`410`](/en-US/docs/Web/HTTP/Status/410) (Gone) status instead.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404}
      */
@@ -1946,10 +1953,11 @@ export const status = {
      * ## 405 Method Not Allowed
      *
      * The HyperText Transfer Protocol (HTTP) **`405 Method Not Allowed`** response status code
-     * indicates that the request method is known by the server but is not supported by the target resource.
+     * indicates that the server knows the request method, but the target resource doesn't support
+     * this method.
      *
-     * The server **must** generate an **`Allow`** header field in a 405 response containing a list
-     * of the target resource's currently supported methods.
+     * The server **must** generate an **`Allow`** header field in a 405 status code response. The
+     * field must contain a list of methods that the target resource currently supports.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405}
      */
@@ -1959,10 +1967,11 @@ export const status = {
      * ## 405 Method Not Allowed
      *
      * The HyperText Transfer Protocol (HTTP) **`405 Method Not Allowed`** response status code
-     * indicates that the request method is known by the server but is not supported by the target resource.
+     * indicates that the server knows the request method, but the target resource doesn't support
+     * this method.
      *
-     * The server **must** generate an **`Allow`** header field in a 405 response containing a list
-     * of the target resource's currently supported methods.
+     * The server **must** generate an **`Allow`** header field in a 405 status code response. The
+     * field must contain a list of methods that the target resource currently supports.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405}
      */
@@ -3042,8 +3051,6 @@ export const phraseStatus = {
     /**
      * ## 103 Early Hints
      *
-     * This page is not complete.
-     *
      * The HTTP **`103 Early Hints`** information response status code is primarily intended to be
      * used with the [`Link`](/en-US/docs/Web/HTTP/Headers/Link) header to allow the user agent to
      * start preloading resources while the server is still preparing a response.
@@ -3376,8 +3383,8 @@ export const phraseStatus = {
      *
      * The HyperText Transfer Protocol (HTTP) **`400 Bad Request`** response status code indicates
      * that the server cannot or will not process the request due to something that is perceived to
-     * be a client error (e.g., malformed request syntax, invalid request message framing, or
-     * deceptive request routing).
+     * be a client error (for example, malformed request syntax, invalid request message framing,
+     * or deceptive request routing).
      *
      * **Warning:** The client should not repeat this request without modification.
      *
@@ -3388,15 +3395,18 @@ export const phraseStatus = {
     /**
      * ## 401 Unauthorized
      *
-     * The HTTP **`401 Unauthorized`** client error status response code indicates that the request
-     * has not been applied because it lacks valid authentication credentials for the target resource.
+     * The HyperText Transfer Protocol (HTTP) **`401 Unauthorized`** response status code indicates
+     * that the client request has not been completed because it lacks valid authentication
+     * credentials for the requested resource.
      *
-     * This status is sent with a
-     * [`WWW-Authenticate`](/en-US/docs/Web/HTTP/Headers/WWW-Authenticate) header that contains
-     * information on how to authorize correctly.
+     * This status code is sent with an HTTP
+     * [`WWW-Authenticate`](/en-US/docs/Web/HTTP/Headers/WWW-Authenticate) response header that
+     * contains information on how the client can request for the resource again after prompting
+     * the user for authentication credentials.
      *
-     * This status is similar to [`403`](/en-US/docs/Web/HTTP/Status/403), but in this case,
-     * authentication is possible.
+     * This status code is similar to the [`403 Forbidden`](/en-US/docs/Web/HTTP/Status/403) status
+     * code, except that in situations resulting in this status code, user authentication can allow
+     * access to the resource.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401}
      */
@@ -3405,17 +3415,18 @@ export const phraseStatus = {
     /**
      * ## 402 Payment Required
      *
-     * **This is an [experimental
+     * **Experimental:** **This is an [experimental
      * technology](/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)** Check the
      * [Browser compatibility table](#browser_compatibility) carefully before using this in production.
      *
-     * The HTTP **`402 Payment Required`** is a nonstandard client error status response code that
-     * is reserved for future use.
+     * The HTTP **`402 Payment Required`** is a nonstandard response status code that is reserved
+     * for future use. This status code was created to enable digital cash or (micro) payment
+     * systems and would indicate that the requested content is not available until the client
+     * makes a payment.
      *
-     * Sometimes, this code indicates that the request can not be processed until the client makes
-     * a payment. Originally it was created to enable digital cash or (micro) payment systems and
-     * would indicate that the requested content is not available until the client makes a payment.
-     * However, no standard use convention exists and different entities use it in different contexts.
+     * Sometimes, this status code indicates that the request cannot be processed until the client
+     * makes a payment. However, no standard use convention exists and different entities use it in
+     * different contexts.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402}
      */
@@ -3424,12 +3435,12 @@ export const phraseStatus = {
     /**
      * ## 403 Forbidden
      *
-     * The HTTP **`403 Forbidden`** client error status response code indicates that the server
-     * understood the request but refuses to authorize it.
+     * The HTTP **`403 Forbidden`** response status code indicates that the server understands the
+     * request but refuses to authorize it.
      *
-     * This status is similar to [`401`](/en-US/docs/Web/HTTP/Status/401), but in this case,
-     * re-authenticating will make no difference. The access is permanently forbidden and tied to
-     * the application logic, such as insufficient rights to a resource.
+     * This status is similar to [`401`](/en-US/docs/Web/HTTP/Status/401), but for the **`403
+     * Forbidden`** status code re-authenticating makes no difference. The access is permanently
+     * forbidden and tied to the application logic, such as insufficient rights to a resource.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403}
      */
@@ -3438,13 +3449,13 @@ export const phraseStatus = {
     /**
      * ## 404 Not Found
      *
-     * The HTTP **`404 Not Found`** client error response code indicates that the server can't find
-     * the requested resource. Links that lead to a 404 page are often called broken or dead links
-     * and can be subject to [link rot](https://en.wikipedia.org/wiki/Link_rot).
+     * The HTTP **`404 Not Found`** response status code indicates that the server cannot find the
+     * requested resource. Links that lead to a 404 page are often called broken or dead links and
+     * can be subject to [link rot](https://en.wikipedia.org/wiki/Link_rot).
      *
-     * A 404 status code does not indicate whether the resource is temporarily or permanently
-     * missing. But if a resource is permanently removed, a
-     * [`410`](/en-US/docs/Web/HTTP/Status/410) (Gone) should be used instead of a 404 status.
+     * A 404 status code only indicates that the resource is missing: not whether the absence is
+     * temporary or permanent. If a resource is permanently removed, use the
+     * [`410`](/en-US/docs/Web/HTTP/Status/410) (Gone) status instead.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404}
      */
@@ -3454,10 +3465,11 @@ export const phraseStatus = {
      * ## 405 Method Not Allowed
      *
      * The HyperText Transfer Protocol (HTTP) **`405 Method Not Allowed`** response status code
-     * indicates that the request method is known by the server but is not supported by the target resource.
+     * indicates that the server knows the request method, but the target resource doesn't support
+     * this method.
      *
-     * The server **must** generate an **`Allow`** header field in a 405 response containing a list
-     * of the target resource's currently supported methods.
+     * The server **must** generate an **`Allow`** header field in a 405 status code response. The
+     * field must contain a list of methods that the target resource currently supports.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405}
      */
@@ -4007,8 +4019,6 @@ export const processing = 102
 /**
  * ## 103 Early Hints
  *
- * This page is not complete.
- *
  * The HTTP **`103 Early Hints`** information response status code is primarily intended to be used
  * with the [`Link`](/en-US/docs/Web/HTTP/Headers/Link) header to allow the user agent to start
  * preloading resources while the server is still preparing a response.
@@ -4338,8 +4348,8 @@ export const permanentRedirect = 308
  *
  * The HyperText Transfer Protocol (HTTP) **`400 Bad Request`** response status code indicates that
  * the server cannot or will not process the request due to something that is perceived to be a
- * client error (e.g., malformed request syntax, invalid request message framing, or deceptive
- * request routing).
+ * client error (for example, malformed request syntax, invalid request message framing, or
+ * deceptive request routing).
  *
  * **Warning:** The client should not repeat this request without modification.
  *
@@ -4350,14 +4360,18 @@ export const badRequest = 400
 /**
  * ## 401 Unauthorized
  *
- * The HTTP **`401 Unauthorized`** client error status response code indicates that the request has
- * not been applied because it lacks valid authentication credentials for the target resource.
+ * The HyperText Transfer Protocol (HTTP) **`401 Unauthorized`** response status code indicates
+ * that the client request has not been completed because it lacks valid authentication credentials
+ * for the requested resource.
  *
- * This status is sent with a [`WWW-Authenticate`](/en-US/docs/Web/HTTP/Headers/WWW-Authenticate)
- * header that contains information on how to authorize correctly.
+ * This status code is sent with an HTTP
+ * [`WWW-Authenticate`](/en-US/docs/Web/HTTP/Headers/WWW-Authenticate) response header that
+ * contains information on how the client can request for the resource again after prompting the
+ * user for authentication credentials.
  *
- * This status is similar to [`403`](/en-US/docs/Web/HTTP/Status/403), but in this case,
- * authentication is possible.
+ * This status code is similar to the [`403 Forbidden`](/en-US/docs/Web/HTTP/Status/403) status
+ * code, except that in situations resulting in this status code, user authentication can allow
+ * access to the resource.
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401}
  */
@@ -4366,17 +4380,17 @@ export const unauthorized = 401
 /**
  * ## 402 Payment Required
  *
- * **This is an [experimental
+ * **Experimental:** **This is an [experimental
  * technology](/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)** Check the
  * [Browser compatibility table](#browser_compatibility) carefully before using this in production.
  *
- * The HTTP **`402 Payment Required`** is a nonstandard client error status response code that is
- * reserved for future use.
+ * The HTTP **`402 Payment Required`** is a nonstandard response status code that is reserved for
+ * future use. This status code was created to enable digital cash or (micro) payment systems and
+ * would indicate that the requested content is not available until the client makes a payment.
  *
- * Sometimes, this code indicates that the request can not be processed until the client makes a
- * payment. Originally it was created to enable digital cash or (micro) payment systems and would
- * indicate that the requested content is not available until the client makes a payment. However,
- * no standard use convention exists and different entities use it in different contexts.
+ * Sometimes, this status code indicates that the request cannot be processed until the client
+ * makes a payment. However, no standard use convention exists and different entities use it in
+ * different contexts.
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402}
  */
@@ -4385,12 +4399,12 @@ export const paymentRequired = 402
 /**
  * ## 403 Forbidden
  *
- * The HTTP **`403 Forbidden`** client error status response code indicates that the server
- * understood the request but refuses to authorize it.
+ * The HTTP **`403 Forbidden`** response status code indicates that the server understands the
+ * request but refuses to authorize it.
  *
- * This status is similar to [`401`](/en-US/docs/Web/HTTP/Status/401), but in this case,
- * re-authenticating will make no difference. The access is permanently forbidden and tied to the
- * application logic, such as insufficient rights to a resource.
+ * This status is similar to [`401`](/en-US/docs/Web/HTTP/Status/401), but for the **`403
+ * Forbidden`** status code re-authenticating makes no difference. The access is permanently
+ * forbidden and tied to the application logic, such as insufficient rights to a resource.
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403}
  */
@@ -4399,13 +4413,13 @@ export const forbidden = 403
 /**
  * ## 404 Not Found
  *
- * The HTTP **`404 Not Found`** client error response code indicates that the server can't find the
+ * The HTTP **`404 Not Found`** response status code indicates that the server cannot find the
  * requested resource. Links that lead to a 404 page are often called broken or dead links and can
  * be subject to [link rot](https://en.wikipedia.org/wiki/Link_rot).
  *
- * A 404 status code does not indicate whether the resource is temporarily or permanently missing.
- * But if a resource is permanently removed, a [`410`](/en-US/docs/Web/HTTP/Status/410) (Gone)
- * should be used instead of a 404 status.
+ * A 404 status code only indicates that the resource is missing: not whether the absence is
+ * temporary or permanent. If a resource is permanently removed, use the
+ * [`410`](/en-US/docs/Web/HTTP/Status/410) (Gone) status instead.
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404}
  */
@@ -4415,10 +4429,10 @@ export const notFound = 404
  * ## 405 Method Not Allowed
  *
  * The HyperText Transfer Protocol (HTTP) **`405 Method Not Allowed`** response status code
- * indicates that the request method is known by the server but is not supported by the target resource.
+ * indicates that the server knows the request method, but the target resource doesn't support this method.
  *
- * The server **must** generate an **`Allow`** header field in a 405 response containing a list of
- * the target resource's currently supported methods.
+ * The server **must** generate an **`Allow`** header field in a 405 status code response. The
+ * field must contain a list of methods that the target resource currently supports.
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405}
  */
