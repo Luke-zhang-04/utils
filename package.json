@@ -26,6 +26,12 @@
   "peerDependenciesMeta": {
     "@types/node": {
       "optional": true
+    },
+    "node-abort-controller": {
+      "optional": false
+    },
+    "node-fetch": {
+      "optional": false
     }
   },
   "devDependencies": {
