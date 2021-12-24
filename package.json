@@ -1,6 +1,6 @@
 {
   "name": "@luke-zhang-04/utils",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Utility functions that I find myself using a lot",
   "license": "0BSD",
   "author": "Luke Zhang",
@@ -19,11 +19,19 @@
   },
   "keywords": [],
   "peerDependencies": {
-    "@types/node": ">= 12"
+    "@types/node": ">= 12",
+    "node-abort-controller": " >= 2",
+    "node-fetch": ">= 2"
   },
   "peerDependenciesMeta": {
     "@types/node": {
       "optional": true
+    },
+    "node-abort-controller": {
+      "optional": false
+    },
+    "node-fetch": {
+      "optional": false
     }
   },
   "devDependencies": {
@@ -34,6 +42,8 @@
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-tsdoc": "^0.2.14",
+    "node-abort-controller": ">= 2",
+    "node-fetch": ">= 2",
     "prettier": "^2.3.2",
     "prettier-plugin-jsdoc": "^0.3.23",
     "prettier-plugin-package": "^1.3.0",

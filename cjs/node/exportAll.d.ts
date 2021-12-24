@@ -7,3 +7,4 @@
  * @file exports All items directly into one namespace
  */
 export * from "./crypto";
+export * from "./fetch";

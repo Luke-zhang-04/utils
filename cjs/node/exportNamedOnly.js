@@ -27,6 +27,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.crypto = void 0;
+exports.fetch = exports.crypto = void 0;
 exports.crypto = __importStar(require("./crypto"));
+exports.fetch = __importStar(require("./fetch"));
 //# sourceMappingURL=exportNamedOnly.js.map
