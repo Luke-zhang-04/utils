@@ -8,3 +8,4 @@
  */
 
 export * as crypto from "./crypto"
+export * as fetch from "./fetch"
