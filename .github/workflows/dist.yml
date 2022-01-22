@@ -11,13 +11,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: "14.x"
-          registry-url: "https://registry.npmjs.org"
       - uses: pnpm/action-setup@v2.0.1
         with:
-          version: 6.10.3
+          version: 6.24.3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+          cache: pnpm
 
       - name: install deps
         run: pnpm install --frozen-lockfile
