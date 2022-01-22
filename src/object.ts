@@ -21,7 +21,7 @@
  * @param keys - Keys to pick
  * @returns Object from picked values
  */
-export const pick = <T extends {[key: string]: unknown}, K extends (keyof T)[]>(
+export const pick = <T extends {}, K extends (keyof T)[]>(
     obj: T,
     ...keys: K
 ): Pick<T, typeof keys[number]> => {
@@ -51,14 +51,14 @@ export const pick = <T extends {[key: string]: unknown}, K extends (keyof T)[]>(
  * @param keys - Keys to omit
  * @returns Object from omitted values
  */
-export const omit = <T extends {[key: string]: unknown}, K extends (keyof T)[]>(
+export const omit = <T extends {}, K extends (keyof T)[]>(
     obj: T,
     ...keys: K
 ): Omit<T, typeof keys[number]> => {
     const newObj = {} as Pick<T, K[number]>
 
     for (const [key, value] of Object.entries(obj)) {
-        if (!keys.includes(key)) {
+        if (!keys.includes(key as keyof T)) {
             newObj[key as K[number]] = value as T[K[number]]
         }
     }
@@ -78,7 +78,7 @@ export const omit = <T extends {[key: string]: unknown}, K extends (keyof T)[]>(
  * @param obj - Object to get entries for
  * @returns Generator producing the key and value of each item
  */
-export function* objectEntries<T extends {[key: string]: unknown}>(
+export function* objectEntries<T extends {}>(
     obj: T,
 ): Generator<{[K in keyof T]: [K, T[K]]}[keyof T], void, void> {
     for (const key in obj) {
