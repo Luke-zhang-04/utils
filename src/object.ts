@@ -37,6 +37,34 @@ export const pick = <T extends {}, K extends (keyof T)[]>(
 }
 
 /**
+ * Picks values from an object and creates a new object, and picks undefined properties as well
+ *
+ * @example
+ *
+ * ```ts
+ * pick({a: 1, b: 2, c: 3}, "a", "b") // {a: 1, b: 2, d: undefined}
+ * ```
+ *
+ * @typeParam T - Type of the object to pick items from
+ * @typeParam K - Type of the keys used to pick out items
+ * @param obj - Object to pick keys from
+ * @param keys - Keys to pick
+ * @returns Object from picked values
+ */
+export const pickAll = <T extends {}, K extends (keyof T)[]>(
+    obj: T,
+    ...keys: K
+): Pick<T, typeof keys[number]> => {
+    const newObj = {} as Pick<T, K[number]>
+
+    for (const key of keys) {
+        newObj[key] = obj[key]
+    }
+
+    return newObj
+}
+
+/**
  * Omits values from an object and creates a new object
  *
  * @example

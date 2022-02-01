@@ -7,7 +7,7 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.entries = exports.objectEntries = exports.omit = exports.pick = void 0;
+exports.entries = exports.objectEntries = exports.omit = exports.pickAll = exports.pick = void 0;
 /**
  * Picks values from an object and creates a new object
  *
@@ -33,6 +33,29 @@ const pick = (obj, ...keys) => {
     return newObj;
 };
 exports.pick = pick;
+/**
+ * Picks values from an object and creates a new object, and picks undefined properties as well
+ *
+ * @example
+ *
+ * ```ts
+ * pick({a: 1, b: 2, c: 3}, "a", "b") // {a: 1, b: 2, d: undefined}
+ * ```
+ *
+ * @typeParam T - Type of the object to pick items from
+ * @typeParam K - Type of the keys used to pick out items
+ * @param obj - Object to pick keys from
+ * @param keys - Keys to pick
+ * @returns Object from picked values
+ */
+const pickAll = (obj, ...keys) => {
+    const newObj = {};
+    for (const key of keys) {
+        newObj[key] = obj[key];
+    }
+    return newObj;
+};
+exports.pickAll = pickAll;
 /**
  * Omits values from an object and creates a new object
  *

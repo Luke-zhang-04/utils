@@ -58,13 +58,13 @@ export const status = {
     /**
      * ## 101 Switching Protocols
      *
-     * The HTTP **`101 Switching Protocols`** response code indicates the protocol the server is
-     * switching to as requested by a client which sent the message including the
-     * [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade) request header.
+     * The HTTP **`101 Switching Protocols`** response code indicates a protocol to which the
+     * server switches. The protocol is specified in the
+     * [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade) request header received from a client.
      *
      * The server includes in this response an [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade)
-     * response header to indicate the protocol it switched to. The process is described in detail
-     * in the article [Protocol upgrade mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
+     * response header to indicate the protocol it switched to. The process is described in the
+     * following article: [Protocol upgrade mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/101}
      */
@@ -72,13 +72,13 @@ export const status = {
     /**
      * ## 101 Switching Protocols
      *
-     * The HTTP **`101 Switching Protocols`** response code indicates the protocol the server is
-     * switching to as requested by a client which sent the message including the
-     * [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade) request header.
+     * The HTTP **`101 Switching Protocols`** response code indicates a protocol to which the
+     * server switches. The protocol is specified in the
+     * [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade) request header received from a client.
      *
      * The server includes in this response an [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade)
-     * response header to indicate the protocol it switched to. The process is described in detail
-     * in the article [Protocol upgrade mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
+     * response header to indicate the protocol it switched to. The process is described in the
+     * following article: [Protocol upgrade mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/101}
      */
@@ -433,18 +433,17 @@ export const status = {
      * ## 301 Moved Permanently
      *
      * The HyperText Transfer Protocol (HTTP) **`301 Moved Permanently`** redirect status response
-     * code indicates that the resource requested has been definitively moved to the URL given by
-     * the [`Location`](/en-US/docs/Web/HTTP/Headers/Location) headers. A browser redirects to this
-     * page and search engines update their links to the resource (in 'SEO-speak', it is said that
-     * the 'link-juice' is sent to the new URL).
+     * code indicates that the requested resource has been definitively moved to the URL given by
+     * the [`Location`](/en-US/docs/Web/HTTP/Headers/Location) headers. A browser redirects to the
+     * new URL and search engines update their links to the resource.
      *
-     * Even if the specification requires the method (and the body) not to be altered when the
-     * redirection is performed, not all user-agents align with it - you can still find this type
-     * of bugged software out there. It is therefore recommended to use the `301` code only as a
-     * response for [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or
-     * [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD) methods and to use the [`308 Permanent
-     * Redirect`](/en-US/docs/Web/HTTP/Status/308) for [`POST`](/en-US/docs/Web/HTTP/Methods/POST)
-     * methods instead, as the method change is explicitly prohibited with this status.
+     * **Note:** Although the [specification](#specifications) requires the method and the body to
+     * remain unchanged when the redirection is performed, not all user-agents meet this
+     * requirement. Use the `301` code only as a response for
+     * [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD)
+     * methods and use the [`308 Permanent Redirect`](/en-US/docs/Web/HTTP/Status/308) for
+     * [`POST`](/en-US/docs/Web/HTTP/Methods/POST) methods instead, as the method change is
+     * explicitly prohibited with this status.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301}
      */
@@ -453,18 +452,17 @@ export const status = {
      * ## 301 Moved Permanently
      *
      * The HyperText Transfer Protocol (HTTP) **`301 Moved Permanently`** redirect status response
-     * code indicates that the resource requested has been definitively moved to the URL given by
-     * the [`Location`](/en-US/docs/Web/HTTP/Headers/Location) headers. A browser redirects to this
-     * page and search engines update their links to the resource (in 'SEO-speak', it is said that
-     * the 'link-juice' is sent to the new URL).
+     * code indicates that the requested resource has been definitively moved to the URL given by
+     * the [`Location`](/en-US/docs/Web/HTTP/Headers/Location) headers. A browser redirects to the
+     * new URL and search engines update their links to the resource.
      *
-     * Even if the specification requires the method (and the body) not to be altered when the
-     * redirection is performed, not all user-agents align with it - you can still find this type
-     * of bugged software out there. It is therefore recommended to use the `301` code only as a
-     * response for [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or
-     * [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD) methods and to use the [`308 Permanent
-     * Redirect`](/en-US/docs/Web/HTTP/Status/308) for [`POST`](/en-US/docs/Web/HTTP/Methods/POST)
-     * methods instead, as the method change is explicitly prohibited with this status.
+     * **Note:** Although the [specification](#specifications) requires the method and the body to
+     * remain unchanged when the redirection is performed, not all user-agents meet this
+     * requirement. Use the `301` code only as a response for
+     * [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD)
+     * methods and use the [`308 Permanent Redirect`](/en-US/docs/Web/HTTP/Status/308) for
+     * [`POST`](/en-US/docs/Web/HTTP/Methods/POST) methods instead, as the method change is
+     * explicitly prohibited with this status.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301}
      */
@@ -552,10 +550,10 @@ export const status = {
      *
      * The HTTP **`304 Not Modified`** client redirection response code indicates that there is no
      * need to retransmit the requested resources. It is an implicit redirection to a cached
-     * resource. This happens when the request method is [safe](/en-US/docs/Glossary/Safe/HTTP),
-     * like a [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or a
-     * [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD) request, or when the request is conditional and
-     * uses a [`If-None-Match`](/en-US/docs/Web/HTTP/Headers/If-None-Match) or a
+     * resource. This happens when the request method is a [safe](/en-US/docs/Glossary/Safe/HTTP)
+     * method, such as [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or
+     * [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD), or when the request is conditional and uses an
+     * [`If-None-Match`](/en-US/docs/Web/HTTP/Headers/If-None-Match) or an
      * [`If-Modified-Since`](/en-US/docs/Web/HTTP/Headers/If-Modified-Since) header.
      *
      * The equivalent [`200`](/en-US/docs/Web/HTTP/Status/200) `OK` response would have included
@@ -576,10 +574,10 @@ export const status = {
      *
      * The HTTP **`304 Not Modified`** client redirection response code indicates that there is no
      * need to retransmit the requested resources. It is an implicit redirection to a cached
-     * resource. This happens when the request method is [safe](/en-US/docs/Glossary/Safe/HTTP),
-     * like a [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or a
-     * [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD) request, or when the request is conditional and
-     * uses a [`If-None-Match`](/en-US/docs/Web/HTTP/Headers/If-None-Match) or a
+     * resource. This happens when the request method is a [safe](/en-US/docs/Glossary/Safe/HTTP)
+     * method, such as [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or
+     * [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD), or when the request is conditional and uses an
+     * [`If-None-Match`](/en-US/docs/Web/HTTP/Headers/If-None-Match) or an
      * [`If-Modified-Since`](/en-US/docs/Web/HTTP/Headers/If-Modified-Since) header.
      *
      * The equivalent [`200`](/en-US/docs/Web/HTTP/Status/200) `OK` response would have included
@@ -1889,13 +1887,13 @@ export const phraseStatus = {
     /**
      * ## 101 Switching Protocols
      *
-     * The HTTP **`101 Switching Protocols`** response code indicates the protocol the server is
-     * switching to as requested by a client which sent the message including the
-     * [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade) request header.
+     * The HTTP **`101 Switching Protocols`** response code indicates a protocol to which the
+     * server switches. The protocol is specified in the
+     * [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade) request header received from a client.
      *
      * The server includes in this response an [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade)
-     * response header to indicate the protocol it switched to. The process is described in detail
-     * in the article [Protocol upgrade mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
+     * response header to indicate the protocol it switched to. The process is described in the
+     * following article: [Protocol upgrade mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/101}
      */
@@ -2077,18 +2075,17 @@ export const phraseStatus = {
      * ## 301 Moved Permanently
      *
      * The HyperText Transfer Protocol (HTTP) **`301 Moved Permanently`** redirect status response
-     * code indicates that the resource requested has been definitively moved to the URL given by
-     * the [`Location`](/en-US/docs/Web/HTTP/Headers/Location) headers. A browser redirects to this
-     * page and search engines update their links to the resource (in 'SEO-speak', it is said that
-     * the 'link-juice' is sent to the new URL).
+     * code indicates that the requested resource has been definitively moved to the URL given by
+     * the [`Location`](/en-US/docs/Web/HTTP/Headers/Location) headers. A browser redirects to the
+     * new URL and search engines update their links to the resource.
      *
-     * Even if the specification requires the method (and the body) not to be altered when the
-     * redirection is performed, not all user-agents align with it - you can still find this type
-     * of bugged software out there. It is therefore recommended to use the `301` code only as a
-     * response for [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or
-     * [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD) methods and to use the [`308 Permanent
-     * Redirect`](/en-US/docs/Web/HTTP/Status/308) for [`POST`](/en-US/docs/Web/HTTP/Methods/POST)
-     * methods instead, as the method change is explicitly prohibited with this status.
+     * **Note:** Although the [specification](#specifications) requires the method and the body to
+     * remain unchanged when the redirection is performed, not all user-agents meet this
+     * requirement. Use the `301` code only as a response for
+     * [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD)
+     * methods and use the [`308 Permanent Redirect`](/en-US/docs/Web/HTTP/Status/308) for
+     * [`POST`](/en-US/docs/Web/HTTP/Methods/POST) methods instead, as the method change is
+     * explicitly prohibited with this status.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301}
      */
@@ -2137,10 +2134,10 @@ export const phraseStatus = {
      *
      * The HTTP **`304 Not Modified`** client redirection response code indicates that there is no
      * need to retransmit the requested resources. It is an implicit redirection to a cached
-     * resource. This happens when the request method is [safe](/en-US/docs/Glossary/Safe/HTTP),
-     * like a [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or a
-     * [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD) request, or when the request is conditional and
-     * uses a [`If-None-Match`](/en-US/docs/Web/HTTP/Headers/If-None-Match) or a
+     * resource. This happens when the request method is a [safe](/en-US/docs/Glossary/Safe/HTTP)
+     * method, such as [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or
+     * [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD), or when the request is conditional and uses an
+     * [`If-None-Match`](/en-US/docs/Web/HTTP/Headers/If-None-Match) or an
      * [`If-Modified-Since`](/en-US/docs/Web/HTTP/Headers/If-Modified-Since) header.
      *
      * The equivalent [`200`](/en-US/docs/Web/HTTP/Status/200) `OK` response would have included
@@ -2796,13 +2793,13 @@ export const httpContinue = 100;
 /**
  * ## 101 Switching Protocols
  *
- * The HTTP **`101 Switching Protocols`** response code indicates the protocol the server is
- * switching to as requested by a client which sent the message including the
- * [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade) request header.
+ * The HTTP **`101 Switching Protocols`** response code indicates a protocol to which the server
+ * switches. The protocol is specified in the [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade)
+ * request header received from a client.
  *
  * The server includes in this response an [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade)
- * response header to indicate the protocol it switched to. The process is described in detail in
- * the article [Protocol upgrade mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
+ * response header to indicate the protocol it switched to. The process is described in the
+ * following article: [Protocol upgrade mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/101}
  */
@@ -2982,18 +2979,16 @@ export const multipleChoices = 300;
  * ## 301 Moved Permanently
  *
  * The HyperText Transfer Protocol (HTTP) **`301 Moved Permanently`** redirect status response code
- * indicates that the resource requested has been definitively moved to the URL given by the
- * [`Location`](/en-US/docs/Web/HTTP/Headers/Location) headers. A browser redirects to this page
- * and search engines update their links to the resource (in 'SEO-speak', it is said that the
- * 'link-juice' is sent to the new URL).
+ * indicates that the requested resource has been definitively moved to the URL given by the
+ * [`Location`](/en-US/docs/Web/HTTP/Headers/Location) headers. A browser redirects to the new URL
+ * and search engines update their links to the resource.
  *
- * Even if the specification requires the method (and the body) not to be altered when the
- * redirection is performed, not all user-agents align with it - you can still find this type of
- * bugged software out there. It is therefore recommended to use the `301` code only as a response
- * for [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD)
- * methods and to use the [`308 Permanent Redirect`](/en-US/docs/Web/HTTP/Status/308) for
- * [`POST`](/en-US/docs/Web/HTTP/Methods/POST) methods instead, as the method change is explicitly
- * prohibited with this status.
+ * **Note:** Although the [specification](#specifications) requires the method and the body to
+ * remain unchanged when the redirection is performed, not all user-agents meet this requirement.
+ * Use the `301` code only as a response for [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or
+ * [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD) methods and use the [`308 Permanent
+ * Redirect`](/en-US/docs/Web/HTTP/Status/308) for [`POST`](/en-US/docs/Web/HTTP/Methods/POST)
+ * methods instead, as the method change is explicitly prohibited with this status.
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301}
  */
@@ -3041,10 +3036,10 @@ export const seeOther = 303;
  *
  * The HTTP **`304 Not Modified`** client redirection response code indicates that there is no need
  * to retransmit the requested resources. It is an implicit redirection to a cached resource. This
- * happens when the request method is [safe](/en-US/docs/Glossary/Safe/HTTP), like a
- * [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or a [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD)
- * request, or when the request is conditional and uses a
- * [`If-None-Match`](/en-US/docs/Web/HTTP/Headers/If-None-Match) or a
+ * happens when the request method is a [safe](/en-US/docs/Glossary/Safe/HTTP) method, such as
+ * [`GET`](/en-US/docs/Web/HTTP/Methods/GET) or [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD), or
+ * when the request is conditional and uses an
+ * [`If-None-Match`](/en-US/docs/Web/HTTP/Headers/If-None-Match) or an
  * [`If-Modified-Since`](/en-US/docs/Web/HTTP/Headers/If-Modified-Since) header.
  *
  * The equivalent [`200`](/en-US/docs/Web/HTTP/Status/200) `OK` response would have included the
