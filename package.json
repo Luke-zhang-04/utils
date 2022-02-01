@@ -51,5 +51,167 @@
     "typedoc-github-wiki-theme": "^0.5.1",
     "typedoc-plugin-markdown": "^3.10.4",
     "typescript": "^4.3.5"
+  },
+  "exports": {
+    "array": {
+      "require": "./cjs/array.js",
+      "import": "./array.js"
+    },
+    "browser/crypto": {
+      "require": "./cjs/browser/crypto.js",
+      "import": "./browser/crypto.js"
+    },
+    "browser/encoding": {
+      "require": "./cjs/browser/encoding.js",
+      "import": "./browser/encoding.js"
+    },
+    "browser/exportAll": {
+      "require": "./cjs/browser/exportAll.js",
+      "import": "./browser/exportAll.js"
+    },
+    "browser/exportNamed": {
+      "require": "./cjs/browser/exportNamed.js",
+      "import": "./browser/exportNamed.js"
+    },
+    "browser/exportNamedOnly": {
+      "require": "./cjs/browser/exportNamedOnly.js",
+      "import": "./browser/exportNamedOnly.js"
+    },
+    "browser/fetch": {
+      "require": "./cjs/browser/fetch.js",
+      "import": "./browser/fetch.js"
+    },
+    "browser": {
+      "require": "./cjs/browser/index.js",
+      "import": "./browser/index.js"
+    },
+    "browser/index": {
+      "require": "./cjs/browser/index.js",
+      "import": "./browser/index.js"
+    },
+    "deepEqual": {
+      "require": "./cjs/deepEqual.js",
+      "import": "./deepEqual.js"
+    },
+    "exportAll": {
+      "require": "./cjs/exportAll.js",
+      "import": "./exportAll.js"
+    },
+    "exportNamed": {
+      "require": "./cjs/exportNamed.js",
+      "import": "./exportNamed.js"
+    },
+    "exportNamedOnly": {
+      "require": "./cjs/exportNamedOnly.js",
+      "import": "./exportNamedOnly.js"
+    },
+    "http": {
+      "require": "./cjs/http.js",
+      "import": "./http.js"
+    },
+    "index": {
+      "require": "./cjs/index.js",
+      "import": "./index.js"
+    },
+    "itertools": {
+      "require": "./cjs/itertools.js",
+      "import": "./itertools.js"
+    },
+    "math": {
+      "require": "./cjs/math.js",
+      "import": "./math.js"
+    },
+    "node/crypto/decrypt": {
+      "require": "./cjs/node/crypto/decrypt.js",
+      "import": "./node/crypto/decrypt.js"
+    },
+    "node/crypto/encrypt": {
+      "require": "./cjs/node/crypto/encrypt.js",
+      "import": "./node/crypto/encrypt.js"
+    },
+    "node/crypto/hash": {
+      "require": "./cjs/node/crypto/hash.js",
+      "import": "./node/crypto/hash.js"
+    },
+    "node/crypto/helper": {
+      "require": "./cjs/node/crypto/helper.js",
+      "import": "./node/crypto/helper.js"
+    },
+    "node/crypto/hmacHash": {
+      "require": "./cjs/node/crypto/hmacHash.js",
+      "import": "./node/crypto/hmacHash.js"
+    },
+    "node/crypto": {
+      "require": "./cjs/node/crypto/index.js",
+      "import": "./node/crypto/index.js"
+    },
+    "node/crypto/index": {
+      "require": "./cjs/node/crypto/index.js",
+      "import": "./node/crypto/index.js"
+    },
+    "node/crypto/pbkdf2": {
+      "require": "./cjs/node/crypto/pbkdf2.js",
+      "import": "./node/crypto/pbkdf2.js"
+    },
+    "node/crypto/sign": {
+      "require": "./cjs/node/crypto/sign.js",
+      "import": "./node/crypto/sign.js"
+    },
+    "node/crypto/types": {
+      "require": "./cjs/node/crypto/types.js",
+      "import": "./node/crypto/types.js"
+    },
+    "node/crypto/verify": {
+      "require": "./cjs/node/crypto/verify.js",
+      "import": "./node/crypto/verify.js"
+    },
+    "node/exportAll": {
+      "require": "./cjs/node/exportAll.js",
+      "import": "./node/exportAll.js"
+    },
+    "node/exportNamed": {
+      "require": "./cjs/node/exportNamed.js",
+      "import": "./node/exportNamed.js"
+    },
+    "node/exportNamedOnly": {
+      "require": "./cjs/node/exportNamedOnly.js",
+      "import": "./node/exportNamedOnly.js"
+    },
+    "node/fetch": {
+      "require": "./cjs/node/fetch.js",
+      "import": "./node/fetch.js"
+    },
+    "node": {
+      "require": "./cjs/node/index.js",
+      "import": "./node/index.js"
+    },
+    "node/index": {
+      "require": "./cjs/node/index.js",
+      "import": "./node/index.js"
+    },
+    "object": {
+      "require": "./cjs/object.js",
+      "import": "./object.js"
+    },
+    "random": {
+      "require": "./cjs/random.js",
+      "import": "./random.js"
+    },
+    "string": {
+      "require": "./cjs/string.js",
+      "import": "./string.js"
+    },
+    "try": {
+      "require": "./cjs/try.js",
+      "import": "./try.js"
+    },
+    "typeGuards": {
+      "require": "./cjs/typeGuards.js",
+      "import": "./typeGuards.js"
+    },
+    "types": {
+      "require": "./cjs/types.js",
+      "import": "./types.js"
+    }
   }
 }
