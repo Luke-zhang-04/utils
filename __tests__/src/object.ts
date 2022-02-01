@@ -35,6 +35,22 @@ describe("object", () => {
 
             expect(Object.keys(newObj)).toHaveLength(0)
         })
+
+        it("should pick undefined keys", () => {
+            type MyObject = typeof testObject & {
+                g?: number
+            }
+
+            const testObject2: MyObject = {...testObject}
+            const newObj = object.pickAll(testObject2, "a", "b", "c", "g")
+
+            expect(newObj).toMatchObject({
+                a: 0,
+                b: 1,
+                c: 2,
+                g: undefined,
+            })
+        })
     })
 
     describe("omit", () => {
