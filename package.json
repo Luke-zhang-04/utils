@@ -12,13 +12,49 @@
       "require": "./cjs/index.js",
       "import": "./index.js"
     },
+    "./exportAll": {
+      "require": "./cjs/exportAll.js",
+      "import": "./exportAll.js"
+    },
+    "./exportNamed": {
+      "require": "./cjs/exportNamed.js",
+      "import": "./exportNamed.js"
+    },
+    "./exportNamedOnly": {
+      "require": "./cjs/exportNamedOnly.js",
+      "import": "./exportNamedOnly.js"
+    },
     "./node": {
-      "require": "./cjs/node",
-      "import": "./node"
+      "require": "./cjs/node/index.js",
+      "import": "./node/index.js"
+    },
+    "./node/exportAll": {
+      "require": "./cjs/node/exportAll.js",
+      "import": "./node/exportAll.js"
+    },
+    "./node/exportNamed": {
+      "require": "./cjs/node/exportNamed.js",
+      "import": "./node/exportNamed.js"
+    },
+    "./node/exportNamedOnly": {
+      "require": "./cjs/node/exportNamedOnly.js",
+      "import": "./node/exportNamedOnly.js"
     },
     "./browser": {
-      "require": "./cjs/browser",
-      "import": "./browser"
+      "require": "./cjs/browser/index.js",
+      "import": "./browser/index.js"
+    },
+    "./browser/exportAll": {
+      "require": "./cjs/browser/exportAll.js",
+      "import": "./browser/exportAll.js"
+    },
+    "./browser/exportNamed": {
+      "require": "./cjs/browser/exportNamed.js",
+      "import": "./browser/exportNamed.js"
+    },
+    "./browser/exportNamedOnly": {
+      "require": "./cjs/browser/exportNamedOnly.js",
+      "import": "./browser/exportNamedOnly.js"
     }
   },
   "engines": {
@@ -35,19 +71,18 @@
   "keywords": [],
   "peerDependencies": {
     "@types/node": ">= 12",
-    "node-abort-controller": " >= 2",
     "node-fetch": ">= 2"
   },
   "peerDependenciesMeta": {
     "@types/node": {
       "optional": true
     },
-    "node-abort-controller": {
-      "optional": true
-    },
     "node-fetch": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "node-abort-controller": "^3.0.1"
   },
   "devDependencies": {
     "@types/node": "^12.20.19",
@@ -57,7 +92,6 @@
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-tsdoc": "^0.2.14",
-    "node-abort-controller": ">= 2",
     "node-fetch": ">= 2",
     "prettier": "^2.3.2",
     "prettier-plugin-jsdoc": "^0.3.23",
