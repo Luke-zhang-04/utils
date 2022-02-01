@@ -20,3 +20,5 @@ cd .. || exit 1
 
 cp -v LICENSE package.json README.md dist
 echo '{"private": false, "type": "commonjs"}' > dist/cjs/package.json
+
+node scripts/generatePackageExports.mjs
