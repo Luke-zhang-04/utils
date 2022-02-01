@@ -4,7 +4,7 @@
  * 0BSD License
  */
 
-import {isEqual, isEqualArray, isEqualObject} from "../../lib/deepEqual"
+import {isEqual, isEqualArray, isEqualObject} from "../../src/deepEqual"
 
 describe("deepEqual", () => {
     it.each([

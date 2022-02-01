@@ -4,10 +4,10 @@
  * 0BSD License
  */
 
-import * as array from "../../lib/array"
-import * as itertools from "../../lib/itertools"
-import {inlineTry} from "../../lib/try"
-import {isEqualArray} from "../../lib/deepEqual"
+import * as array from "../../src/array"
+import * as itertools from "../../src/itertools"
+import {inlineTry} from "../../src/try"
+import {isEqualArray} from "../../src/deepEqual"
 
 function* generator1(): Generator<string> {
     yield "a"

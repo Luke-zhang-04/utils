@@ -4,8 +4,8 @@
  * 0BSD License
  */
 
-import * as array from "../../lib/array"
-import {isEqualArray} from "../../lib/deepEqual"
+import * as array from "../../src/array"
+import {isEqualArray} from "../../src/deepEqual"
 
 describe("array", () => {
     describe("arrayToChunks", () => {

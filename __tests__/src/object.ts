@@ -4,8 +4,8 @@
  * 0BSD License
  */
 
-import * as object from "../../lib/object"
-import {isEqualArray} from "../../lib"
+import * as object from "../../src/object"
+import {isEqualArray} from "../../src"
 
 describe("object", () => {
     const testObject = {

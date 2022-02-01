@@ -1,4 +1,4 @@
-import * as string from "../../lib/string"
+import * as string from "../../src/string"
 
 describe("string", () => {
     describe("capitalizeFirst", () => {

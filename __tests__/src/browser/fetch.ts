@@ -4,8 +4,11 @@
  * 0BSD License
  */
 
-import {fetchWithTimeout} from "../../../lib/browser/fetch"
-import {inlineTryPromise} from "../../../lib/try"
+import {fetchWithTimeout} from "../../../src/browser/fetch"
+import {inlineTryPromise} from "../../../src/try"
+import {registerDOM} from "../helpers"
+
+beforeAll(registerDOM)
 
 describe("fetch", () => {
     describe("fetchWithTimeout", () => {

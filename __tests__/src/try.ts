@@ -4,7 +4,7 @@
  * 0BSD License
  */
 
-import {inlineTry, inlineTryPromise} from "../../lib/try"
+import {inlineTry, inlineTryPromise} from "../../src/try"
 
 describe("try", () => {
     describe("inlineTry", () => {

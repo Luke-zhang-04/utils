@@ -4,7 +4,7 @@
  */
 
 /**
- * @type {import("@ts-jest/dist/types").InitialOptionsTsJest}
+ * @type {import("ts-jest/dist/types").InitialOptionsTsJest}
  */
 const config = {
     // All imported modules in your tests should be mocked automatically
@@ -23,7 +23,7 @@ const config = {
     collectCoverage: true,
 
     // An array of glob patterns indicating a set of files for which coverage information should be collected
-    collectCoverageFrom: ["lib/**/*.js"],
+    collectCoverageFrom: ["src/**/*"],
 
     // The directory where Jest should output its coverage files
     coverageDirectory: "<rootDir>/coverage",
@@ -68,7 +68,12 @@ const config = {
     // globalTeardown: undefined,
 
     // A set of global variables that need to be available in all test environments
-    // globals: {},
+    globals: {
+        "ts-jest": {
+            tsconfig: "<rootDir>/__tests__/tsconfig.json",
+            useESM: true,
+        },
+    },
 
     // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
     // maxWorkers: "50%",
@@ -101,7 +106,7 @@ const config = {
     // notifyMode: "failure-change",
 
     // A preset that is used as a base for Jest's configuration
-    // preset: undefined,
+    preset: "ts-jest",
 
     // Run tests from one or more projects
     // projects: undefined,
@@ -152,15 +157,10 @@ const config = {
     // testLocationInResults: false,
 
     // The glob patterns Jest uses to detect test files
-    testMatch: [
-        "<rootDir>/__tests__/lib/index.js",
-        "<rootDir>/__tests__/lib/{browser,node}/index.js",
-    ],
+    testMatch: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[tj]s?(x)"],
 
     // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-    // testPathIgnorePatterns: [
-    //   "/node_modules/"
-    // ],
+    testPathIgnorePatterns: ["/node_modules/", "helpers"],
 
     // The regexp pattern or array of patterns that Jest uses to detect test files
     // testRegex: [],
@@ -197,6 +197,8 @@ const config = {
 
     // Whether to use watchman for file crawling
     // watchman: true,
+
+    extensionsToTreatAsEsm: [".ts"],
 }
 
 export default config

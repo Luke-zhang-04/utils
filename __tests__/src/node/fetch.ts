@@ -4,8 +4,8 @@
  * 0BSD License
  */
 
-import {fetchWithTimeout} from "../../../lib/node/fetch"
-import {inlineTryPromise} from "../../../lib/try"
+import {fetchWithTimeout} from "../../../src/node/fetch"
+import {inlineTryPromise} from "../../../src/try"
 
 describe("fetch", () => {
     describe("fetchWithTimeout", () => {

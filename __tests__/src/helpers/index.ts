@@ -4,6 +4,4 @@
  * 0BSD License
  */
 
-import "./registerDom"
-import "./crypto"
-import "./fetch"
+export {registerDOM} from "./registerDom"

@@ -4,8 +4,8 @@
  * 0BSD License
  */
 
-import * as crypto from "../../../lib/node/crypto"
-import {inlineTry} from "../../../lib"
+import * as crypto from "../../../src/node/crypto"
+import {inlineTry} from "../../../src"
 import nodeCrypto from "crypto"
 
 describe("crypto", () => {

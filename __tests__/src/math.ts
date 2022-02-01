@@ -4,7 +4,7 @@
  * 0BSD License
  */
 
-import * as math from "../../lib/math"
+import * as math from "../../src/math"
 
 describe("math", () => {
     describe("gcd", () => {

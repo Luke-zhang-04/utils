@@ -4,7 +4,7 @@
  * 0BSD License
  */
 
-import * as typeguards from "../../lib/typeGuards"
+import * as typeguards from "../../src/typeGuards"
 
 describe("typeguards", () => {
     describe("isObject", () => {

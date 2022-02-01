@@ -4,7 +4,10 @@
  * 0BSD License
  */
 
-import * as crypto from "../../../lib/browser/crypto"
+import * as crypto from "../../../src/browser/crypto"
+import {registerDOM} from "../helpers"
+
+beforeAll(registerDOM)
 
 describe("crypto", () => {
     describe("hash", () => {

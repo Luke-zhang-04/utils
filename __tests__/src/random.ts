@@ -1,4 +1,4 @@
-import * as random from "../../lib/random"
+import * as random from "../../src/random"
 
 describe("random", () => {
     describe("randint", () => {
