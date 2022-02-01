@@ -4,59 +4,8 @@
   "description": "Utility functions that I find myself using a lot",
   "license": "0BSD",
   "author": "Luke Zhang",
-  "main": "./index.js",
+  "main": "./cjs/index.js",
   "module": "./index.js",
-  "type": "module",
-  "exports": {
-    ".": {
-      "require": "./cjs/index.js",
-      "import": "./index.js"
-    },
-    "./exportAll": {
-      "require": "./cjs/exportAll.js",
-      "import": "./exportAll.js"
-    },
-    "./exportNamed": {
-      "require": "./cjs/exportNamed.js",
-      "import": "./exportNamed.js"
-    },
-    "./exportNamedOnly": {
-      "require": "./cjs/exportNamedOnly.js",
-      "import": "./exportNamedOnly.js"
-    },
-    "./node": {
-      "require": "./cjs/node/index.js",
-      "import": "./node/index.js"
-    },
-    "./node/exportAll": {
-      "require": "./cjs/node/exportAll.js",
-      "import": "./node/exportAll.js"
-    },
-    "./node/exportNamed": {
-      "require": "./cjs/node/exportNamed.js",
-      "import": "./node/exportNamed.js"
-    },
-    "./node/exportNamedOnly": {
-      "require": "./cjs/node/exportNamedOnly.js",
-      "import": "./node/exportNamedOnly.js"
-    },
-    "./browser": {
-      "require": "./cjs/browser/index.js",
-      "import": "./browser/index.js"
-    },
-    "./browser/exportAll": {
-      "require": "./cjs/browser/exportAll.js",
-      "import": "./browser/exportAll.js"
-    },
-    "./browser/exportNamed": {
-      "require": "./cjs/browser/exportNamed.js",
-      "import": "./browser/exportNamed.js"
-    },
-    "./browser/exportNamedOnly": {
-      "require": "./cjs/browser/exportNamedOnly.js",
-      "import": "./browser/exportNamedOnly.js"
-    }
-  },
   "engines": {
     "node": ">=12"
   },
