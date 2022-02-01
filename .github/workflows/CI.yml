@@ -40,7 +40,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        node: [12.x, 14.x, 16.x]
+        node: [12.x, 14.x, 17.x]
 
     steps:
       - name: Checkout Repo
@@ -60,9 +60,6 @@ jobs:
 
       - name: install deps
         run: pnpm install --frozen-lockfile
-
-      - name: build tests
-        run: pnpm tsc -p __tests__/
 
       - name: test
         if: ${{ matrix.node != '14.x' }}
