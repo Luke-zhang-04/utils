@@ -5,7 +5,22 @@
   "license": "0BSD",
   "author": "Luke Zhang",
   "main": "./index.js",
+  "module": "./index.js",
   "type": "module",
+  "exports": {
+    ".": {
+      "require": "./cjs/index.js",
+      "import": "./index.js"
+    },
+    "./node": {
+      "require": "./cjs/node",
+      "import": "./node"
+    },
+    "./browser": {
+      "require": "./cjs/browser",
+      "import": "./browser"
+    }
+  },
   "engines": {
     "node": ">=12"
   },
