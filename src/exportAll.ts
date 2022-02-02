@@ -9,6 +9,7 @@
 
 export * from "./array"
 export * from "./deepEqual"
+export * from "./functions"
 export {Status, Statuses, status, statuses} from "./http"
 export * from "./itertools"
 export * from "./math"
