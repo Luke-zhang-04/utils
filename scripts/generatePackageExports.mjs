@@ -14,22 +14,27 @@ const exports = {}
 
 for (const file of src) {
     if (file === "index") {
-        exports["index"] = {
+        exports["."] = {
+            require: "./cjs/index.js",
+            import: "./index.js",
+        }
+
+        exports["./index"] = {
             require: "./cjs/index.js",
             import: "./index.js",
         }
     } else if (file.endsWith("index")) {
-        exports[file.replace(/\/index$/u, "")] = {
+        exports[`./${file.replace(/\/index$/u, "")}`] = {
             require: `./cjs/${file}.js`,
             import: `./${file}.js`,
         }
 
-        exports[file] = {
+        exports[`./${file}`] = {
             require: `./cjs/${file}.js`,
             import: `./${file}.js`,
         }
     } else {
-        exports[file] = {
+        exports[`./${file}`] = {
             require: `./cjs/${file}.js`,
             import: `./${file}.js`,
         }
