@@ -67,4 +67,6 @@ Visit the [wiki](https://github.com/Luke-zhang-04/utils/wiki) for documentation
 
 ### Importing
 
-It is recommened that either named or star imports are used. Default imports may not be tree-shaken properly
+It is recommened that either named or star imports are used. Default imports may not be tree-shaken properly.
+
+Imports from the `cjs` directory do not work. Node will automatically map imports to cjs or mjs based on the running program.
