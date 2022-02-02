@@ -12,7 +12,7 @@ import type { HashAlgorithms } from "./types";
 /**
  * Provides a convenient way to prepend a one-way signature to a piece of data. The hash for `data`
  * is first generated with HMAC and `algo`, and then the hash and `data` are put into a single
- * buffer and returned
+ * buffer and returned, essentially creating a glorified JTW.
  *
  * @param data - Data to sign and encode
  * @param algo - Algorithm to use for signing
@@ -25,7 +25,7 @@ export declare function encodeAndSign(data: string | Buffer, algo: HashAlgorithm
 /**
  * Provides a convenient way to prepend a one-way signature to a piece of data. The hash for `data`
  * is first generated with HMAC and `algo`, and then the hash and `data` are put into a single
- * buffer and returned
+ * buffer and returned, essentially creating a glorified JTW.
  *
  * @param data - Data to sign and encode
  * @param algo - Algorithm to use for signing

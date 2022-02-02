@@ -152,8 +152,8 @@ export async function encrypt(
         "sha512",
     )
 
-    if ((/gcm$/iu.test as (str: string) => str is crypto.CipherGCMTypes)(algo)) {
-        const cipher = crypto.createCipheriv(algo, key, iv, {
+    if (algo.endsWith("gcm")) {
+        const cipher = crypto.createCipheriv(algo as crypto.CipherGCMTypes, key, iv, {
             authTagLength: 16,
         })
         const ciphered = cipher.update(contents)

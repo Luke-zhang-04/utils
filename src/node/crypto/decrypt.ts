@@ -145,10 +145,10 @@ export async function decrypt(
         "sha512",
     )
 
-    if ((/gcm$/iu.test as (str: string) => str is crypto.CipherGCMTypes)(algo)) {
+    if (algo.endsWith("gcm")) {
         const tag = bData.slice(80, 96)
         const encryptedText = bData.slice(96)
-        const decipher = crypto.createDecipheriv(algo, key, iv)
+        const decipher = crypto.createDecipheriv(algo as crypto.CipherGCMTypes, key, iv)
 
         decipher.setAuthTag(tag)
 

@@ -28,7 +28,7 @@ async function decrypt(encryptedData, algo, secretKey, enc = "hex", keyLength) {
     const key = await pbkdf2_1.deriveKey(secretKey, salt, 
     // istanbul ignore next
     _keyLength, "sha512");
-    if (/gcm$/iu.test(algo)) {
+    if (algo.endsWith("gcm")) {
         const tag = bData.slice(80, 96);
         const encryptedText = bData.slice(96);
         const decipher = crypto_1.default.createDecipheriv(algo, key, iv);

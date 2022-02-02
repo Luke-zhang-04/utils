@@ -30,7 +30,7 @@ async function encrypt(contents, algo, secretKey, enc = "hex", keyLength) {
     const key = await pbkdf2_1.deriveKey(secretKey, salt, 
     // istanbul ignore next
     _keyLength, "sha512");
-    if (/gcm$/iu.test(algo)) {
+    if (algo.endsWith("gcm")) {
         const cipher = crypto_1.default.createCipheriv(algo, key, iv, {
             authTagLength: 16,
         });

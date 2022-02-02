@@ -1,6 +1,6 @@
 {
   "name": "@luke-zhang-04/utils",
-  "version": "1.8.0",
+  "version": "2.0.0",
   "description": "Utility functions that I find myself using a lot",
   "license": "0BSD",
   "author": "Luke Zhang",
@@ -106,6 +106,10 @@
       "require": "./cjs/exportNamedOnly.js",
       "import": "./exportNamedOnly.js"
     },
+    "./functions": {
+      "require": "./cjs/functions.js",
+      "import": "./functions.js"
+    },
     "./http": {
       "require": "./cjs/http.js",
       "import": "./http.js"
@@ -201,6 +205,10 @@
     "./random": {
       "require": "./cjs/random.js",
       "import": "./random.js"
+    },
+    "./regex": {
+      "require": "./cjs/regex.js",
+      "import": "./regex.js"
     },
     "./string": {
       "require": "./cjs/string.js",

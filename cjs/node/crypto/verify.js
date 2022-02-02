@@ -18,7 +18,7 @@ const getHashLengthFromAlgo = (algo) => {
         const sha1Length = 20;
         return sha1Length;
     }
-    else if (/^sha3-/u.test(algo)) {
+    else if (algo.startsWith("sha3-")) {
         // Ignore optional chains
         // istanbul ignore next
         const length = Number((_b = (_a = algo.match(/sha3-(?<length>[0-9]{3})/u)) === null || _a === void 0 ? void 0 : _a.groups) === null || _b === void 0 ? void 0 : _b.length);

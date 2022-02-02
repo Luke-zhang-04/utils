@@ -8,10 +8,12 @@
  */
 export * from "./array";
 export * from "./deepEqual";
+export * from "./functions";
 export { status, statuses } from "./http";
 export * from "./itertools";
 export * from "./math";
 export * from "./object";
+export * from "./regex";
 export * from "./string";
 export * from "./try";
 export * from "./typeGuards";

@@ -24,7 +24,7 @@ export async function encrypt(contents, algo, secretKey, enc = "hex", keyLength)
     const key = await deriveKey(secretKey, salt, 
     // istanbul ignore next
     _keyLength, "sha512");
-    if (/gcm$/iu.test(algo)) {
+    if (algo.endsWith("gcm")) {
         const cipher = crypto.createCipheriv(algo, key, iv, {
             authTagLength: 16,
         });
