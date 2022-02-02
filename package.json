@@ -6,6 +6,7 @@
   "author": "Luke Zhang",
   "main": "./cjs/index.js",
   "module": "./index.js",
+  "type": "module",
   "engines": {
     "node": ">=12"
   },
