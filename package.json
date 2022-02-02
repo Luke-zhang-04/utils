@@ -53,163 +53,167 @@
     "typescript": "^4.3.5"
   },
   "exports": {
-    "array": {
+    "./array": {
       "require": "./cjs/array.js",
       "import": "./array.js"
     },
-    "browser/crypto": {
+    "./browser/crypto": {
       "require": "./cjs/browser/crypto.js",
       "import": "./browser/crypto.js"
     },
-    "browser/encoding": {
+    "./browser/encoding": {
       "require": "./cjs/browser/encoding.js",
       "import": "./browser/encoding.js"
     },
-    "browser/exportAll": {
+    "./browser/exportAll": {
       "require": "./cjs/browser/exportAll.js",
       "import": "./browser/exportAll.js"
     },
-    "browser/exportNamed": {
+    "./browser/exportNamed": {
       "require": "./cjs/browser/exportNamed.js",
       "import": "./browser/exportNamed.js"
     },
-    "browser/exportNamedOnly": {
+    "./browser/exportNamedOnly": {
       "require": "./cjs/browser/exportNamedOnly.js",
       "import": "./browser/exportNamedOnly.js"
     },
-    "browser/fetch": {
+    "./browser/fetch": {
       "require": "./cjs/browser/fetch.js",
       "import": "./browser/fetch.js"
     },
-    "browser": {
+    "./browser": {
       "require": "./cjs/browser/index.js",
       "import": "./browser/index.js"
     },
-    "browser/index": {
+    "./browser/index": {
       "require": "./cjs/browser/index.js",
       "import": "./browser/index.js"
     },
-    "deepEqual": {
+    "./deepEqual": {
       "require": "./cjs/deepEqual.js",
       "import": "./deepEqual.js"
     },
-    "exportAll": {
+    "./exportAll": {
       "require": "./cjs/exportAll.js",
       "import": "./exportAll.js"
     },
-    "exportNamed": {
+    "./exportNamed": {
       "require": "./cjs/exportNamed.js",
       "import": "./exportNamed.js"
     },
-    "exportNamedOnly": {
+    "./exportNamedOnly": {
       "require": "./cjs/exportNamedOnly.js",
       "import": "./exportNamedOnly.js"
     },
-    "http": {
+    "./http": {
       "require": "./cjs/http.js",
       "import": "./http.js"
     },
-    "index": {
+    ".": {
       "require": "./cjs/index.js",
       "import": "./index.js"
     },
-    "itertools": {
+    "./index": {
+      "require": "./cjs/index.js",
+      "import": "./index.js"
+    },
+    "./itertools": {
       "require": "./cjs/itertools.js",
       "import": "./itertools.js"
     },
-    "math": {
+    "./math": {
       "require": "./cjs/math.js",
       "import": "./math.js"
     },
-    "node/crypto/decrypt": {
+    "./node/crypto/decrypt": {
       "require": "./cjs/node/crypto/decrypt.js",
       "import": "./node/crypto/decrypt.js"
     },
-    "node/crypto/encrypt": {
+    "./node/crypto/encrypt": {
       "require": "./cjs/node/crypto/encrypt.js",
       "import": "./node/crypto/encrypt.js"
     },
-    "node/crypto/hash": {
+    "./node/crypto/hash": {
       "require": "./cjs/node/crypto/hash.js",
       "import": "./node/crypto/hash.js"
     },
-    "node/crypto/helper": {
+    "./node/crypto/helper": {
       "require": "./cjs/node/crypto/helper.js",
       "import": "./node/crypto/helper.js"
     },
-    "node/crypto/hmacHash": {
+    "./node/crypto/hmacHash": {
       "require": "./cjs/node/crypto/hmacHash.js",
       "import": "./node/crypto/hmacHash.js"
     },
-    "node/crypto": {
+    "./node/crypto": {
       "require": "./cjs/node/crypto/index.js",
       "import": "./node/crypto/index.js"
     },
-    "node/crypto/index": {
+    "./node/crypto/index": {
       "require": "./cjs/node/crypto/index.js",
       "import": "./node/crypto/index.js"
     },
-    "node/crypto/pbkdf2": {
+    "./node/crypto/pbkdf2": {
       "require": "./cjs/node/crypto/pbkdf2.js",
       "import": "./node/crypto/pbkdf2.js"
     },
-    "node/crypto/sign": {
+    "./node/crypto/sign": {
       "require": "./cjs/node/crypto/sign.js",
       "import": "./node/crypto/sign.js"
     },
-    "node/crypto/types": {
+    "./node/crypto/types": {
       "require": "./cjs/node/crypto/types.js",
       "import": "./node/crypto/types.js"
     },
-    "node/crypto/verify": {
+    "./node/crypto/verify": {
       "require": "./cjs/node/crypto/verify.js",
       "import": "./node/crypto/verify.js"
     },
-    "node/exportAll": {
+    "./node/exportAll": {
       "require": "./cjs/node/exportAll.js",
       "import": "./node/exportAll.js"
     },
-    "node/exportNamed": {
+    "./node/exportNamed": {
       "require": "./cjs/node/exportNamed.js",
       "import": "./node/exportNamed.js"
     },
-    "node/exportNamedOnly": {
+    "./node/exportNamedOnly": {
       "require": "./cjs/node/exportNamedOnly.js",
       "import": "./node/exportNamedOnly.js"
     },
-    "node/fetch": {
+    "./node/fetch": {
       "require": "./cjs/node/fetch.js",
       "import": "./node/fetch.js"
     },
-    "node": {
+    "./node": {
       "require": "./cjs/node/index.js",
       "import": "./node/index.js"
     },
-    "node/index": {
+    "./node/index": {
       "require": "./cjs/node/index.js",
       "import": "./node/index.js"
     },
-    "object": {
+    "./object": {
       "require": "./cjs/object.js",
       "import": "./object.js"
     },
-    "random": {
+    "./random": {
       "require": "./cjs/random.js",
       "import": "./random.js"
     },
-    "string": {
+    "./string": {
       "require": "./cjs/string.js",
       "import": "./string.js"
     },
-    "try": {
+    "./try": {
       "require": "./cjs/try.js",
       "import": "./try.js"
     },
-    "typeGuards": {
+    "./typeGuards": {
       "require": "./cjs/typeGuards.js",
       "import": "./typeGuards.js"
     },
-    "types": {
+    "./types": {
       "require": "./cjs/types.js",
       "import": "./types.js"
     }
