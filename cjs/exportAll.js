@@ -28,6 +28,7 @@ Object.defineProperty(exports, "statuses", { enumerable: true, get: function () 
 __exportStar(require("./itertools"), exports);
 __exportStar(require("./math"), exports);
 __exportStar(require("./object"), exports);
+__exportStar(require("./random"), exports);
 __exportStar(require("./regex"), exports);
 __exportStar(require("./string"), exports);
 __exportStar(require("./try"), exports);

@@ -20,6 +20,8 @@ import * as math_1 from "./math";
 export { math_1 as math };
 import * as object_1 from "./object";
 export { object_1 as object };
+import * as random_1 from "./random";
+export { random_1 as random };
 import * as regex_1 from "./regex";
 export { regex_1 as regex };
 import * as string_1 from "./string";

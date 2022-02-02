@@ -13,6 +13,7 @@ export { status, statuses } from "./http";
 export * from "./itertools";
 export * from "./math";
 export * from "./object";
+export * from "./random";
 export * from "./regex";
 export * from "./string";
 export * from "./try";
