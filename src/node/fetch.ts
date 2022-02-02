@@ -6,7 +6,7 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
-import fetch, {Response, RequestInit, RequestInfo} from "node-fetch"
+import fetch, {RequestInfo, RequestInit, Response} from "node-fetch"
 import {AbortController} from "node-abort-controller"
 
 type FetchOptions = Exclude<RequestInit, "signal"> & {

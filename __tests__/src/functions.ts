@@ -1,3 +1,9 @@
+/**
+ * Test suite for uility functions
+ *
+ * 0BSD License
+ */
+
 import {runIfDefined} from "../../src/functions"
 
 describe("functions", () => {
