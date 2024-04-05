@@ -7,5 +7,5 @@
     "module": "ES2020",
     "noEmit": true,
   },
-  "include": ["."]
+  "include": ["./src"]
 }
