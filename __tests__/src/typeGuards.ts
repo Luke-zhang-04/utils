@@ -34,8 +34,10 @@ describe("typeguards", () => {
                 expect(isObject).toBe(false)
 
                 if (!typeguards.isObject(object)) {
-                    // @ts-expect-error
-                    object?.toString
+                    try {
+                        // @ts-expect-error
+                        object.toString
+                    } catch {}
 
                     if (object !== null) {
                         expect(typeof object).not.toBe("object")
