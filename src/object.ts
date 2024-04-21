@@ -81,10 +81,11 @@ export const omit = <T extends {}, K extends (keyof T)[]>(
     obj: T,
     ...keys: K
 ): Omit<T, (typeof keys)[number]> => {
+    const keysSet = new Set(keys)
     const newObj = {} as Pick<T, K[number]>
 
-    for (const [key, value] of Object.entries(obj)) {
-        if (!keys.includes(key as keyof T)) {
+    for (const [key, value] of objectEntries(obj)) {
+        if (!keysSet.has(key)) {
             newObj[key as K[number]] = value as T[K[number]]
         }
     }
