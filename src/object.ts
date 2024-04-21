@@ -93,8 +93,8 @@ export const omit = <T extends {}, K extends (keyof T)[]>(
 }
 
 /**
- * Better `Object.entries`, which is faster, returns an iterator instead of an array, and is typed
- * better
+ * Better `Object.entries`, which is faster, returns an iterator instead of an array (more memory
+ * efficient), and is typed better
  *
  * @example
  *
