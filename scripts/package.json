@@ -7,7 +7,7 @@
   "author": "Luke Zhang",
   "type": "module",
   "engines": {
-    "node": ">= 14"
+    "node": ">= 18"
   },
   "scripts": {
     "generateHttp": "node generateHttp.js",

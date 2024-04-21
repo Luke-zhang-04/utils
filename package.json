@@ -8,7 +8,7 @@
   "module": "./index.js",
   "type": "module",
   "engines": {
-    "node": ">=16"
+    "node": ">= 18"
   },
   "scripts": {
     "build": "tsc",
@@ -20,7 +20,7 @@
   },
   "keywords": [],
   "peerDependencies": {
-    "@types/node": ">= 16",
+    "@types/node": ">= 18",
     "node-fetch": ">= 2"
   },
   "peerDependenciesMeta": {
@@ -35,7 +35,7 @@
     "node-abort-controller": "^3.1.1"
   },
   "devDependencies": {
-    "@types/node": "^16",
+    "@types/node": "^20",
     "@typescript-eslint/eslint-plugin": "^7.7.0",
     "@typescript-eslint/parser": "^7.7.0",
     "eslint": "^9.1.0",
