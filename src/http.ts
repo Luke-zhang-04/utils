@@ -7,9 +7,7 @@
  *
  * Documentation from the [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
  * @module
- * @license 0BSD
  * @file HTTP Status codes and their names exported as a const enum, an object, and named exports
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status}
  */
 

@@ -4,8 +4,6 @@
  * Wraps the existing Node Crypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
 import {bufferToString, getKeyLengthFromAlgo} from "./helper.js"

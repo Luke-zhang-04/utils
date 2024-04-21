@@ -3,13 +3,11 @@
  * library](https://docs.python.org/3/library/itertools.html)
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
 /* eslint-disable max-lines */
 
-import type {IterableValue} from "./types"
+import type {IterableValue} from "./types.js"
 
 /** Takes a tuple of iterators `K`, and returns a tuple of the iterator return types from `K` */
 type GetIteratorTupleValues<T extends Iterable<unknown>[]> = {
