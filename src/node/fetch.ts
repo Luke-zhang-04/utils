@@ -10,9 +10,7 @@ import fetch, {RequestInfo, RequestInit, Response} from "node-fetch"
 import {AbortController} from "node-abort-controller"
 
 type FetchOptions = Exclude<RequestInit, "signal"> & {
-    /**
-     * Timeout in ms
-     */
+    /** Timeout in ms */
     timeout?: number
 }
 

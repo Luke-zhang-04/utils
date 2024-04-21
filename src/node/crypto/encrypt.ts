@@ -25,7 +25,8 @@ import {deriveKey} from "./pbkdf2.js"
  * @param secretKey - Secret key for encryption.
  * @param enc - Encoding for the final data, including the initialization vector and data
  * @param keyLength - The length of the key used for encryption in **bytes**. In this case, the key
- *   length can be inferred, and is optional. The key length is dependent on the algorithm of choice.
+ *   length can be inferred, and is optional. The key length is dependent on the algorithm of
+ *   choice.
  *
  *   - AES-128 - 128 bits - 16 bytes
  *   - AES-192 - 192 bits - 24 bytes
@@ -77,7 +78,8 @@ export function encrypt(
  * @param secretKey - Secret key for encryption.
  * @param enc - Encoding for the final data, including the initialization vector and data
  * @param keyLength - The length of the key used for encryption in **bytes**. In this case, the key
- *   length can be inferred, and is optional. The key length is dependent on the algorithm of choice.
+ *   length can be inferred, and is optional. The key length is dependent on the algorithm of
+ *   choice.
  *
  *   - AES-128 - 128 bits - 16 bytes
  *   - AES-192 - 192 bits - 24 bytes

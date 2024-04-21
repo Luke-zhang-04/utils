@@ -107,7 +107,7 @@ describe("itertools", () => {
     })
 
     describe("accumulate", () => {
-        it.each<[...Parameters<typeof itertools["accumulate"]>, number[]]>([
+        it.each<[...Parameters<(typeof itertools)["accumulate"]>, number[]]>([
             [[1, 2, 3, 4, 5], undefined, undefined, [1, 3, 6, 10, 15]],
             [[1, 2, 3, 4, 5], (prev, cur) => prev + cur + 1, undefined, [1, 4, 8, 13, 19]],
             [[1, 2, 3, 4, 5], "+", undefined, [1, 3, 6, 10, 15]],

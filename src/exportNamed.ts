@@ -3,8 +3,8 @@
  *
  * @module
  * @license 0BSD
+ * @file Exports All items into seperate namespaces, plus a default export
  * @author Luke Zhang (https://luke-zhang-04.github.io)
- * @file exports All items into seperate namespaces, plus a default export
  */
 
 export * from "./exportNamedOnly.js"

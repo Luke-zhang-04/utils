@@ -71,9 +71,7 @@ export const count = <T>(array: T[], predicate: (value: T) => unknown, max?: num
     return total
 }
 
-/**
- * Callback type for the filterMap function
- */
+/** Callback type for the filterMap function */
 type FilterMapCallback<T, K> = (
     value: T,
     index: number,

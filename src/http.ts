@@ -8,8 +8,8 @@
  * Documentation from the [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
  * @module
  * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  * @file HTTP Status codes and their names exported as a const enum, an object, and named exports
+ * @author Luke Zhang (https://luke-zhang-04.github.io)
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status}
  */
 
@@ -56,7 +56,8 @@ export const enum Status {
      *
      * The server includes in this response an [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade)
      * response header to indicate the protocol it switched to. The process is described in the
-     * following article: [Protocol upgrade mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
+     * following article: [Protocol upgrade
+     * mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/101}
      */
@@ -99,7 +100,8 @@ export const enum Status {
      * The successful result of a [`PUT`](/en-US/docs/Web/HTTP/Methods/PUT) or a
      * [`DELETE`](/en-US/docs/Web/HTTP/Methods/DELETE) is often not a `200` `OK` but a
      * [`204`](/en-US/docs/Web/HTTP/Status/204) `No Content` (or a
-     * [`201`](/en-US/docs/Web/HTTP/Status/201) `Created` when the resource is uploaded for the first time).
+     * [`201`](/en-US/docs/Web/HTTP/Status/201) `Created` when the resource is uploaded for the
+     * first time).
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200}
      */
@@ -176,7 +178,8 @@ export const enum Status {
      * ## 205 Reset Content
      *
      * The HTTP **`205 Reset Content`** response status tells the client to reset the document
-     * view, so for example to clear the content of a form, reset a canvas state, or to refresh the UI.
+     * view, so for example to clear the content of a form, reset a canvas state, or to refresh the
+     * UI.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/205}
      */
@@ -229,7 +232,8 @@ export const enum Status {
      * **[HTTP Delta encoding](https://datatracker.ietf.org/doc/html/rfc3229)**
      *
      * The server has fulfilled a `GET` request for the resource, and the response is a
-     * representation of the result of one or more instance-manipulations applied to the current instance.
+     * representation of the result of one or more instance-manipulations applied to the current
+     * instance.
      */
     IMUsed = 226,
 
@@ -324,7 +328,8 @@ export const enum Status {
      * the headers [`Cache-Control`](/en-US/docs/Web/HTTP/Headers/Cache-Control),
      * [`Content-Location`](/en-US/docs/Web/HTTP/Headers/Content-Location),
      * [`Date`](/en-US/docs/Web/HTTP/Headers/Date), [`ETag`](/en-US/docs/Web/HTTP/Headers/ETag),
-     * [`Expires`](/en-US/docs/Web/HTTP/Headers/Expires), and [`Vary`](/en-US/docs/Web/HTTP/Headers/Vary).
+     * [`Expires`](/en-US/docs/Web/HTTP/Headers/Expires), and
+     * [`Vary`](/en-US/docs/Web/HTTP/Headers/Vary).
      *
      * **Note:** Many [developer tools' network panels](/en-US/docs/Tools/Network_Monitor) of
      * browsers create extraneous requests leading to `304` responses, so that access to the local
@@ -445,7 +450,8 @@ export const enum Status {
      *
      * **Experimental:** **This is an [experimental
      * technology](/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)** Check the
-     * [Browser compatibility table](#browser_compatibility) carefully before using this in production.
+     * [Browser compatibility table](#browser_compatibility) carefully before using this in
+     * production.
      *
      * The HTTP **`402 Payment Required`** is a nonstandard response status code that is reserved
      * for future use. This status code was created to enable digital cash or (micro) payment
@@ -547,7 +553,7 @@ export const enum Status {
      *
      * The HyperText Transfer Protocol (HTTP) **`408 Request Timeout`** response status code means
      * that the server would like to shut down this unused connection. It is sent on an idle
-     * connection by some servers, *even without any previous request by the client*.
+     * connection by some servers, _even without any previous request by the client_.
      *
      * A server should send the "close" [`Connection`](/en-US/docs/Web/HTTP/Headers/Connection)
      * header field in the response, since `408` implies that the server has decided to close the
@@ -652,7 +658,8 @@ export const enum Status {
      * ## 415 Unsupported Media Type
      *
      * The HTTP **`415 Unsupported Media Type`** client error response code indicates that the
-     * server refuses to accept the request because the payload format is in an unsupported format.
+     * server refuses to accept the request because the payload format is in an unsupported
+     * format.
      *
      * The format problem might be due to the request's indicated
      * [`Content-Type`](/en-US/docs/Web/HTTP/Headers/Content-Type) or
@@ -705,7 +712,8 @@ export const enum Status {
      * temporarily out of coffee should instead return 503. This error is a reference to Hyper Text
      * Coffee Pot Control Protocol defined in April Fools' jokes in 1998 and 2014.
      *
-     * Some websites use this response for requests they do not wish to handle, such as automated queries.
+     * Some websites use this response for requests they do not wish to handle, such as automated
+     * queries.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418}
      */
@@ -799,7 +807,7 @@ export const enum Status {
      *
      * The HTTP **`431 Request Header Fields Too Large`** response status code indicates that the
      * server refuses to process the request because the request's [HTTP
-     * headers](/en-US/docs/Web/HTTP/Headers) are too long. The request *may* be resubmitted after
+     * headers](/en-US/docs/Web/HTTP/Headers) are too long. The request _may_ be resubmitted after
      * reducing the size of the request headers.
      *
      * 431 can be used when the **total size** of request headers is too large, or when a
@@ -860,17 +868,19 @@ export const enum Status {
      * ## 501 Not Implemented
      *
      * The HyperText Transfer Protocol (HTTP) **`501 Not Implemented`** server error response code
-     * means that **the server does not support the functionality required to fulfill the request**.
+     * means that **the server does not support the functionality required to fulfill the
+     * request**.
      *
      * This status can also send a [`Retry-After`](/en-US/docs/Web/HTTP/Headers/Retry-After)
-     * header, telling the requester when to check back to see if the functionality is supported by then.
+     * header, telling the requester when to check back to see if the functionality is supported by
+     * then.
      *
      * `501` is the appropriate response when the server does not recognize the request method and
      * is incapable of supporting it for any resource. The only methods that servers are required
      * to support (and therefore that must not return `501`) are
      * [`GET`](/en-US/docs/Web/HTTP/Methods/GET) and [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD).
      *
-     * If the server *does* recognize the method, but intentionally does not support it, the
+     * If the server _does_ recognize the method, but intentionally does not support it, the
      * appropriate response is [`405 Method Not Allowed`](/en-US/docs/Web/HTTP/Status/405).
      *
      * **Note:**
@@ -888,7 +898,8 @@ export const enum Status {
      *
      * **Note:** A [Gateway](https://en.wikipedia.org/wiki/Gateway_(telecommunications)) might
      * refer to different things in networking and a 502 error is usually not something you can
-     * fix, but requires a fix by the web server or the proxies you are trying to get access through.
+     * fix, but requires a fix by the web server or the proxies you are trying to get access
+     * through.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502}
      */
@@ -905,7 +916,8 @@ export const enum Status {
      * [`Retry-After`](/en-US/docs/Web/HTTP/Headers/Retry-After) HTTP header should, if possible,
      * contain the estimated time for the recovery of the service.
      *
-     * **Note:** together with this response, a user-friendly page explaining the problem should be sent.
+     * **Note:** together with this response, a user-friendly page explaining the problem should be
+     * sent.
      *
      * Caching-related headers that are sent along with this response should be taken care of, as a
      * 503 status is often a temporary condition and responses shouldn't usually be cached.
@@ -923,7 +935,8 @@ export const enum Status {
      *
      * **Note:** A [Gateway](https://en.wikipedia.org/wiki/Gateway_(telecommunications)) might
      * refer to different things in networking and a 504 error is usually not something you can
-     * fix, but requires a fix by the web server or the proxies you are trying to get access through.
+     * fix, but requires a fix by the web server or the proxies you are trying to get access
+     * through.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504}
      */
@@ -1010,7 +1023,8 @@ export const enum Status {
      *
      * Network operators sometimes require some authentication, acceptance of terms, or other user
      * interaction before granting access (for example in an internet café or at an airport). They
-     * often identify clients who have not done so using their Media Access Control (MAC) addresses.
+     * often identify clients who have not done so using their Media Access Control (MAC)
+     * addresses.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/511}
      */
@@ -1071,7 +1085,8 @@ export const status = {
      *
      * The server includes in this response an [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade)
      * response header to indicate the protocol it switched to. The process is described in the
-     * following article: [Protocol upgrade mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
+     * following article: [Protocol upgrade
+     * mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/101}
      */
@@ -1086,7 +1101,8 @@ export const status = {
      *
      * The server includes in this response an [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade)
      * response header to indicate the protocol it switched to. The process is described in the
-     * following article: [Protocol upgrade mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
+     * following article: [Protocol upgrade
+     * mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/101}
      */
@@ -1155,7 +1171,8 @@ export const status = {
      * The successful result of a [`PUT`](/en-US/docs/Web/HTTP/Methods/PUT) or a
      * [`DELETE`](/en-US/docs/Web/HTTP/Methods/DELETE) is often not a `200` `OK` but a
      * [`204`](/en-US/docs/Web/HTTP/Status/204) `No Content` (or a
-     * [`201`](/en-US/docs/Web/HTTP/Status/201) `Created` when the resource is uploaded for the first time).
+     * [`201`](/en-US/docs/Web/HTTP/Status/201) `Created` when the resource is uploaded for the
+     * first time).
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200}
      */
@@ -1172,7 +1189,8 @@ export const status = {
      * The successful result of a [`PUT`](/en-US/docs/Web/HTTP/Methods/PUT) or a
      * [`DELETE`](/en-US/docs/Web/HTTP/Methods/DELETE) is often not a `200` `OK` but a
      * [`204`](/en-US/docs/Web/HTTP/Status/204) `No Content` (or a
-     * [`201`](/en-US/docs/Web/HTTP/Status/201) `Created` when the resource is uploaded for the first time).
+     * [`201`](/en-US/docs/Web/HTTP/Status/201) `Created` when the resource is uploaded for the
+     * first time).
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200}
      */
@@ -1316,7 +1334,8 @@ export const status = {
      * ## 205 Reset Content
      *
      * The HTTP **`205 Reset Content`** response status tells the client to reset the document
-     * view, so for example to clear the content of a form, reset a canvas state, or to refresh the UI.
+     * view, so for example to clear the content of a form, reset a canvas state, or to refresh the
+     * UI.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/205}
      */
@@ -1326,7 +1345,8 @@ export const status = {
      * ## 205 Reset Content
      *
      * The HTTP **`205 Reset Content`** response status tells the client to reset the document
-     * view, so for example to clear the content of a form, reset a canvas state, or to refresh the UI.
+     * view, so for example to clear the content of a form, reset a canvas state, or to refresh the
+     * UI.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/205}
      */
@@ -1420,7 +1440,8 @@ export const status = {
      * **[HTTP Delta encoding](https://datatracker.ietf.org/doc/html/rfc3229)**
      *
      * The server has fulfilled a `GET` request for the resource, and the response is a
-     * representation of the result of one or more instance-manipulations applied to the current instance.
+     * representation of the result of one or more instance-manipulations applied to the current
+     * instance.
      */
     imUsed: 226,
 
@@ -1430,7 +1451,8 @@ export const status = {
      * **[HTTP Delta encoding](https://datatracker.ietf.org/doc/html/rfc3229)**
      *
      * The server has fulfilled a `GET` request for the resource, and the response is a
-     * representation of the result of one or more instance-manipulations applied to the current instance.
+     * representation of the result of one or more instance-manipulations applied to the current
+     * instance.
      */
     226: "imUsed",
 
@@ -1601,7 +1623,8 @@ export const status = {
      * the headers [`Cache-Control`](/en-US/docs/Web/HTTP/Headers/Cache-Control),
      * [`Content-Location`](/en-US/docs/Web/HTTP/Headers/Content-Location),
      * [`Date`](/en-US/docs/Web/HTTP/Headers/Date), [`ETag`](/en-US/docs/Web/HTTP/Headers/ETag),
-     * [`Expires`](/en-US/docs/Web/HTTP/Headers/Expires), and [`Vary`](/en-US/docs/Web/HTTP/Headers/Vary).
+     * [`Expires`](/en-US/docs/Web/HTTP/Headers/Expires), and
+     * [`Vary`](/en-US/docs/Web/HTTP/Headers/Vary).
      *
      * **Note:** Many [developer tools' network panels](/en-US/docs/Tools/Network_Monitor) of
      * browsers create extraneous requests leading to `304` responses, so that access to the local
@@ -1626,7 +1649,8 @@ export const status = {
      * the headers [`Cache-Control`](/en-US/docs/Web/HTTP/Headers/Cache-Control),
      * [`Content-Location`](/en-US/docs/Web/HTTP/Headers/Content-Location),
      * [`Date`](/en-US/docs/Web/HTTP/Headers/Date), [`ETag`](/en-US/docs/Web/HTTP/Headers/ETag),
-     * [`Expires`](/en-US/docs/Web/HTTP/Headers/Expires), and [`Vary`](/en-US/docs/Web/HTTP/Headers/Vary).
+     * [`Expires`](/en-US/docs/Web/HTTP/Headers/Expires), and
+     * [`Vary`](/en-US/docs/Web/HTTP/Headers/Vary).
      *
      * **Note:** Many [developer tools' network panels](/en-US/docs/Tools/Network_Monitor) of
      * browsers create extraneous requests leading to `304` responses, so that access to the local
@@ -1853,7 +1877,8 @@ export const status = {
      *
      * **Experimental:** **This is an [experimental
      * technology](/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)** Check the
-     * [Browser compatibility table](#browser_compatibility) carefully before using this in production.
+     * [Browser compatibility table](#browser_compatibility) carefully before using this in
+     * production.
      *
      * The HTTP **`402 Payment Required`** is a nonstandard response status code that is reserved
      * for future use. This status code was created to enable digital cash or (micro) payment
@@ -1873,7 +1898,8 @@ export const status = {
      *
      * **Experimental:** **This is an [experimental
      * technology](/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)** Check the
-     * [Browser compatibility table](#browser_compatibility) carefully before using this in production.
+     * [Browser compatibility table](#browser_compatibility) carefully before using this in
+     * production.
      *
      * The HTTP **`402 Payment Required`** is a nonstandard response status code that is reserved
      * for future use. This status code was created to enable digital cash or (micro) payment
@@ -2057,7 +2083,7 @@ export const status = {
      *
      * The HyperText Transfer Protocol (HTTP) **`408 Request Timeout`** response status code means
      * that the server would like to shut down this unused connection. It is sent on an idle
-     * connection by some servers, *even without any previous request by the client*.
+     * connection by some servers, _even without any previous request by the client_.
      *
      * A server should send the "close" [`Connection`](/en-US/docs/Web/HTTP/Headers/Connection)
      * header field in the response, since `408` implies that the server has decided to close the
@@ -2077,7 +2103,7 @@ export const status = {
      *
      * The HyperText Transfer Protocol (HTTP) **`408 Request Timeout`** response status code means
      * that the server would like to shut down this unused connection. It is sent on an idle
-     * connection by some servers, *even without any previous request by the client*.
+     * connection by some servers, _even without any previous request by the client_.
      *
      * A server should send the "close" [`Connection`](/en-US/docs/Web/HTTP/Headers/Connection)
      * header field in the response, since `408` implies that the server has decided to close the
@@ -2268,7 +2294,8 @@ export const status = {
      * ## 415 Unsupported Media Type
      *
      * The HTTP **`415 Unsupported Media Type`** client error response code indicates that the
-     * server refuses to accept the request because the payload format is in an unsupported format.
+     * server refuses to accept the request because the payload format is in an unsupported
+     * format.
      *
      * The format problem might be due to the request's indicated
      * [`Content-Type`](/en-US/docs/Web/HTTP/Headers/Content-Type) or
@@ -2283,7 +2310,8 @@ export const status = {
      * ## 415 Unsupported Media Type
      *
      * The HTTP **`415 Unsupported Media Type`** client error response code indicates that the
-     * server refuses to accept the request because the payload format is in an unsupported format.
+     * server refuses to accept the request because the payload format is in an unsupported
+     * format.
      *
      * The format problem might be due to the request's indicated
      * [`Content-Type`](/en-US/docs/Web/HTTP/Headers/Content-Type) or
@@ -2370,7 +2398,8 @@ export const status = {
      * temporarily out of coffee should instead return 503. This error is a reference to Hyper Text
      * Coffee Pot Control Protocol defined in April Fools' jokes in 1998 and 2014.
      *
-     * Some websites use this response for requests they do not wish to handle, such as automated queries.
+     * Some websites use this response for requests they do not wish to handle, such as automated
+     * queries.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418}
      */
@@ -2384,7 +2413,8 @@ export const status = {
      * temporarily out of coffee should instead return 503. This error is a reference to Hyper Text
      * Coffee Pot Control Protocol defined in April Fools' jokes in 1998 and 2014.
      *
-     * Some websites use this response for requests they do not wish to handle, such as automated queries.
+     * Some websites use this response for requests they do not wish to handle, such as automated
+     * queries.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418}
      */
@@ -2561,7 +2591,7 @@ export const status = {
      *
      * The HTTP **`431 Request Header Fields Too Large`** response status code indicates that the
      * server refuses to process the request because the request's [HTTP
-     * headers](/en-US/docs/Web/HTTP/Headers) are too long. The request *may* be resubmitted after
+     * headers](/en-US/docs/Web/HTTP/Headers) are too long. The request _may_ be resubmitted after
      * reducing the size of the request headers.
      *
      * 431 can be used when the **total size** of request headers is too large, or when a
@@ -2580,7 +2610,7 @@ export const status = {
      *
      * The HTTP **`431 Request Header Fields Too Large`** response status code indicates that the
      * server refuses to process the request because the request's [HTTP
-     * headers](/en-US/docs/Web/HTTP/Headers) are too long. The request *may* be resubmitted after
+     * headers](/en-US/docs/Web/HTTP/Headers) are too long. The request _may_ be resubmitted after
      * reducing the size of the request headers.
      *
      * 431 can be used when the **total size** of request headers is too large, or when a
@@ -2668,17 +2698,19 @@ export const status = {
      * ## 501 Not Implemented
      *
      * The HyperText Transfer Protocol (HTTP) **`501 Not Implemented`** server error response code
-     * means that **the server does not support the functionality required to fulfill the request**.
+     * means that **the server does not support the functionality required to fulfill the
+     * request**.
      *
      * This status can also send a [`Retry-After`](/en-US/docs/Web/HTTP/Headers/Retry-After)
-     * header, telling the requester when to check back to see if the functionality is supported by then.
+     * header, telling the requester when to check back to see if the functionality is supported by
+     * then.
      *
      * `501` is the appropriate response when the server does not recognize the request method and
      * is incapable of supporting it for any resource. The only methods that servers are required
      * to support (and therefore that must not return `501`) are
      * [`GET`](/en-US/docs/Web/HTTP/Methods/GET) and [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD).
      *
-     * If the server *does* recognize the method, but intentionally does not support it, the
+     * If the server _does_ recognize the method, but intentionally does not support it, the
      * appropriate response is [`405 Method Not Allowed`](/en-US/docs/Web/HTTP/Status/405).
      *
      * **Note:**
@@ -2691,17 +2723,19 @@ export const status = {
      * ## 501 Not Implemented
      *
      * The HyperText Transfer Protocol (HTTP) **`501 Not Implemented`** server error response code
-     * means that **the server does not support the functionality required to fulfill the request**.
+     * means that **the server does not support the functionality required to fulfill the
+     * request**.
      *
      * This status can also send a [`Retry-After`](/en-US/docs/Web/HTTP/Headers/Retry-After)
-     * header, telling the requester when to check back to see if the functionality is supported by then.
+     * header, telling the requester when to check back to see if the functionality is supported by
+     * then.
      *
      * `501` is the appropriate response when the server does not recognize the request method and
      * is incapable of supporting it for any resource. The only methods that servers are required
      * to support (and therefore that must not return `501`) are
      * [`GET`](/en-US/docs/Web/HTTP/Methods/GET) and [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD).
      *
-     * If the server *does* recognize the method, but intentionally does not support it, the
+     * If the server _does_ recognize the method, but intentionally does not support it, the
      * appropriate response is [`405 Method Not Allowed`](/en-US/docs/Web/HTTP/Status/405).
      *
      * **Note:**
@@ -2719,7 +2753,8 @@ export const status = {
      *
      * **Note:** A [Gateway](https://en.wikipedia.org/wiki/Gateway_(telecommunications)) might
      * refer to different things in networking and a 502 error is usually not something you can
-     * fix, but requires a fix by the web server or the proxies you are trying to get access through.
+     * fix, but requires a fix by the web server or the proxies you are trying to get access
+     * through.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502}
      */
@@ -2734,7 +2769,8 @@ export const status = {
      *
      * **Note:** A [Gateway](https://en.wikipedia.org/wiki/Gateway_(telecommunications)) might
      * refer to different things in networking and a 502 error is usually not something you can
-     * fix, but requires a fix by the web server or the proxies you are trying to get access through.
+     * fix, but requires a fix by the web server or the proxies you are trying to get access
+     * through.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502}
      */
@@ -2751,7 +2787,8 @@ export const status = {
      * [`Retry-After`](/en-US/docs/Web/HTTP/Headers/Retry-After) HTTP header should, if possible,
      * contain the estimated time for the recovery of the service.
      *
-     * **Note:** together with this response, a user-friendly page explaining the problem should be sent.
+     * **Note:** together with this response, a user-friendly page explaining the problem should be
+     * sent.
      *
      * Caching-related headers that are sent along with this response should be taken care of, as a
      * 503 status is often a temporary condition and responses shouldn't usually be cached.
@@ -2771,7 +2808,8 @@ export const status = {
      * [`Retry-After`](/en-US/docs/Web/HTTP/Headers/Retry-After) HTTP header should, if possible,
      * contain the estimated time for the recovery of the service.
      *
-     * **Note:** together with this response, a user-friendly page explaining the problem should be sent.
+     * **Note:** together with this response, a user-friendly page explaining the problem should be
+     * sent.
      *
      * Caching-related headers that are sent along with this response should be taken care of, as a
      * 503 status is often a temporary condition and responses shouldn't usually be cached.
@@ -2789,7 +2827,8 @@ export const status = {
      *
      * **Note:** A [Gateway](https://en.wikipedia.org/wiki/Gateway_(telecommunications)) might
      * refer to different things in networking and a 504 error is usually not something you can
-     * fix, but requires a fix by the web server or the proxies you are trying to get access through.
+     * fix, but requires a fix by the web server or the proxies you are trying to get access
+     * through.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504}
      */
@@ -2804,7 +2843,8 @@ export const status = {
      *
      * **Note:** A [Gateway](https://en.wikipedia.org/wiki/Gateway_(telecommunications)) might
      * refer to different things in networking and a 504 error is usually not something you can
-     * fix, but requires a fix by the web server or the proxies you are trying to get access through.
+     * fix, but requires a fix by the web server or the proxies you are trying to get access
+     * through.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504}
      */
@@ -2961,7 +3001,8 @@ export const status = {
      *
      * Network operators sometimes require some authentication, acceptance of terms, or other user
      * interaction before granting access (for example in an internet café or at an airport). They
-     * often identify clients who have not done so using their Media Access Control (MAC) addresses.
+     * often identify clients who have not done so using their Media Access Control (MAC)
+     * addresses.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/511}
      */
@@ -2978,7 +3019,8 @@ export const status = {
      *
      * Network operators sometimes require some authentication, acceptance of terms, or other user
      * interaction before granting access (for example in an internet café or at an airport). They
-     * often identify clients who have not done so using their Media Access Control (MAC) addresses.
+     * often identify clients who have not done so using their Media Access Control (MAC)
+     * addresses.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/511}
      */
@@ -3024,7 +3066,8 @@ export const phraseStatus = {
      *
      * The server includes in this response an [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade)
      * response header to indicate the protocol it switched to. The process is described in the
-     * following article: [Protocol upgrade mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
+     * following article: [Protocol upgrade
+     * mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/101}
      */
@@ -3067,7 +3110,8 @@ export const phraseStatus = {
      * The successful result of a [`PUT`](/en-US/docs/Web/HTTP/Methods/PUT) or a
      * [`DELETE`](/en-US/docs/Web/HTTP/Methods/DELETE) is often not a `200` `OK` but a
      * [`204`](/en-US/docs/Web/HTTP/Status/204) `No Content` (or a
-     * [`201`](/en-US/docs/Web/HTTP/Status/201) `Created` when the resource is uploaded for the first time).
+     * [`201`](/en-US/docs/Web/HTTP/Status/201) `Created` when the resource is uploaded for the
+     * first time).
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200}
      */
@@ -3144,7 +3188,8 @@ export const phraseStatus = {
      * ## 205 Reset Content
      *
      * The HTTP **`205 Reset Content`** response status tells the client to reset the document
-     * view, so for example to clear the content of a form, reset a canvas state, or to refresh the UI.
+     * view, so for example to clear the content of a form, reset a canvas state, or to refresh the
+     * UI.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/205}
      */
@@ -3197,7 +3242,8 @@ export const phraseStatus = {
      * **[HTTP Delta encoding](https://datatracker.ietf.org/doc/html/rfc3229)**
      *
      * The server has fulfilled a `GET` request for the resource, and the response is a
-     * representation of the result of one or more instance-manipulations applied to the current instance.
+     * representation of the result of one or more instance-manipulations applied to the current
+     * instance.
      */
     226: "IM Used",
 
@@ -3292,7 +3338,8 @@ export const phraseStatus = {
      * the headers [`Cache-Control`](/en-US/docs/Web/HTTP/Headers/Cache-Control),
      * [`Content-Location`](/en-US/docs/Web/HTTP/Headers/Content-Location),
      * [`Date`](/en-US/docs/Web/HTTP/Headers/Date), [`ETag`](/en-US/docs/Web/HTTP/Headers/ETag),
-     * [`Expires`](/en-US/docs/Web/HTTP/Headers/Expires), and [`Vary`](/en-US/docs/Web/HTTP/Headers/Vary).
+     * [`Expires`](/en-US/docs/Web/HTTP/Headers/Expires), and
+     * [`Vary`](/en-US/docs/Web/HTTP/Headers/Vary).
      *
      * **Note:** Many [developer tools' network panels](/en-US/docs/Tools/Network_Monitor) of
      * browsers create extraneous requests leading to `304` responses, so that access to the local
@@ -3413,7 +3460,8 @@ export const phraseStatus = {
      *
      * **Experimental:** **This is an [experimental
      * technology](/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)** Check the
-     * [Browser compatibility table](#browser_compatibility) carefully before using this in production.
+     * [Browser compatibility table](#browser_compatibility) carefully before using this in
+     * production.
      *
      * The HTTP **`402 Payment Required`** is a nonstandard response status code that is reserved
      * for future use. This status code was created to enable digital cash or (micro) payment
@@ -3515,7 +3563,7 @@ export const phraseStatus = {
      *
      * The HyperText Transfer Protocol (HTTP) **`408 Request Timeout`** response status code means
      * that the server would like to shut down this unused connection. It is sent on an idle
-     * connection by some servers, *even without any previous request by the client*.
+     * connection by some servers, _even without any previous request by the client_.
      *
      * A server should send the "close" [`Connection`](/en-US/docs/Web/HTTP/Headers/Connection)
      * header field in the response, since `408` implies that the server has decided to close the
@@ -3620,7 +3668,8 @@ export const phraseStatus = {
      * ## 415 Unsupported Media Type
      *
      * The HTTP **`415 Unsupported Media Type`** client error response code indicates that the
-     * server refuses to accept the request because the payload format is in an unsupported format.
+     * server refuses to accept the request because the payload format is in an unsupported
+     * format.
      *
      * The format problem might be due to the request's indicated
      * [`Content-Type`](/en-US/docs/Web/HTTP/Headers/Content-Type) or
@@ -3673,7 +3722,8 @@ export const phraseStatus = {
      * temporarily out of coffee should instead return 503. This error is a reference to Hyper Text
      * Coffee Pot Control Protocol defined in April Fools' jokes in 1998 and 2014.
      *
-     * Some websites use this response for requests they do not wish to handle, such as automated queries.
+     * Some websites use this response for requests they do not wish to handle, such as automated
+     * queries.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418}
      */
@@ -3767,7 +3817,7 @@ export const phraseStatus = {
      *
      * The HTTP **`431 Request Header Fields Too Large`** response status code indicates that the
      * server refuses to process the request because the request's [HTTP
-     * headers](/en-US/docs/Web/HTTP/Headers) are too long. The request *may* be resubmitted after
+     * headers](/en-US/docs/Web/HTTP/Headers) are too long. The request _may_ be resubmitted after
      * reducing the size of the request headers.
      *
      * 431 can be used when the **total size** of request headers is too large, or when a
@@ -3812,17 +3862,19 @@ export const phraseStatus = {
      * ## 501 Not Implemented
      *
      * The HyperText Transfer Protocol (HTTP) **`501 Not Implemented`** server error response code
-     * means that **the server does not support the functionality required to fulfill the request**.
+     * means that **the server does not support the functionality required to fulfill the
+     * request**.
      *
      * This status can also send a [`Retry-After`](/en-US/docs/Web/HTTP/Headers/Retry-After)
-     * header, telling the requester when to check back to see if the functionality is supported by then.
+     * header, telling the requester when to check back to see if the functionality is supported by
+     * then.
      *
      * `501` is the appropriate response when the server does not recognize the request method and
      * is incapable of supporting it for any resource. The only methods that servers are required
      * to support (and therefore that must not return `501`) are
      * [`GET`](/en-US/docs/Web/HTTP/Methods/GET) and [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD).
      *
-     * If the server *does* recognize the method, but intentionally does not support it, the
+     * If the server _does_ recognize the method, but intentionally does not support it, the
      * appropriate response is [`405 Method Not Allowed`](/en-US/docs/Web/HTTP/Status/405).
      *
      * **Note:**
@@ -3840,7 +3892,8 @@ export const phraseStatus = {
      *
      * **Note:** A [Gateway](https://en.wikipedia.org/wiki/Gateway_(telecommunications)) might
      * refer to different things in networking and a 502 error is usually not something you can
-     * fix, but requires a fix by the web server or the proxies you are trying to get access through.
+     * fix, but requires a fix by the web server or the proxies you are trying to get access
+     * through.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502}
      */
@@ -3857,7 +3910,8 @@ export const phraseStatus = {
      * [`Retry-After`](/en-US/docs/Web/HTTP/Headers/Retry-After) HTTP header should, if possible,
      * contain the estimated time for the recovery of the service.
      *
-     * **Note:** together with this response, a user-friendly page explaining the problem should be sent.
+     * **Note:** together with this response, a user-friendly page explaining the problem should be
+     * sent.
      *
      * Caching-related headers that are sent along with this response should be taken care of, as a
      * 503 status is often a temporary condition and responses shouldn't usually be cached.
@@ -3875,7 +3929,8 @@ export const phraseStatus = {
      *
      * **Note:** A [Gateway](https://en.wikipedia.org/wiki/Gateway_(telecommunications)) might
      * refer to different things in networking and a 504 error is usually not something you can
-     * fix, but requires a fix by the web server or the proxies you are trying to get access through.
+     * fix, but requires a fix by the web server or the proxies you are trying to get access
+     * through.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504}
      */
@@ -3962,7 +4017,8 @@ export const phraseStatus = {
      *
      * Network operators sometimes require some authentication, acceptance of terms, or other user
      * interaction before granting access (for example in an internet café or at an airport). They
-     * often identify clients who have not done so using their Media Access Control (MAC) addresses.
+     * often identify clients who have not done so using their Media Access Control (MAC)
+     * addresses.
      *
      * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/511}
      */
@@ -3972,7 +4028,8 @@ export const phraseStatus = {
  * ## 100 Continue
  *
  * The HTTP **`100 Continue`** informational status response code indicates that everything so far
- * is OK and that the client should continue with the request or ignore it if it is already finished.
+ * is OK and that the client should continue with the request or ignore it if it is already
+ * finished.
  *
  * To have a server check the request's headers, a client must send
  * [`Expect`](/en-US/docs/Web/HTTP/Headers/Expect)`: 100-continue` as a header in its initial
@@ -3991,7 +4048,8 @@ export const httpContinue = 100
  *
  * The server includes in this response an [`Upgrade`](/en-US/docs/Web/HTTP/Headers/Upgrade)
  * response header to indicate the protocol it switched to. The process is described in the
- * following article: [Protocol upgrade mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
+ * following article: [Protocol upgrade
+ * mechanism](/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/101}
  */
@@ -4034,7 +4092,8 @@ export const earlyHints = 103
  * The successful result of a [`PUT`](/en-US/docs/Web/HTTP/Methods/PUT) or a
  * [`DELETE`](/en-US/docs/Web/HTTP/Methods/DELETE) is often not a `200` `OK` but a
  * [`204`](/en-US/docs/Web/HTTP/Status/204) `No Content` (or a
- * [`201`](/en-US/docs/Web/HTTP/Status/201) `Created` when the resource is uploaded for the first time).
+ * [`201`](/en-US/docs/Web/HTTP/Status/201) `Created` when the resource is uploaded for the first
+ * time).
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200}
  */
@@ -4172,7 +4231,8 @@ export const imUsed = 226
  *
  * The HTTP **`300 Multiple Choices`** redirect status response code indicates that the request has
  * more than one possible responses. The user-agent or the user should choose one of them. As there
- * is no standardized way of choosing one of the responses, this response code is very rarely used.
+ * is no standardized way of choosing one of the responses, this response code is very rarely
+ * used.
  *
  * If the server has a preferred choice, it should generate a
  * [`Location`](/en-US/docs/Web/HTTP/Headers/Location) header.
@@ -4255,7 +4315,8 @@ export const seeOther = 303
  * headers [`Cache-Control`](/en-US/docs/Web/HTTP/Headers/Cache-Control),
  * [`Content-Location`](/en-US/docs/Web/HTTP/Headers/Content-Location),
  * [`Date`](/en-US/docs/Web/HTTP/Headers/Date), [`ETag`](/en-US/docs/Web/HTTP/Headers/ETag),
- * [`Expires`](/en-US/docs/Web/HTTP/Headers/Expires), and [`Vary`](/en-US/docs/Web/HTTP/Headers/Vary).
+ * [`Expires`](/en-US/docs/Web/HTTP/Headers/Expires), and
+ * [`Vary`](/en-US/docs/Web/HTTP/Headers/Vary).
  *
  * **Note:** Many [developer tools' network panels](/en-US/docs/Tools/Network_Monitor) of browsers
  * create extraneous requests leading to `304` responses, so that access to the local cache is
@@ -4376,7 +4437,8 @@ export const unauthorized = 401
  *
  * **Experimental:** **This is an [experimental
  * technology](/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)** Check the
- * [Browser compatibility table](#browser_compatibility) carefully before using this in production.
+ * [Browser compatibility table](#browser_compatibility) carefully before using this in
+ * production.
  *
  * The HTTP **`402 Payment Required`** is a nonstandard response status code that is reserved for
  * future use. This status code was created to enable digital cash or (micro) payment systems and
@@ -4423,7 +4485,8 @@ export const notFound = 404
  * ## 405 Method Not Allowed
  *
  * The HyperText Transfer Protocol (HTTP) **`405 Method Not Allowed`** response status code
- * indicates that the server knows the request method, but the target resource doesn't support this method.
+ * indicates that the server knows the request method, but the target resource doesn't support this
+ * method.
  *
  * The server **must** generate an **`Allow`** header field in a 405 status code response. The
  * field must contain a list of methods that the target resource currently supports.
@@ -4476,7 +4539,7 @@ export const proxyAuthenticationRequired = 407
  *
  * The HyperText Transfer Protocol (HTTP) **`408 Request Timeout`** response status code means that
  * the server would like to shut down this unused connection. It is sent on an idle connection by
- * some servers, *even without any previous request by the client*.
+ * some servers, _even without any previous request by the client_.
  *
  * A server should send the "close" [`Connection`](/en-US/docs/Web/HTTP/Headers/Connection) header
  * field in the response, since `408` implies that the server has decided to close the connection
@@ -4631,7 +4694,8 @@ export const expectationFailed = 417
  * out of coffee should instead return 503. This error is a reference to Hyper Text Coffee Pot
  * Control Protocol defined in April Fools' jokes in 1998 and 2014.
  *
- * Some websites use this response for requests they do not wish to handle, such as automated queries.
+ * Some websites use this response for requests they do not wish to handle, such as automated
+ * queries.
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418}
  */
@@ -4725,7 +4789,7 @@ export const tooManyRequests = 429
  *
  * The HTTP **`431 Request Header Fields Too Large`** response status code indicates that the
  * server refuses to process the request because the request's [HTTP
- * headers](/en-US/docs/Web/HTTP/Headers) are too long. The request *may* be resubmitted after
+ * headers](/en-US/docs/Web/HTTP/Headers) are too long. The request _may_ be resubmitted after
  * reducing the size of the request headers.
  *
  * 431 can be used when the **total size** of request headers is too large, or when a **single**
@@ -4796,7 +4860,7 @@ export const internalServerError = 500
  * support (and therefore that must not return `501`) are [`GET`](/en-US/docs/Web/HTTP/Methods/GET)
  * and [`HEAD`](/en-US/docs/Web/HTTP/Methods/HEAD).
  *
- * If the server *does* recognize the method, but intentionally does not support it, the
+ * If the server _does_ recognize the method, but intentionally does not support it, the
  * appropriate response is [`405 Method Not Allowed`](/en-US/docs/Web/HTTP/Status/405).
  *
  * **Note:**
@@ -4831,7 +4895,8 @@ export const badGateway = 502
  * [`Retry-After`](/en-US/docs/Web/HTTP/Headers/Retry-After) HTTP header should, if possible,
  * contain the estimated time for the recovery of the service.
  *
- * **Note:** together with this response, a user-friendly page explaining the problem should be sent.
+ * **Note:** together with this response, a user-friendly page explaining the problem should be
+ * sent.
  *
  * Caching-related headers that are sent along with this response should be taken care of, as a 503
  * status is often a temporary condition and responses shouldn't usually be cached.
@@ -4918,7 +4983,8 @@ export const loopDetected = 508
  *
  * In that specification a client may send a request that contains an extension declaration, that
  * describes the extension to be used. If the server receives such a request, but any described
- * extensions are not supported for the request, then the server responds with the 510 status code.
+ * extensions are not supported for the request, then the server responds with the 510 status
+ * code.
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/510}
  */

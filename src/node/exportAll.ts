@@ -3,8 +3,8 @@
  *
  * @module
  * @license 0BSD
+ * @file Exports All items directly into one namespace
  * @author Luke Zhang (https://luke-zhang-04.github.io)
- * @file exports All items directly into one namespace
  */
 
 export * from "./crypto/index.js"

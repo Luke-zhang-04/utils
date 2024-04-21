@@ -7,9 +7,7 @@
  */
 
 type FetchOptions = Exclude<RequestInit, "signal"> & {
-    /**
-     * Timeout in ms
-     */
+    /** Timeout in ms */
     timeout?: number
 }
 

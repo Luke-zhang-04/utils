@@ -53,7 +53,8 @@ export function hmacHash(
 ): Buffer
 
 /**
- * Hashes contents with algorithm, salts them with secretKey and HMAC, and outputs them based on `enc`
+ * Hashes contents with algorithm, salts them with secretKey and HMAC, and outputs them based on
+ * `enc`
  *
  * @param contents - What to hash
  * @param algo - Algorithm identifier. The algorithm is dependent on the available algorithms
@@ -71,7 +72,8 @@ export function hmacHash(
 ): string
 
 /**
- * Hashes contents with algorithm, salts them with secretKey and HMAC, and outputs them based on `enc`
+ * Hashes contents with algorithm, salts them with secretKey and HMAC, and outputs them based on
+ * `enc`
  *
  * @param contents - What to hash
  * @param algo - Algorithm identifier. The algorithm is dependent on the available algorithms

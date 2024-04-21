@@ -16,7 +16,8 @@ import * as encoding from "./encoding.js"
  * Hashes data with a SHA algorithm
  *
  * @param data - Data to hash
- * @param algo - Hash algorithm. The only available algorithms are those provided by the `SubtleCrypto` API
+ * @param algo - Hash algorithm. The only available algorithms are those provided by the
+ *   `SubtleCrypto` API
  * @param enc - Hash digest encoding types. Only hex and base64 are supported
  * @returns String of hashed data
  */
@@ -41,7 +42,8 @@ export const hash = async (
  *
  * @param data - Data to hash
  * @param secret - Secret to salt the data with
- * @param algo - Hash algorithm. The only available algorithms are those provided by the `SubtleCrypto` API
+ * @param algo - Hash algorithm. The only available algorithms are those provided by the
+ *   `SubtleCrypto` API
  * @param enc - Hash digest encoding types. Only hex and base64 are supported
  * @returns String of hashed data
  */

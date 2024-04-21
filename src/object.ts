@@ -24,7 +24,7 @@
 export const pick = <T extends {}, K extends (keyof T)[]>(
     obj: T,
     ...keys: K
-): Pick<T, typeof keys[number]> => {
+): Pick<T, (typeof keys)[number]> => {
     const newObj = {} as Pick<T, K[number]>
 
     for (const key of keys) {
@@ -54,7 +54,7 @@ export const pick = <T extends {}, K extends (keyof T)[]>(
 export const pickAll = <T extends {}, K extends (keyof T)[]>(
     obj: T,
     ...keys: K
-): Pick<T, typeof keys[number]> => {
+): Pick<T, (typeof keys)[number]> => {
     const newObj = {} as Pick<T, K[number]>
 
     for (const key of keys) {
@@ -82,7 +82,7 @@ export const pickAll = <T extends {}, K extends (keyof T)[]>(
 export const omit = <T extends {}, K extends (keyof T)[]>(
     obj: T,
     ...keys: K
-): Omit<T, typeof keys[number]> => {
+): Omit<T, (typeof keys)[number]> => {
     const newObj = {} as Pick<T, K[number]>
 
     for (const [key, value] of Object.entries(obj)) {
@@ -95,7 +95,8 @@ export const omit = <T extends {}, K extends (keyof T)[]>(
 }
 
 /**
- * Better `Object.entries`, which is faster, returns an iterator instead of an array, and is typed better
+ * Better `Object.entries`, which is faster, returns an iterator instead of an array, and is typed
+ * better
  *
  * @example
  *
