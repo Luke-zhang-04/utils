@@ -8,8 +8,8 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
-import type {HashAlgorithms} from "./types"
-import {bufferToString} from "./helper"
+import type {HashAlgorithms} from "./types.js"
+import {bufferToString} from "./helper.js"
 import crypto from "crypto"
 
 /* eslint-disable prefer-arrow/prefer-arrow-functions */

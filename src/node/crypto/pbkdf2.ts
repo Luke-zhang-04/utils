@@ -8,7 +8,7 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
-import type {HashAlgorithms} from "./types"
+import type {HashAlgorithms} from "./types.js"
 import crypto from "crypto"
 
 const defaultIterations = 2000

@@ -6,7 +6,7 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
-import {randint} from "./random"
+import {randint} from "./random.js"
 
 /*
 Notes:
@@ -128,7 +128,7 @@ export const filterMap = <T, K>(array: T[], callbackFn: FilterMapCallback<T, K>)
     return processedArray
 }
 
-export {filter} from "./itertools"
+export {filter} from "./itertools.js"
 
 /**
  * Shuffles an array in-place and returns the array

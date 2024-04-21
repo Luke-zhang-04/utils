@@ -8,9 +8,9 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
-import type {HashAlgorithms} from "./types"
-import {hmacHash} from "./hmacHash"
-import {stringToBuffer} from "./helper"
+import type {HashAlgorithms} from "./types.js"
+import {hmacHash} from "./hmacHash.js"
+import {stringToBuffer} from "./helper.js"
 
 const getHashLengthFromAlgo = (algo: HashAlgorithms): number => {
     if (algo === "sha1") {

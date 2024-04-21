@@ -3,9 +3,9 @@
   "compilerOptions": {
     "outDir": "./lib",
     "declaration": false,
-    "lib": ["DOM", "es2019", "es2020.promise", "es2020.bigint", "es2020.string"],
-    "module": "ES2020",
     "noEmit": true,
+    "module": "ES6",
+    "moduleResolution": "node"
   },
   "include": ["./src"]
 }

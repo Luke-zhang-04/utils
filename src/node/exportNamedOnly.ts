@@ -7,5 +7,5 @@
  * @file exports All items into seperate namespaces
  */
 
-export * as crypto from "./crypto"
-export * as fetch from "./fetch"
+export * as crypto from "./crypto/index.js"
+export * as fetch from "./fetch.js"

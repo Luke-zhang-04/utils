@@ -8,9 +8,9 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
-/// <reference types="typescript/lib/lib.dom"/>
+/// <reference types="typescript/lib/lib.dom.d.ts"/>
 
-import * as encoding from "./encoding"
+import * as encoding from "./encoding.js"
 
 /**
  * Hashes data with a SHA algorithm

@@ -7,5 +7,5 @@
  * @file exports All items directly into one namespace, plus a default export
  */
 
-export * from "./exportAll"
-export * as default from "./exportAll"
+export * from "./exportAll.js"
+export * as default from "./exportAll.js"

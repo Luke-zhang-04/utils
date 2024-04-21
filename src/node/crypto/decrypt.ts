@@ -8,10 +8,10 @@
  * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
-import {getKeyLengthFromAlgo, stringToBuffer} from "./helper"
-import type {EncryptionAlgorithms} from "./types"
+import {getKeyLengthFromAlgo, stringToBuffer} from "./helper.js"
+import type {EncryptionAlgorithms} from "./types.js"
 import crypto from "crypto"
-import {deriveKey} from "./pbkdf2"
+import {deriveKey} from "./pbkdf2.js"
 
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 

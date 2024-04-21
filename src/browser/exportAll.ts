@@ -7,6 +7,6 @@
  * @file exports All items directly into one namespace
  */
 
-export * from "./crypto"
-export * from "./encoding"
-export * from "./fetch"
+export * from "./crypto.js"
+export * from "./encoding.js"
+export * from "./fetch.js"
