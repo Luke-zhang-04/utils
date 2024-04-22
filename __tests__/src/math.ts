@@ -1,9 +1,3 @@
-/**
- * Test suite for uility functions
- *
- * 0BSD License
- */
-
 import * as math from "../../src/math"
 
 describe("math", () => {

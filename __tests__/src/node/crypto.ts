@@ -1,9 +1,3 @@
-/**
- * Test suite for uility functions
- *
- * 0BSD License
- */
-
 import * as crypto from "../../../src/node/crypto"
 import {inlineTry} from "../../../src"
 import nodeCrypto from "crypto"

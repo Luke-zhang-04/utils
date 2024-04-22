@@ -1,9 +1,3 @@
-/**
- * Test suite for uility functions
- *
- * 0BSD License
- */
-
 import * as crypto from "../../../src/browser/crypto"
 import {registerDOM} from "../helpers"
 

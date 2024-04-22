@@ -1,9 +1,3 @@
-/**
- * Test suite for uility functions
- *
- * 0BSD License
- */
-
 import {Crypto} from "@peculiar/webcrypto"
 import {JSDOM} from "jsdom"
 import fetch from "node-fetch"

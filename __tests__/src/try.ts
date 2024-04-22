@@ -1,9 +1,3 @@
-/**
- * Test suite for uility functions
- *
- * 0BSD License
- */
-
 import {inlineTry, inlineTryPromise} from "../../src/try"
 
 describe("try", () => {
