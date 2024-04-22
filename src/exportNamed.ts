@@ -2,7 +2,7 @@
  * Utility functions
  *
  * @module
- * @file Exports All items into seperate namespaces, plus a default export
+ * @file Exports All items into separate namespaces, plus a default export
  */
 
 export * from "./exportNamedOnly.js"

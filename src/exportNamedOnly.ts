@@ -2,7 +2,7 @@
  * Utility functions
  *
  * @module
- * @file Exports All items into seperate namespaces
+ * @file Exports All items into separate namespaces
  */
 
 export * as array from "./array.js"

@@ -2,7 +2,7 @@
  * Utility functions the web
  *
  * @module
- * @file Exports All items into seperate namespaces
+ * @file Exports All items into separate namespaces
  */
 
 export * as crypto from "./crypto.js"
