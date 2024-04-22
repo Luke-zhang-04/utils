@@ -5,7 +5,7 @@
  * @module
  */
 
-/* eslint-disable max-lines */
+/* eslint-disable max-lines, tsdoc/syntax */
 
 import type {IterableValue} from "./types.js"
 

@@ -15,7 +15,7 @@
 
 /* eslint-disable max-lines, no-shadow, no-irregular-whitespace */
 // tsdoc/syntax throws errors when a closing code backtick is on a newline
-/* eslint-disable tsdoc/syntax */
+/* eslint-disable tsdoc/syntax, @typescript-eslint/naming-convention */
 
 /**
  * ## Hypertext Transfer Protocol (HTTP) response status codes
