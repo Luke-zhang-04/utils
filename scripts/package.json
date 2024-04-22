@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "case": "^1.6.3",
-    "glob": "^7.2.0",
+    "glob": "^10.3.12",
     "jsdom": "^16.6.0",
     "node-fetch": "^2.6.1"
   },

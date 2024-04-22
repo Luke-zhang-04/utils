@@ -1,7 +1,7 @@
 import {dirname} from "path"
 import {fileURLToPath} from "url"
 import fs from "fs/promises"
-import glob from "glob"
+import {glob} from "glob"
 import util from "util"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
