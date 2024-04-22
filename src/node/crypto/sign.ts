@@ -49,7 +49,7 @@ export function encodeAndSign(
     data: string | Buffer,
     algo: HashAlgorithms,
     secretKey: string,
-    enc?: BufferEncoding | "base64url",
+    enc?: BufferEncoding,
     shouldSalt?: boolean,
 ): Promise<string>
 
@@ -58,7 +58,7 @@ export async function encodeAndSign(
     algo: HashAlgorithms,
     secretKey: string,
     // istanbul ignore next
-    enc: BufferEncoding | "base64url" | "raw" = "hex",
+    enc: BufferEncoding | "raw" = "hex",
     shouldSalt = true,
 ): Promise<Buffer | string> {
     const salt = shouldSalt

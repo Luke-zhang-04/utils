@@ -26,16 +26,10 @@ export const escapeBase64 = (str: string) =>
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
 export function stringToBuffer(data: Buffer, enc: "raw"): Buffer
-export function stringToBuffer(data: string, enc: BufferEncoding | "base64url"): Buffer
-export function stringToBuffer(
-    data: string | Buffer,
-    enc: BufferEncoding | "base64url" | "raw",
-): Buffer
+export function stringToBuffer(data: string, enc: BufferEncoding): Buffer
+export function stringToBuffer(data: string | Buffer, enc: BufferEncoding | "raw"): Buffer
 
-export function stringToBuffer(
-    data: string | Buffer,
-    enc: BufferEncoding | "base64url" | "raw",
-): Buffer {
+export function stringToBuffer(data: string | Buffer, enc: BufferEncoding | "raw"): Buffer {
     if (enc === "raw") {
         return data as Buffer
     } else if (enc === "base64url") {
@@ -46,16 +40,10 @@ export function stringToBuffer(
 }
 
 export function bufferToString(data: Buffer, enc: "raw"): Buffer
-export function bufferToString(data: Buffer, enc: BufferEncoding | "base64url"): string
-export function bufferToString(
-    data: Buffer,
-    enc: BufferEncoding | "base64url" | "raw",
-): string | Buffer
+export function bufferToString(data: Buffer, enc: BufferEncoding): string
+export function bufferToString(data: Buffer, enc: BufferEncoding | "raw"): string | Buffer
 
-export function bufferToString(
-    data: Buffer,
-    enc: BufferEncoding | "base64url" | "raw",
-): string | Buffer {
+export function bufferToString(data: Buffer, enc: BufferEncoding | "raw"): string | Buffer {
     if (enc === "raw") {
         return data
     } else if (enc === "base64url") {

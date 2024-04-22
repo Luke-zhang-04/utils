@@ -49,7 +49,7 @@ export function hash(contents: crypto.BinaryLike, algo: HashAlgorithms, enc: "ra
 export function hash(
     contents: crypto.BinaryLike,
     algo: string | HashAlgorithms,
-    enc?: BufferEncoding | "base64url",
+    enc?: BufferEncoding,
 ): string
 
 /**
@@ -65,13 +65,13 @@ export function hash(
 export function hash(
     contents: crypto.BinaryLike,
     algo: HashAlgorithms,
-    enc?: BufferEncoding | "base64url",
+    enc?: BufferEncoding,
 ): string
 
 export function hash(
     contents: crypto.BinaryLike,
     algo: string,
-    enc: BufferEncoding | "base64url" | "raw" = "hex",
+    enc: BufferEncoding | "raw" = "hex",
 ): Buffer | string {
     return bufferToString(crypto.createHash(algo).update(contents).digest(), enc)
 }

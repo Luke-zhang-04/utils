@@ -80,7 +80,7 @@ export function decodeAndVerify(
     encodedData: string,
     algo: HashAlgorithms,
     secretKey: string,
-    enc?: BufferEncoding | "base64url",
+    enc?: BufferEncoding,
     isSalted?: boolean,
 ): string
 
@@ -89,7 +89,7 @@ export function decodeAndVerify(
     algo: HashAlgorithms,
     secretKey: string,
     // istanbul ignore next
-    enc: BufferEncoding | "base64url" | "raw" = "hex",
+    enc: BufferEncoding | "raw" = "hex",
     isSalted = true,
 ): string {
     const hashLen = getHashLengthFromAlgo(algo)

@@ -89,7 +89,7 @@ export function encrypt(
     contents: string,
     algo: EncryptionAlgorithms,
     secretKey: string,
-    enc?: BufferEncoding | "base64url",
+    enc?: BufferEncoding,
     keyLength?: number,
 ): Promise<string>
 
@@ -115,7 +115,7 @@ export function encrypt(
     contents: string,
     algo: string,
     secretKey: string,
-    enc: BufferEncoding | "base64url" | undefined,
+    enc: BufferEncoding | undefined,
     keyLength: number,
 ): Promise<string>
 
@@ -123,7 +123,7 @@ export async function encrypt(
     contents: string,
     algo: string,
     secretKey: string,
-    enc: BufferEncoding | "base64url" | "raw" = "hex",
+    enc: BufferEncoding | "raw" = "hex",
     keyLength?: number,
 ): Promise<Buffer | string> {
     const _keyLength = keyLength ?? getKeyLengthFromAlgo(algo)
