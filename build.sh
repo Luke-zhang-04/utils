@@ -1,24 +1,18 @@
 #!/bin/sh
 
-rm -rf dist
-mkdir dist
+__dirname="$(dirname "$0")"
 
-cp -rv src tsconfig.json dist
+rm -rf "$__dirname/dist"
+mkdir "$__dirname/dist"
 
-cd dist || exit 1
-
-../node_modules/.bin/tsc -p ./tsconfig.json --outDir . --incremental false --tsBuildInfoFile null
-../node_modules/.bin/tsc -p ./tsconfig.json --outDir ./cjs --module commonjs --moduleResolution node --incremental false --tsBuildInfoFile null
-
-rm -rf tsconfig.json src
-
-cd .. || exit 1
+"$__dirname/node_modules/.bin/tsc" -p "$__dirname/tsconfig.json" --outDir "$__dirname/dist" --incremental false --tsBuildInfoFile null
+"$__dirname/node_modules/.bin/tsc" -p "$__dirname/tsconfig.json" --outDir "$__dirname/dist/cjs" --module commonjs --moduleResolution node --incremental false --tsBuildInfoFile null
 
 # for f in dist/cjs/*.js; do
 #     mv -- "$f" "${f%.js}.cjs"
 # done
 
-cp -v LICENSE package.json README.md dist
-echo '{"private": false, "type": "commonjs"}' > dist/cjs/package.json
+cp -v "$__dirname/LICENSE" "$__dirname/package".json "$__dirname/README".md "$__dirname/dist"
+echo '{"private": false, "type": "commonjs"}' > "$__dirname/dist/cjs/package.json"
 
-node scripts/generatePackageExports.mjs
+node "$__dirname/scripts/generatePackageExports.mjs"
