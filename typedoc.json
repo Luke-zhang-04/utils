@@ -1,6 +1,5 @@
 {
   "entryPoints": ["src/index.ts", "src/node/index.ts", "src/browser/index.ts"],
   "out": "typedoc-output",
-  "theme": "./node_modules/typedoc-github-wiki-theme/dist",
-  "plugin": "./node_modules/typedoc-plugin-markdown"
+  "plugin": ["typedoc-plugin-markdown", "typedoc-github-wiki-theme"]
 }
