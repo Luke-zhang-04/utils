@@ -1,9 +1,3 @@
-/**
- * Test suite for uility functions
- *
- * 0BSD License
- */
-
 import {isEqual, isEqualArray, isEqualObject} from "../../src/deepEqual"
 
 describe("deepEqual", () => {

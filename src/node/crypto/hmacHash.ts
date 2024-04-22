@@ -4,12 +4,10 @@
  * Wraps the existing Node Crypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
-import type {HashAlgorithms} from "./types"
-import {bufferToString} from "./helper"
+import type {HashAlgorithms} from "./types.js"
+import {bufferToString} from "./helper.js"
 import crypto from "crypto"
 
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
@@ -53,7 +51,8 @@ export function hmacHash(
 ): Buffer
 
 /**
- * Hashes contents with algorithm, salts them with secretKey and HMAC, and outputs them based on `enc`
+ * Hashes contents with algorithm, salts them with secretKey and HMAC, and outputs them based on
+ * `enc`
  *
  * @param contents - What to hash
  * @param algo - Algorithm identifier. The algorithm is dependent on the available algorithms
@@ -67,11 +66,12 @@ export function hmacHash(
     contents: crypto.BinaryLike,
     algo: string,
     secretKey: string,
-    enc?: BufferEncoding | "base64url",
+    enc?: BufferEncoding,
 ): string
 
 /**
- * Hashes contents with algorithm, salts them with secretKey and HMAC, and outputs them based on `enc`
+ * Hashes contents with algorithm, salts them with secretKey and HMAC, and outputs them based on
+ * `enc`
  *
  * @param contents - What to hash
  * @param algo - Algorithm identifier. The algorithm is dependent on the available algorithms
@@ -85,14 +85,14 @@ export function hmacHash(
     contents: crypto.BinaryLike,
     algo: HashAlgorithms,
     secretKey: string,
-    enc?: BufferEncoding | "base64url",
+    enc?: BufferEncoding,
 ): string
 
 export function hmacHash(
     contents: crypto.BinaryLike,
     algo: string,
     secretKey: string,
-    enc: BufferEncoding | "base64url" | "raw" = "hex",
+    enc: BufferEncoding | "raw" = "hex",
 ): Buffer | string {
     return bufferToString(crypto.createHmac(algo, secretKey).update(contents).digest(), enc)
 }

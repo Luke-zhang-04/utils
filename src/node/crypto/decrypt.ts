@@ -4,14 +4,12 @@
  * Wraps the existing Node Crypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
-import {getKeyLengthFromAlgo, stringToBuffer} from "./helper"
-import type {EncryptionAlgorithms} from "./types"
+import {getKeyLengthFromAlgo, stringToBuffer} from "./helper.js"
+import type {EncryptionAlgorithms} from "./types.js"
 import crypto from "crypto"
-import {deriveKey} from "./pbkdf2"
+import {deriveKey} from "./pbkdf2.js"
 
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
@@ -89,7 +87,7 @@ export function decrypt(
     encryptedData: string,
     algo: EncryptionAlgorithms,
     secretKey: string,
-    enc?: BufferEncoding | "base64url",
+    enc?: BufferEncoding,
     keyLength?: number,
 ): Promise<string>
 
@@ -115,7 +113,7 @@ export function decrypt(
     encryptedData: string,
     algo: string,
     secretKey: string,
-    enc: BufferEncoding | "base64url" | undefined,
+    enc: BufferEncoding | undefined,
     keyLength: number,
 ): Promise<string>
 
@@ -123,7 +121,7 @@ export async function decrypt(
     encryptedData: string | Buffer,
     algo: string,
     secretKey: string,
-    enc: BufferEncoding | "base64url" | "raw" = "hex",
+    enc: BufferEncoding | "raw" = "hex",
     keyLength?: number,
 ): Promise<string> {
     const _keyLength = keyLength ?? getKeyLengthFromAlgo(algo)

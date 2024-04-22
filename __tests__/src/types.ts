@@ -1,9 +1,4 @@
-/**
- * Test suite for utility functions
- *
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
- */
+/** Test suite for utility functions */
 
 import * as types from "../../src/types"
 

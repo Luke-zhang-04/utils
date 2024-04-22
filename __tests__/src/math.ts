@@ -1,9 +1,3 @@
-/**
- * Test suite for uility functions
- *
- * 0BSD License
- */
-
 import * as math from "../../src/math"
 
 describe("math", () => {
@@ -100,6 +94,30 @@ describe("math", () => {
             [193, -2, 100],
         ])("should round %f to %i decimal places", (num, precision, expected) => {
             expect(math.trunc(num, precision)).toBe(expected)
+        })
+    })
+
+    describe("between", () => {
+        it("should not change number within bound", () => {
+            for (let i = 0; i <= 5; i++) {
+                expect(math.between(0, i, 5)).toBe(i)
+            }
+        })
+
+        it("should set lower bound", () => {
+            expect(math.between(5, 4.999999, 10)).toBe(5)
+
+            for (let i = 0; i <= 5; i++) {
+                expect(math.between(5, i, 10)).toBe(5)
+            }
+        })
+
+        it("should set upper bound", () => {
+            expect(math.between(0, 5.000001, 5)).toBe(5)
+
+            for (let i = 5; i <= 10; i++) {
+                expect(math.between(0, i, 5)).toBe(5)
+            }
         })
     })
 })

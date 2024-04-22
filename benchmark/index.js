@@ -1,4 +1,4 @@
-import * as utils from "../lib"
+import * as utils from "../lib/index.js"
 import Benchmark from "benchmark"
 
 const data = {
@@ -27,12 +27,6 @@ const cases = {
     objectEntries: {
         util: () => {
             for (const [key, val] of utils.objectEntries(data.objectEntries.object)) {
-                key
-                val
-            }
-        },
-        utilProto: () => {
-            for (const [key, val] of utils.objectEntries(data.objectEntries.object, true)) {
                 key
                 val
             }

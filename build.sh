@@ -8,9 +8,9 @@ cp -rv src tsconfig.json dist
 cd dist || exit 1
 
 ../node_modules/.bin/tsc -p ./tsconfig.json --outDir . --incremental false --tsBuildInfoFile null
-../node_modules/.bin/tsc -p ./tsconfig.json --outDir ./cjs --module commonjs --incremental false --tsBuildInfoFile null
+../node_modules/.bin/tsc -p ./tsconfig.json --outDir ./cjs --module commonjs --moduleResolution node --incremental false --tsBuildInfoFile null
 
-rm -rf tsconfig.json
+rm -rf tsconfig.json src
 
 cd .. || exit 1
 

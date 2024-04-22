@@ -4,12 +4,10 @@
  * Wraps the existing Node Crypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
-import type {HashAlgorithms} from "./types"
-import {bufferToString} from "./helper"
+import type {HashAlgorithms} from "./types.js"
+import {bufferToString} from "./helper.js"
 import crypto from "crypto"
 
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
@@ -51,7 +49,7 @@ export function hash(contents: crypto.BinaryLike, algo: HashAlgorithms, enc: "ra
 export function hash(
     contents: crypto.BinaryLike,
     algo: string | HashAlgorithms,
-    enc?: BufferEncoding | "base64url",
+    enc?: BufferEncoding,
 ): string
 
 /**
@@ -67,13 +65,13 @@ export function hash(
 export function hash(
     contents: crypto.BinaryLike,
     algo: HashAlgorithms,
-    enc?: BufferEncoding | "base64url",
+    enc?: BufferEncoding,
 ): string
 
 export function hash(
     contents: crypto.BinaryLike,
     algo: string,
-    enc: BufferEncoding | "base64url" | "raw" = "hex",
+    enc: BufferEncoding | "raw" = "hex",
 ): Buffer | string {
     return bufferToString(crypto.createHash(algo).update(contents).digest(), enc)
 }

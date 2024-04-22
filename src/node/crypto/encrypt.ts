@@ -4,14 +4,12 @@
  * Wraps the existing Node Crypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
-import {bufferToString, getKeyLengthFromAlgo} from "./helper"
-import type {EncryptionAlgorithms} from "./types"
+import {bufferToString, getKeyLengthFromAlgo} from "./helper.js"
+import type {EncryptionAlgorithms} from "./types.js"
 import crypto from "crypto"
-import {deriveKey} from "./pbkdf2"
+import {deriveKey} from "./pbkdf2.js"
 
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
@@ -25,7 +23,8 @@ import {deriveKey} from "./pbkdf2"
  * @param secretKey - Secret key for encryption.
  * @param enc - Encoding for the final data, including the initialization vector and data
  * @param keyLength - The length of the key used for encryption in **bytes**. In this case, the key
- *   length can be inferred, and is optional. The key length is dependent on the algorithm of choice.
+ *   length can be inferred, and is optional. The key length is dependent on the algorithm of
+ *   choice.
  *
  *   - AES-128 - 128 bits - 16 bytes
  *   - AES-192 - 192 bits - 24 bytes
@@ -77,7 +76,8 @@ export function encrypt(
  * @param secretKey - Secret key for encryption.
  * @param enc - Encoding for the final data, including the initialization vector and data
  * @param keyLength - The length of the key used for encryption in **bytes**. In this case, the key
- *   length can be inferred, and is optional. The key length is dependent on the algorithm of choice.
+ *   length can be inferred, and is optional. The key length is dependent on the algorithm of
+ *   choice.
  *
  *   - AES-128 - 128 bits - 16 bytes
  *   - AES-192 - 192 bits - 24 bytes
@@ -89,7 +89,7 @@ export function encrypt(
     contents: string,
     algo: EncryptionAlgorithms,
     secretKey: string,
-    enc?: BufferEncoding | "base64url",
+    enc?: BufferEncoding,
     keyLength?: number,
 ): Promise<string>
 
@@ -115,7 +115,7 @@ export function encrypt(
     contents: string,
     algo: string,
     secretKey: string,
-    enc: BufferEncoding | "base64url" | undefined,
+    enc: BufferEncoding | undefined,
     keyLength: number,
 ): Promise<string>
 
@@ -123,7 +123,7 @@ export async function encrypt(
     contents: string,
     algo: string,
     secretKey: string,
-    enc: BufferEncoding | "base64url" | "raw" = "hex",
+    enc: BufferEncoding | "raw" = "hex",
     keyLength?: number,
 ): Promise<Buffer | string> {
     const _keyLength = keyLength ?? getKeyLengthFromAlgo(algo)

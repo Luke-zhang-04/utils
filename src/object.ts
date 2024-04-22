@@ -2,9 +2,36 @@
  * Object related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
+
+/**
+ * Better `Object.entries`, which is faster, returns an iterator instead of an array (more memory
+ * efficient), and is typed better
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(objectEntries({a: 1, b: 2})) // [["a", 1], ["b", 2]]
+ * ```
+ *
+ * @param obj - Object to get entries for
+ * @returns Generator producing the key and value of each item
+ */
+export function* objectEntries<T extends {}>(
+    obj: T,
+): Generator<{[K in keyof T]: [K, T[K]]}[keyof T], void, void> {
+    for (const key in obj) {
+        // istanbul ignore else
+        /* eslint-disable-next-line no-prototype-builtins */
+        if (obj.hasOwnProperty(key)) {
+            yield [key, obj[key]]
+        }
+    }
+
+    return
+}
+
+export {objectEntries as entries}
 
 /**
  * Picks values from an object and creates a new object
@@ -24,7 +51,7 @@
 export const pick = <T extends {}, K extends (keyof T)[]>(
     obj: T,
     ...keys: K
-): Pick<T, typeof keys[number]> => {
+): Pick<T, (typeof keys)[number]> => {
     const newObj = {} as Pick<T, K[number]>
 
     for (const key of keys) {
@@ -54,7 +81,7 @@ export const pick = <T extends {}, K extends (keyof T)[]>(
 export const pickAll = <T extends {}, K extends (keyof T)[]>(
     obj: T,
     ...keys: K
-): Pick<T, typeof keys[number]> => {
+): Pick<T, (typeof keys)[number]> => {
     const newObj = {} as Pick<T, K[number]>
 
     for (const key of keys) {
@@ -82,42 +109,15 @@ export const pickAll = <T extends {}, K extends (keyof T)[]>(
 export const omit = <T extends {}, K extends (keyof T)[]>(
     obj: T,
     ...keys: K
-): Omit<T, typeof keys[number]> => {
+): Omit<T, (typeof keys)[number]> => {
+    const keysSet = new Set(keys)
     const newObj = {} as Pick<T, K[number]>
 
-    for (const [key, value] of Object.entries(obj)) {
-        if (!keys.includes(key as keyof T)) {
+    for (const [key, value] of objectEntries(obj)) {
+        if (!keysSet.has(key)) {
             newObj[key as K[number]] = value as T[K[number]]
         }
     }
 
     return newObj
 }
-
-/**
- * Better `Object.entries`, which is faster, returns an iterator instead of an array, and is typed better
- *
- * @example
- *
- * ```ts
- * Array.from(objectEntries({a: 1, b: 2})) // [["a", 1], ["b", 2]]
- * ```
- *
- * @param obj - Object to get entries for
- * @returns Generator producing the key and value of each item
- */
-export function* objectEntries<T extends {}>(
-    obj: T,
-): Generator<{[K in keyof T]: [K, T[K]]}[keyof T], void, void> {
-    for (const key in obj) {
-        // istanbul ignore else
-        /* eslint-disable-next-line no-prototype-builtins */
-        if (obj.hasOwnProperty(key)) {
-            yield [key, obj[key]]
-        }
-    }
-
-    return
-}
-
-export {objectEntries as entries}

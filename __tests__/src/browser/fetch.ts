@@ -1,9 +1,3 @@
-/**
- * Test suite for uility functions
- *
- * 0BSD License
- */
-
 import {fetchWithTimeout} from "../../../src/browser/fetch"
 import {inlineTryPromise} from "../../../src/try"
 import {registerDOM} from "../helpers"

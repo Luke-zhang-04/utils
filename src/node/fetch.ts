@@ -2,17 +2,13 @@
  * Fetch utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 
 import fetch, {RequestInfo, RequestInit, Response} from "node-fetch"
 import {AbortController} from "node-abort-controller"
 
 type FetchOptions = Exclude<RequestInit, "signal"> & {
-    /**
-     * Timeout in ms
-     */
+    /** Timeout in ms */
     timeout?: number
 }
 

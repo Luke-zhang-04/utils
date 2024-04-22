@@ -1,7 +1,7 @@
 import {dirname} from "path"
 import {fileURLToPath} from "url"
 import fs from "fs/promises"
-import glob from "glob"
+import {glob} from "glob"
 import util from "util"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -9,7 +9,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 // No
 const src = Array.from(
     new Set(
-        (await util.promisify(glob)(`${__dirname}/../dist/src/**/*.ts`)).map((file) =>
+        (await util.promisify(glob)(`${__dirname}/../src/**/*.ts`)).map((file) =>
             file.replace(/^.*\/src\//u, "").replace(/(^|\/)[a-zA-Z1-9.\-_]+$/u, ""),
         ),
     ),
