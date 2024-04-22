@@ -39,7 +39,14 @@ export type IterableValue<T extends Iterable<any>> = Exclude<
  * const myVar: MaybePromise<number> = 3
  * const myVar: MaybePromise<number> = Promise.resolve(3)
  * ```
- *
- * @typeParam T - Type that may be a promise
  */
 export type MaybePromise<T> = Promise<T> | T
+
+/** Make all properties in `T` optional and nullable */
+export type PartialNullable<T> = {[P in keyof T]?: T[P] | undefined | null}
+
+/** Evaluates to `true` if all properties in `T` are optional, `false` otherwise */
+export type IsAllPartial<T> = Partial<T> extends T ? true : false
+
+/** Evaluates to `true` if all properties in `T` are optional AND nullable, `false` otherwise */
+export type IsAllPartialNullable<T> = PartialNullable<T> extends T ? true : false
