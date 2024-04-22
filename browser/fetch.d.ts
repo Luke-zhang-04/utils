@@ -2,14 +2,10 @@
  * Fetch utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
-/// <reference types="typescript/lib/lib.dom" />
-declare type FetchOptions = Exclude<RequestInit, "signal"> & {
-    /**
-     * Timeout in ms
-     */
+/// <reference types="typescript/lib/lib.dom.d.ts" />
+type FetchOptions = Exclude<RequestInit, "signal"> & {
+    /** Timeout in ms */
     timeout?: number;
 };
 /**

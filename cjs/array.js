@@ -3,12 +3,10 @@
  * Array related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.shuffle = exports.filter = exports.filterMap = exports.count = exports.arrayToChunks = void 0;
-const random_1 = require("./random");
+const random_js_1 = require("./random.js");
 /*
 Notes:
     - The use of for-loops using indexes is encouraged because of the performance gain involved
@@ -104,8 +102,8 @@ const filterMap = (array, callbackFn) => {
     return processedArray;
 };
 exports.filterMap = filterMap;
-var itertools_1 = require("./itertools");
-Object.defineProperty(exports, "filter", { enumerable: true, get: function () { return itertools_1.filter; } });
+var itertools_js_1 = require("./itertools.js");
+Object.defineProperty(exports, "filter", { enumerable: true, get: function () { return itertools_js_1.filter; } });
 /**
  * Shuffles an array in-place and returns the array
  *
@@ -116,7 +114,7 @@ Object.defineProperty(exports, "filter", { enumerable: true, get: function () { 
 const shuffle = (array, cycles = 1) => {
     for (let _ = 0; _ < cycles; _++) {
         for (let index = array.length - 1; index > 0; index--) {
-            const randonIndex = random_1.randint(0, index + 1);
+            const randonIndex = (0, random_js_1.randint)(0, index + 1);
             const temp = array[index];
             array[index] = array[randonIndex];
             array[randonIndex] = temp;

@@ -3,8 +3,6 @@
  * Typeguard related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isErrorLike = exports.isObject = void 0;
@@ -60,6 +58,6 @@ exports.isObject = isObject;
  * @param obj - Object to check
  * @returns If object is error-like
  */
-const isErrorLike = (obj) => exports.isObject(obj) && typeof obj.message === "string" && typeof obj.name === "string";
+const isErrorLike = (obj) => (0, exports.isObject)(obj) && typeof obj.message === "string" && typeof obj.name === "string";
 exports.isErrorLike = isErrorLike;
 //# sourceMappingURL=typeGuards.js.map

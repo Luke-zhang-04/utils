@@ -2,21 +2,19 @@
  * Utility functions
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
- * @file exports All items directly into one namespace
+ * @file Exports All items directly into one namespace
  */
-export * from "./array";
-export * from "./deepEqual";
-export * from "./functions";
-export { status, statuses } from "./http";
-export * from "./itertools";
-export * from "./math";
-export * from "./object";
-export * from "./random";
-export * from "./regex";
-export * from "./string";
-export * from "./try";
-export * from "./typeGuards";
-export * from "./types";
+export * from "./array.js";
+export * from "./deepEqual.js";
+export * from "./functions.js";
+export { status, statuses, phraseStatus, phraseStatuses } from "./http.js";
+export * from "./itertools.js";
+export * from "./math.js";
+export * from "./object.js";
+export * from "./random.js";
+export * from "./regex.js";
+export * from "./string.js";
+export * from "./try.js";
+export * from "./typeGuards.js";
+export * from "./types.js";
 //# sourceMappingURL=exportAll.js.map

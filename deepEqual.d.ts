@@ -2,8 +2,6 @@
  * Utils that check for deep equality
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 /**
  * Checks if val1 and val2 are equal. Works like lodash isEqual, and is just as fast.
@@ -21,7 +19,7 @@
  *   good idea to set this value to prevent a catastrophe.
  * @returns If val1 is deeply equal to val2
  */
-export declare const isEqual: (val1: unknown, val2: unknown, maxDepth?: number | undefined, maxLength?: number | undefined) => boolean;
+export declare const isEqual: (val1: unknown, val2: unknown, maxDepth?: number, maxLength?: number) => boolean;
 /**
  * Checks if obj1 and obj2 are equal, given that they are both arrays
  *
@@ -35,7 +33,7 @@ export declare const isEqual: (val1: unknown, val2: unknown, maxDepth?: number |
  *   good idea to set this value to prevent a catastrophe.
  * @returns If obj1 is deeply equal to obj2
  */
-export declare const isEqualObject: (obj1: object, obj2: object, maxDepth?: number | undefined, maxLength?: number | undefined) => boolean;
+export declare const isEqualObject: (obj1: object, obj2: object, maxDepth?: number, maxLength?: number) => boolean;
 /**
  * Checks if arr1 and arr2 are equal, given that they are both arrays
  *
@@ -49,4 +47,4 @@ export declare const isEqualObject: (obj1: object, obj2: object, maxDepth?: numb
  *   good idea to set this value to prevent a catastrophe.
  * @returns If arr1 is deeply equal to arr2
  */
-export declare const isEqualArray: (obj1: unknown[], obj2: unknown[], maxDepth?: number | undefined, maxLength?: number | undefined) => boolean;
+export declare const isEqualArray: (obj1: unknown[], obj2: unknown[], maxDepth?: number, maxLength?: number) => boolean;

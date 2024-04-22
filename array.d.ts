@@ -2,8 +2,6 @@
  * Array related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 /**
  * Splits an array into chunks
@@ -39,11 +37,9 @@ export declare const arrayToChunks: <T>(array: T[], chunkSize?: number) => T[][]
  * @param max - Max number of items to count
  * @returns Number of counted items
  */
-export declare const count: <T>(array: T[], predicate: (value: T) => unknown, max?: number | undefined) => number;
-/**
- * Callback type for the filterMap function
- */
-declare type FilterMapCallback<T, K> = (value: T, index: number) => {
+export declare const count: <T>(array: T[], predicate: (value: T) => unknown, max?: number) => number;
+/** Callback type for the filterMap function */
+type FilterMapCallback<T, K> = (value: T, index: number) => {
     shouldInclude: false;
     value?: any;
 } | {
@@ -77,7 +73,7 @@ declare type FilterMapCallback<T, K> = (value: T, index: number) => {
  * @returns Array of each item that goes through callbackFn
  */
 export declare const filterMap: <T, K>(array: T[], callbackFn: FilterMapCallback<T, K>) => K[];
-export { filter } from "./itertools";
+export { filter } from "./itertools.js";
 /**
  * Shuffles an array in-place and returns the array
  *

@@ -2,8 +2,6 @@
  * Math related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 /**
  * Recursive implementation of Euclid's GCD algorithm
@@ -162,4 +160,31 @@ export const ceil = (num, precision = 0) => runMathFunction(num, precision, Math
  * @returns Truncated number
  */
 export const trunc = (num, precision = 0) => runMathFunction(num, precision, Math.trunc);
+/**
+ * Keeps a number between an upper and lower bound
+ *
+ * @example
+ *
+ * ```ts
+ * const num = 5
+ *
+ * between(0, num, 10) // 5
+ * between(-1, num, 3) // 3
+ * between(10, num, 30) // 10
+ * ```
+ *
+ * @param lower - Lower bound (inclusive)
+ * @param value - Value to bound
+ * @param upper - Upper bound (inclusive)
+ * @returns Bound number
+ */
+export const between = (lower, value, upper) => {
+    if (value < lower) {
+        return lower;
+    }
+    if (value > upper) {
+        return upper;
+    }
+    return value;
+};
 //# sourceMappingURL=math.js.map

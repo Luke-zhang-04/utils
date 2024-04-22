@@ -3,11 +3,34 @@
  * Object related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.entries = exports.objectEntries = exports.omit = exports.pickAll = exports.pick = void 0;
+exports.omit = exports.pickAll = exports.pick = exports.entries = exports.objectEntries = void 0;
+/**
+ * Better `Object.entries`, which is faster, returns an iterator instead of an array (more memory
+ * efficient), and is typed better
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(objectEntries({a: 1, b: 2})) // [["a", 1], ["b", 2]]
+ * ```
+ *
+ * @param obj - Object to get entries for
+ * @returns Generator producing the key and value of each item
+ */
+function* objectEntries(obj) {
+    for (const key in obj) {
+        // istanbul ignore else
+        /* eslint-disable-next-line no-prototype-builtins */
+        if (obj.hasOwnProperty(key)) {
+            yield [key, obj[key]];
+        }
+    }
+    return;
+}
+exports.objectEntries = objectEntries;
+exports.entries = objectEntries;
 /**
  * Picks values from an object and creates a new object
  *
@@ -72,37 +95,14 @@ exports.pickAll = pickAll;
  * @returns Object from omitted values
  */
 const omit = (obj, ...keys) => {
+    const keysSet = new Set(keys);
     const newObj = {};
-    for (const [key, value] of Object.entries(obj)) {
-        if (!keys.includes(key)) {
+    for (const [key, value] of objectEntries(obj)) {
+        if (!keysSet.has(key)) {
             newObj[key] = value;
         }
     }
     return newObj;
 };
 exports.omit = omit;
-/**
- * Better `Object.entries`, which is faster, returns an iterator instead of an array, and is typed better
- *
- * @example
- *
- * ```ts
- * Array.from(objectEntries({a: 1, b: 2})) // [["a", 1], ["b", 2]]
- * ```
- *
- * @param obj - Object to get entries for
- * @returns Generator producing the key and value of each item
- */
-function* objectEntries(obj) {
-    for (const key in obj) {
-        // istanbul ignore else
-        /* eslint-disable-next-line no-prototype-builtins */
-        if (obj.hasOwnProperty(key)) {
-            yield [key, obj[key]];
-        }
-    }
-    return;
-}
-exports.objectEntries = objectEntries;
-exports.entries = objectEntries;
 //# sourceMappingURL=object.js.map

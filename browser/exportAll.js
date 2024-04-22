@@ -2,11 +2,9 @@
  * Utility functions the web
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
- * @file exports All items directly into one namespace
+ * @file Exports All items directly into one namespace
  */
-export * from "./crypto";
-export * from "./encoding";
-export * from "./fetch";
+export * from "./crypto.js";
+export * from "./encoding.js";
+export * from "./fetch.js";
 //# sourceMappingURL=exportAll.js.map

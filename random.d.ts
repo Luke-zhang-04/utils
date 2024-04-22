@@ -2,8 +2,6 @@
  * Pseudo-random related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 /**
  * Generates a pseudo-random integer N, such that `min <= N < max`

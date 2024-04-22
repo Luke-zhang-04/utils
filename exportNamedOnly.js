@@ -2,34 +2,19 @@
  * Utility functions
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
- * @file exports All items into seperate namespaces
+ * @file Exports All items into separate namespaces
  */
-import * as array_1 from "./array";
-export { array_1 as array };
-import * as deepEqual_1 from "./deepEqual";
-export { deepEqual_1 as deepEqual };
-import * as functions_1 from "./functions";
-export { functions_1 as functions };
-import * as http_1 from "./http";
-export { http_1 as http };
-import * as iter_1 from "./itertools";
-export { iter_1 as iter };
-import * as math_1 from "./math";
-export { math_1 as math };
-import * as object_1 from "./object";
-export { object_1 as object };
-import * as random_1 from "./random";
-export { random_1 as random };
-import * as regex_1 from "./regex";
-export { regex_1 as regex };
-import * as string_1 from "./string";
-export { string_1 as string };
-import * as try_1 from "./try";
-export { try_1 as try };
-import * as typeGuards_1 from "./typeGuards";
-export { typeGuards_1 as typeGuards };
-import * as types_1 from "./types";
-export { types_1 as types };
+export * as array from "./array.js";
+export * as deepEqual from "./deepEqual.js";
+export * as functions from "./functions.js";
+export * as http from "./http.js";
+export * as iter from "./itertools.js";
+export * as math from "./math.js";
+export * as object from "./object.js";
+export * as random from "./random.js";
+export * as regex from "./regex.js";
+export * as string from "./string.js";
+export * as try from "./try.js";
+export * as typeGuards from "./typeGuards.js";
+export * as types from "./types.js";
 //# sourceMappingURL=exportNamedOnly.js.map

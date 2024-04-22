@@ -3,13 +3,15 @@
  * Utility functions
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
- * @file exports All items into seperate namespaces
+ * @file Exports All items into separate namespaces
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -28,17 +30,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.types = exports.typeGuards = exports.try = exports.string = exports.regex = exports.random = exports.object = exports.math = exports.iter = exports.http = exports.functions = exports.deepEqual = exports.array = void 0;
-exports.array = __importStar(require("./array"));
-exports.deepEqual = __importStar(require("./deepEqual"));
-exports.functions = __importStar(require("./functions"));
-exports.http = __importStar(require("./http"));
-exports.iter = __importStar(require("./itertools"));
-exports.math = __importStar(require("./math"));
-exports.object = __importStar(require("./object"));
-exports.random = __importStar(require("./random"));
-exports.regex = __importStar(require("./regex"));
-exports.string = __importStar(require("./string"));
-exports.try = __importStar(require("./try"));
-exports.typeGuards = __importStar(require("./typeGuards"));
-exports.types = __importStar(require("./types"));
+exports.array = __importStar(require("./array.js"));
+exports.deepEqual = __importStar(require("./deepEqual.js"));
+exports.functions = __importStar(require("./functions.js"));
+exports.http = __importStar(require("./http.js"));
+exports.iter = __importStar(require("./itertools.js"));
+exports.math = __importStar(require("./math.js"));
+exports.object = __importStar(require("./object.js"));
+exports.random = __importStar(require("./random.js"));
+exports.regex = __importStar(require("./regex.js"));
+exports.string = __importStar(require("./string.js"));
+exports.try = __importStar(require("./try.js"));
+exports.typeGuards = __importStar(require("./typeGuards.js"));
+exports.types = __importStar(require("./types.js"));
 //# sourceMappingURL=exportNamedOnly.js.map

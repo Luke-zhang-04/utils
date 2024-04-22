@@ -4,11 +4,10 @@
  * Wraps the existing Node Crypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 /// <reference types="node" />
-import type { HashAlgorithms } from "./types";
+/// <reference types="node" />
+import type { HashAlgorithms } from "./types.js";
 import crypto from "crypto";
 /**
  * Hashes contents with algorithm and outputs them as a buffer
@@ -42,7 +41,7 @@ export declare function hash(contents: crypto.BinaryLike, algo: HashAlgorithms, 
  * @param enc - Encoding of the output, default hex
  * @returns Hashed contents encoded with `enc`
  */
-export declare function hash(contents: crypto.BinaryLike, algo: string | HashAlgorithms, enc?: BufferEncoding | "base64url"): string;
+export declare function hash(contents: crypto.BinaryLike, algo: string | HashAlgorithms, enc?: BufferEncoding): string;
 /**
  * Hashes contents with algorithm and outputs them based on `enc`
  *
@@ -53,5 +52,5 @@ export declare function hash(contents: crypto.BinaryLike, algo: string | HashAlg
  * @param enc - Encoding of the output, default hex
  * @returns Hashed contents encoded with `enc`
  */
-export declare function hash(contents: crypto.BinaryLike, algo: HashAlgorithms, enc?: BufferEncoding | "base64url"): string;
+export declare function hash(contents: crypto.BinaryLike, algo: HashAlgorithms, enc?: BufferEncoding): string;
 export default hash;

@@ -5,8 +5,6 @@
  * Wraps the existing Node Crypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -36,7 +34,7 @@ const deriveKey = async (secretKey, salt, keyLength,
 algorithm = "sha256", iterations = defaultIterations) => await new Promise((resolve, reject) => {
     crypto_1.default.pbkdf2(secretKey, salt, iterations, 
     // istanbul ignore next
-    keyLength !== null && keyLength !== void 0 ? keyLength : secretKey.length, algorithm, (err, derivedKey) => 
+    keyLength ?? secretKey.length, algorithm, (err, derivedKey) => 
     // istanbul ignore next
     err ? reject(err) : resolve(derivedKey));
 });
@@ -58,7 +56,7 @@ exports.deriveKey = deriveKey;
  * @param algorithm - Digest algorithm
  * @returns Derived secret key
  */
-const deriveKeySync = (secretKey, salt, keyLength, algorithm = "sha256", iterations = defaultIterations) => crypto_1.default.pbkdf2Sync(secretKey, salt, iterations, keyLength !== null && keyLength !== void 0 ? keyLength : secretKey.length, algorithm);
+const deriveKeySync = (secretKey, salt, keyLength, algorithm = "sha256", iterations = defaultIterations) => crypto_1.default.pbkdf2Sync(secretKey, salt, iterations, keyLength ?? secretKey.length, algorithm);
 exports.deriveKeySync = deriveKeySync;
 exports.default = exports.deriveKey;
 //# sourceMappingURL=pbkdf2.js.map

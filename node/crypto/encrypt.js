@@ -4,14 +4,12 @@
  * Wraps the existing Node Crypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
-import { bufferToString, getKeyLengthFromAlgo } from "./helper";
+import { bufferToString, getKeyLengthFromAlgo } from "./helper.js";
 import crypto from "crypto";
-import { deriveKey } from "./pbkdf2";
+import { deriveKey } from "./pbkdf2.js";
 export async function encrypt(contents, algo, secretKey, enc = "hex", keyLength) {
-    const _keyLength = keyLength !== null && keyLength !== void 0 ? keyLength : getKeyLengthFromAlgo(algo);
+    const _keyLength = keyLength ?? getKeyLengthFromAlgo(algo);
     if (_keyLength === undefined) {
         throw new TypeError(`Could not infer key length from algorithm ${algo}. Please specify.`);
     }

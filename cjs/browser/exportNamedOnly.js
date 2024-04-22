@@ -3,13 +3,15 @@
  * Utility functions the web
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
- * @file exports All items into seperate namespaces
+ * @file Exports All items into separate namespaces
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -28,7 +30,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetch = exports.encoding = exports.crypto = void 0;
-exports.crypto = __importStar(require("./crypto"));
-exports.encoding = __importStar(require("./encoding"));
-exports.fetch = __importStar(require("./fetch"));
+exports.crypto = __importStar(require("./crypto.js"));
+exports.encoding = __importStar(require("./encoding.js"));
+exports.fetch = __importStar(require("./fetch.js"));
 //# sourceMappingURL=exportNamedOnly.js.map

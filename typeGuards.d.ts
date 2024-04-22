@@ -2,8 +2,6 @@
  * Typeguard related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 /**
  * Check if object like (`typeof object` and not null)

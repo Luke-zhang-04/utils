@@ -4,10 +4,8 @@
  * Wraps the existing Node Crypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
-import { bufferToString } from "./helper";
+import { bufferToString } from "./helper.js";
 import crypto from "crypto";
 export function hash(contents, algo, enc = "hex") {
     return bufferToString(crypto.createHash(algo).update(contents).digest(), enc);

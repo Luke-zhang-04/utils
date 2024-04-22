@@ -5,12 +5,14 @@
  * Wraps the existing SubtleCrypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -29,13 +31,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hmacHash = exports.hash = void 0;
-/// <reference types="typescript/lib/lib.dom"/>
-const encoding = __importStar(require("./encoding"));
+/// <reference types="typescript/lib/lib.dom.d.ts"/>
+const encoding = __importStar(require("./encoding.js"));
 /**
  * Hashes data with a SHA algorithm
  *
  * @param data - Data to hash
- * @param algo - Hash algorithm. The only available algorithms are those provided by the `SubtleCrypto` API
+ * @param algo - Hash algorithm. The only available algorithms are those provided by the
+ *   `SubtleCrypto` API
  * @param enc - Hash digest encoding types. Only hex and base64 are supported
  * @returns String of hashed data
  */
@@ -54,7 +57,8 @@ exports.hash = hash;
  *
  * @param data - Data to hash
  * @param secret - Secret to salt the data with
- * @param algo - Hash algorithm. The only available algorithms are those provided by the `SubtleCrypto` API
+ * @param algo - Hash algorithm. The only available algorithms are those provided by the
+ *   `SubtleCrypto` API
  * @param enc - Hash digest encoding types. Only hex and base64 are supported
  * @returns String of hashed data
  */

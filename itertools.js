@@ -3,11 +3,10 @@
  * library](https://docs.python.org/3/library/itertools.html)
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 /**
- * Creates a generator of the n'th element of *each* iterable, such that `n < length of smallest iterable`
+ * Creates a generator of the n'th element of _each_ iterable, such that `n < length of smallest
+ * iterable`
  *
  * Based on [Python's `zip` function](https://docs.python.org/3/library/functions.html#zip)
  *
@@ -30,7 +29,8 @@
  * ```
  *
  * @param iterables - Array of iterables to zip together
- * @returns Generator of the n'th element of each iterable, such that `n < length of smallest iterable`
+ * @returns Generator of the n'th element of each iterable, such that `n < length of smallest
+ *   iterable`
  */
 export function* zip(...iterables) {
     const iterators = iterables.map((iterator) => iterator[Symbol.iterator]());
@@ -99,7 +99,8 @@ export function* chain(...iterables) {
  * @param iterable - Iterable to accumulate values of
  * @param operator - Optional function that specifies the way items should be accumulated, or an
  *   arithmetic operator in string form to apply
- * @param initial - Initial value to accumulate from, which is yielded once at the beginning if defined
+ * @param initial - Initial value to accumulate from, which is yielded once at the beginning if
+ *   defined
  * @returns - Generator of each item of `iterable`, each item accumulated from the previous values
  */
 export function* accumulate(iterable, operator = "+", initial) {
@@ -257,7 +258,7 @@ export function* compress(data, selectors) {
  * function](https://docs.python.org/3/library/itertools.html#itertools.dropwhile)
  *
  * @remarks
- * The iterator does not produce *any* output until the predicate first becomes false, so it may
+ * The iterator does not produce _any_ output until the predicate first becomes false, so it may
  * have a lengthy start-up time.
  * @example
  *

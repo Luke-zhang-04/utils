@@ -2,8 +2,6 @@
  * Function related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 /**
  * Passes `value` into `func` if defined, otherwise skips it
@@ -29,4 +27,30 @@
  * @returns Undefined if `value` is undefined, else function result
  */
 export const runIfDefined = (value, func) => value === undefined ? undefined : func(value);
+/**
+ * Delay the execution of a function, and reset said delay if the function is called again within
+ * the delay window.
+ *
+ * @example
+ *
+ * ```ts
+ * window.addEventListener(
+ *     "resize",
+ *     debounce((event) => console.log(event), 100),
+ * )
+ * ```
+ *
+ * @param func - Function to debounce
+ * @param ms - Time to wait
+ * @returns Debounced function
+ */
+export const debounce = (func, ms) => {
+    let timeout = undefined;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            func(...args);
+        }, ms);
+    };
+};
 //# sourceMappingURL=functions.js.map

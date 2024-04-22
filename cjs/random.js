@@ -3,8 +3,6 @@
  * Pseudo-random related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.choice = exports.uniform = exports.randint = void 0;
@@ -36,6 +34,6 @@ exports.uniform = uniform;
  * @param arr - Array to pick items from
  * @returns Random item chosen from arr
  */
-const choice = (arr) => arr[exports.randint(0, arr.length)];
+const choice = (arr) => arr[(0, exports.randint)(0, arr.length)];
 exports.choice = choice;
 //# sourceMappingURL=random.js.map

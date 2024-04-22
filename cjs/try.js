@@ -3,8 +3,6 @@
  * Try-catch related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.inlineTryPromise = exports.inlineTry = void 0;

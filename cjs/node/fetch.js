@@ -3,8 +3,6 @@
  * Fetch utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -25,11 +23,11 @@ const fetchWithTimeout = async (resource,
 // istanbul ignore next
 { timeout, ...options } = {}) => {
     if (timeout === undefined) {
-        return await node_fetch_1.default(resource, options);
+        return await (0, node_fetch_1.default)(resource, options);
     }
     const controller = new node_abort_controller_1.AbortController();
     const id = setTimeout(() => controller.abort(), timeout);
-    const response = await node_fetch_1.default(resource, {
+    const response = await (0, node_fetch_1.default)(resource, {
         ...options,
         signal: controller.signal,
     });

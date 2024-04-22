@@ -4,13 +4,12 @@
  * library](https://docs.python.org/3/library/itertools.html)
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.islice = exports.ireduce = exports.reduce = exports.imap = exports.map = exports.ifilter = exports.filter = exports.enumerate = exports.takeWhile = exports.dropWhile = exports.compress = exports.increment = exports.cycle = exports.repeat = exports.accumulate = exports.chain = exports.zip = void 0;
 /**
- * Creates a generator of the n'th element of *each* iterable, such that `n < length of smallest iterable`
+ * Creates a generator of the n'th element of _each_ iterable, such that `n < length of smallest
+ * iterable`
  *
  * Based on [Python's `zip` function](https://docs.python.org/3/library/functions.html#zip)
  *
@@ -33,7 +32,8 @@ exports.islice = exports.ireduce = exports.reduce = exports.imap = exports.map =
  * ```
  *
  * @param iterables - Array of iterables to zip together
- * @returns Generator of the n'th element of each iterable, such that `n < length of smallest iterable`
+ * @returns Generator of the n'th element of each iterable, such that `n < length of smallest
+ *   iterable`
  */
 function* zip(...iterables) {
     const iterators = iterables.map((iterator) => iterator[Symbol.iterator]());
@@ -104,7 +104,8 @@ exports.chain = chain;
  * @param iterable - Iterable to accumulate values of
  * @param operator - Optional function that specifies the way items should be accumulated, or an
  *   arithmetic operator in string form to apply
- * @param initial - Initial value to accumulate from, which is yielded once at the beginning if defined
+ * @param initial - Initial value to accumulate from, which is yielded once at the beginning if
+ *   defined
  * @returns - Generator of each item of `iterable`, each item accumulated from the previous values
  */
 function* accumulate(iterable, operator = "+", initial) {
@@ -267,7 +268,7 @@ exports.compress = compress;
  * function](https://docs.python.org/3/library/itertools.html#itertools.dropwhile)
  *
  * @remarks
- * The iterator does not produce *any* output until the predicate first becomes false, so it may
+ * The iterator does not produce _any_ output until the predicate first becomes false, so it may
  * have a lengthy start-up time.
  * @example
  *

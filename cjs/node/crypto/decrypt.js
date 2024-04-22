@@ -5,27 +5,25 @@
  * Wraps the existing Node Crypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.decrypt = void 0;
-const helper_1 = require("./helper");
+const helper_js_1 = require("./helper.js");
 const crypto_1 = __importDefault(require("crypto"));
-const pbkdf2_1 = require("./pbkdf2");
+const pbkdf2_js_1 = require("./pbkdf2.js");
 async function decrypt(encryptedData, algo, secretKey, enc = "hex", keyLength) {
-    const _keyLength = keyLength !== null && keyLength !== void 0 ? keyLength : helper_1.getKeyLengthFromAlgo(algo);
+    const _keyLength = keyLength ?? (0, helper_js_1.getKeyLengthFromAlgo)(algo);
     if (_keyLength === undefined) {
         throw new TypeError(`Could not infer key length from algorithm ${algo}. Please specify.`);
     }
-    const bData = helper_1.stringToBuffer(encryptedData, enc);
+    const bData = (0, helper_js_1.stringToBuffer)(encryptedData, enc);
     /* eslint-disable @typescript-eslint/no-magic-numbers */
     const salt = bData.slice(0, 64);
     const iv = bData.slice(64, 80);
-    const key = await pbkdf2_1.deriveKey(secretKey, salt, 
+    const key = await (0, pbkdf2_js_1.deriveKey)(secretKey, salt, 
     // istanbul ignore next
     _keyLength, "sha512");
     if (algo.endsWith("gcm")) {

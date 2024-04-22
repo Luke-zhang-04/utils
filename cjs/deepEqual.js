@@ -3,8 +3,6 @@
  * Utils that check for deep equality
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isEqualArray = exports.isEqualObject = exports.isEqual = void 0;
@@ -39,13 +37,13 @@ const isEqual = (val1, val2, maxDepth, maxLength) => {
         return false;
     }
     else if (Array.isArray(val1) && Array.isArray(val2)) {
-        return exports.isEqualArray(val1, val2, maxDepth, maxLength);
+        return (0, exports.isEqualArray)(val1, val2, maxDepth, maxLength);
     }
     else if (typeof val1 === "object" &&
         val1 !== null &&
         typeof val2 === "object" &&
         val2 !== null) {
-        return exports.isEqualObject(val1, val2, maxDepth, maxLength);
+        return (0, exports.isEqualObject)(val1, val2, maxDepth, maxLength);
     }
     return false;
 };
@@ -70,7 +68,7 @@ const isEqualObject = (obj1, obj2, maxDepth, maxLength) => {
         }
     }
     for (const key in obj1) {
-        if (!exports.isEqual(obj1[key], obj2[key], maxDepth === undefined ? undefined : maxDepth - 1, maxLength)) {
+        if (!(0, exports.isEqual)(obj1[key], obj2[key], maxDepth === undefined ? undefined : maxDepth - 1, maxLength)) {
             return false;
         }
     }
@@ -101,7 +99,7 @@ const isEqualArray = (obj1, obj2, maxDepth, maxLength) => {
     }
     for (let index = 0; index < obj1.length; index++) {
         // Go through each item
-        if (!exports.isEqual(obj1[index], obj2[index], maxDepth === undefined ? undefined : maxDepth - 1, maxLength)) {
+        if (!(0, exports.isEqual)(obj1[index], obj2[index], maxDepth === undefined ? undefined : maxDepth - 1, maxLength)) {
             // Test if two array items are equal
             return false;
         }

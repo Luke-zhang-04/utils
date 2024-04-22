@@ -4,11 +4,9 @@
  * Wraps the existing Node Crypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 /// <reference types="node" />
-import type { HashAlgorithms } from "./types";
+import type { HashAlgorithms } from "./types.js";
 /**
  * Provides an asynchronous Password-Based Key Derivation Function 2 (PBKDF2) implementation.
  *
@@ -25,7 +23,7 @@ import type { HashAlgorithms } from "./types";
  * @param algorithm - Digest algorithm
  * @returns Derived secret key
  */
-export declare const deriveKey: (secretKey: string, salt: Buffer, keyLength?: number | undefined, algorithm?: HashAlgorithms, iterations?: number) => Promise<Buffer>;
+export declare const deriveKey: (secretKey: string, salt: Buffer, keyLength?: number, algorithm?: HashAlgorithms, iterations?: number) => Promise<Buffer>;
 /**
  * Provides an synchronous Password-Based Key Derivation Function 2 (PBKDF2) implementation.
  *
@@ -42,5 +40,5 @@ export declare const deriveKey: (secretKey: string, salt: Buffer, keyLength?: nu
  * @param algorithm - Digest algorithm
  * @returns Derived secret key
  */
-export declare const deriveKeySync: (secretKey: string, salt: Buffer, keyLength?: number | undefined, algorithm?: HashAlgorithms, iterations?: number) => Buffer;
+export declare const deriveKeySync: (secretKey: string, salt: Buffer, keyLength?: number, algorithm?: HashAlgorithms, iterations?: number) => Buffer;
 export default deriveKey;

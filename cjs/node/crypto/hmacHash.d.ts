@@ -4,11 +4,10 @@
  * Wraps the existing Node Crypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 /// <reference types="node" />
-import type { HashAlgorithms } from "./types";
+/// <reference types="node" />
+import type { HashAlgorithms } from "./types.js";
 import crypto from "crypto";
 /**
  * Hashes contents with algorithm, salts them with `secretKey` and HMAC, and output a buffer of the
@@ -37,7 +36,8 @@ export declare function hmacHash(contents: crypto.BinaryLike, algo: string, secr
  */
 export declare function hmacHash(contents: crypto.BinaryLike, algo: HashAlgorithms, secretKey: string, enc: "raw"): Buffer;
 /**
- * Hashes contents with algorithm, salts them with secretKey and HMAC, and outputs them based on `enc`
+ * Hashes contents with algorithm, salts them with secretKey and HMAC, and outputs them based on
+ * `enc`
  *
  * @param contents - What to hash
  * @param algo - Algorithm identifier. The algorithm is dependent on the available algorithms
@@ -47,9 +47,10 @@ export declare function hmacHash(contents: crypto.BinaryLike, algo: HashAlgorith
  * @param enc - Encoding of the output
  * @returns Hashed contents
  */
-export declare function hmacHash(contents: crypto.BinaryLike, algo: string, secretKey: string, enc?: BufferEncoding | "base64url"): string;
+export declare function hmacHash(contents: crypto.BinaryLike, algo: string, secretKey: string, enc?: BufferEncoding): string;
 /**
- * Hashes contents with algorithm, salts them with secretKey and HMAC, and outputs them based on `enc`
+ * Hashes contents with algorithm, salts them with secretKey and HMAC, and outputs them based on
+ * `enc`
  *
  * @param contents - What to hash
  * @param algo - Algorithm identifier. The algorithm is dependent on the available algorithms
@@ -59,5 +60,5 @@ export declare function hmacHash(contents: crypto.BinaryLike, algo: string, secr
  * @param enc - Encoding of the output
  * @returns Hashed contents
  */
-export declare function hmacHash(contents: crypto.BinaryLike, algo: HashAlgorithms, secretKey: string, enc?: BufferEncoding | "base64url"): string;
+export declare function hmacHash(contents: crypto.BinaryLike, algo: HashAlgorithms, secretKey: string, enc?: BufferEncoding): string;
 export default hmacHash;

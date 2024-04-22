@@ -2,10 +2,8 @@
  * Try-catch related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
-declare type InlineTry = {
+type InlineTry = {
     /**
      * Tries to execute `func` and discards any error that occurs
      *
@@ -66,7 +64,7 @@ declare type InlineTry = {
  *   else discard it
  */
 export declare const inlineTry: InlineTry;
-declare type InlineTryPromise = {
+type InlineTryPromise = {
     /**
      * Tries to execute and await `func` and discards any error that occurs
      *

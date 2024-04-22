@@ -2,10 +2,8 @@
  * Array related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
-import { randint } from "./random";
+import { randint } from "./random.js";
 /*
 Notes:
     - The use of for-loops using indexes is encouraged because of the performance gain involved
@@ -98,7 +96,7 @@ export const filterMap = (array, callbackFn) => {
     }
     return processedArray;
 };
-export { filter } from "./itertools";
+export { filter } from "./itertools.js";
 /**
  * Shuffles an array in-place and returns the array
  *

@@ -2,8 +2,6 @@
  * Try-catch related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 /**
  * Tries to execute `func` and returns or discards any error that occurs

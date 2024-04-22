@@ -2,14 +2,10 @@
  * Fetch utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 import { RequestInfo, RequestInit, Response } from "node-fetch";
-declare type FetchOptions = Exclude<RequestInit, "signal"> & {
-    /**
-     * Timeout in ms
-     */
+type FetchOptions = Exclude<RequestInit, "signal"> & {
+    /** Timeout in ms */
     timeout?: number;
 };
 /**

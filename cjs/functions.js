@@ -3,11 +3,9 @@
  * Function related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.runIfDefined = void 0;
+exports.debounce = exports.runIfDefined = void 0;
 /**
  * Passes `value` into `func` if defined, otherwise skips it
  *
@@ -33,4 +31,31 @@ exports.runIfDefined = void 0;
  */
 const runIfDefined = (value, func) => value === undefined ? undefined : func(value);
 exports.runIfDefined = runIfDefined;
+/**
+ * Delay the execution of a function, and reset said delay if the function is called again within
+ * the delay window.
+ *
+ * @example
+ *
+ * ```ts
+ * window.addEventListener(
+ *     "resize",
+ *     debounce((event) => console.log(event), 100),
+ * )
+ * ```
+ *
+ * @param func - Function to debounce
+ * @param ms - Time to wait
+ * @returns Debounced function
+ */
+const debounce = (func, ms) => {
+    let timeout = undefined;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            func(...args);
+        }, ms);
+    };
+};
+exports.debounce = debounce;
 //# sourceMappingURL=functions.js.map

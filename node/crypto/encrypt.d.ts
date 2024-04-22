@@ -4,11 +4,9 @@
  * Wraps the existing Node Crypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 /// <reference types="node" />
-import type { EncryptionAlgorithms } from "./types";
+import type { EncryptionAlgorithms } from "./types.js";
 /**
  * Encrypts contents with algorithm, key, and initialization vector (iv)
  *
@@ -19,7 +17,8 @@ import type { EncryptionAlgorithms } from "./types";
  * @param secretKey - Secret key for encryption.
  * @param enc - Encoding for the final data, including the initialization vector and data
  * @param keyLength - The length of the key used for encryption in **bytes**. In this case, the key
- *   length can be inferred, and is optional. The key length is dependent on the algorithm of choice.
+ *   length can be inferred, and is optional. The key length is dependent on the algorithm of
+ *   choice.
  *
  *   - AES-128 - 128 bits - 16 bytes
  *   - AES-192 - 192 bits - 24 bytes
@@ -57,7 +56,8 @@ export declare function encrypt(contents: string, algo: string, secretKey: strin
  * @param secretKey - Secret key for encryption.
  * @param enc - Encoding for the final data, including the initialization vector and data
  * @param keyLength - The length of the key used for encryption in **bytes**. In this case, the key
- *   length can be inferred, and is optional. The key length is dependent on the algorithm of choice.
+ *   length can be inferred, and is optional. The key length is dependent on the algorithm of
+ *   choice.
  *
  *   - AES-128 - 128 bits - 16 bytes
  *   - AES-192 - 192 bits - 24 bytes
@@ -65,7 +65,7 @@ export declare function encrypt(contents: string, algo: string, secretKey: strin
  *
  * @returns Encrypted string
  */
-export declare function encrypt(contents: string, algo: EncryptionAlgorithms, secretKey: string, enc?: BufferEncoding | "base64url", keyLength?: number): Promise<string>;
+export declare function encrypt(contents: string, algo: EncryptionAlgorithms, secretKey: string, enc?: BufferEncoding, keyLength?: number): Promise<string>;
 /**
  * Encrypts contents with algorithm, key, and initialization vector (iv)
  *
@@ -84,5 +84,5 @@ export declare function encrypt(contents: string, algo: EncryptionAlgorithms, se
  *
  * @returns Encrypted string
  */
-export declare function encrypt(contents: string, algo: string, secretKey: string, enc: BufferEncoding | "base64url" | undefined, keyLength: number): Promise<string>;
+export declare function encrypt(contents: string, algo: string, secretKey: string, enc: BufferEncoding | undefined, keyLength: number): Promise<string>;
 export default encrypt;

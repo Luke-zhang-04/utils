@@ -2,10 +2,8 @@
  * Utility functions the web
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
- * @file exports All items into seperate namespaces
+ * @file Exports All items into separate namespaces
  */
-export * as crypto from "./crypto";
-export * as encoding from "./encoding";
-export * as fetch from "./fetch";
+export * as crypto from "./crypto.js";
+export * as encoding from "./encoding.js";
+export * as fetch from "./fetch.js";

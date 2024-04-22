@@ -3,11 +3,9 @@
  * Math related utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.trunc = exports.ceil = exports.floor = exports.round = exports.getPrimesUpTo = exports.isPrime = exports.gcd = exports.baseGcd = void 0;
+exports.between = exports.trunc = exports.ceil = exports.floor = exports.round = exports.getPrimesUpTo = exports.isPrime = exports.gcd = exports.baseGcd = void 0;
 /**
  * Recursive implementation of Euclid's GCD algorithm
  *
@@ -26,7 +24,7 @@ const baseGcd = (first, second) => {
     const max = first > second ? first : second;
     const min = first < second ? first : second;
     const remainder = max % min;
-    return remainder === 0 ? min : exports.baseGcd(min, remainder);
+    return remainder === 0 ? min : (0, exports.baseGcd)(min, remainder);
 };
 exports.baseGcd = baseGcd;
 /**
@@ -42,7 +40,7 @@ exports.baseGcd = baseGcd;
  * @param numbers - All the numbers to get the GCD for - must include at least 2 numbers
  * @returns The gcd of all the numbers
  */
-const gcd = (...numbers) => numbers.slice(2).reduce(exports.baseGcd, exports.baseGcd(numbers[0], numbers[1]));
+const gcd = (...numbers) => numbers.slice(2).reduce(exports.baseGcd, (0, exports.baseGcd)(numbers[0], numbers[1]));
 exports.gcd = gcd;
 /**
  * Checks if a number is prime
@@ -173,4 +171,32 @@ exports.ceil = ceil;
  */
 const trunc = (num, precision = 0) => runMathFunction(num, precision, Math.trunc);
 exports.trunc = trunc;
+/**
+ * Keeps a number between an upper and lower bound
+ *
+ * @example
+ *
+ * ```ts
+ * const num = 5
+ *
+ * between(0, num, 10) // 5
+ * between(-1, num, 3) // 3
+ * between(10, num, 30) // 10
+ * ```
+ *
+ * @param lower - Lower bound (inclusive)
+ * @param value - Value to bound
+ * @param upper - Upper bound (inclusive)
+ * @returns Bound number
+ */
+const between = (lower, value, upper) => {
+    if (value < lower) {
+        return lower;
+    }
+    if (value > upper) {
+        return upper;
+    }
+    return value;
+};
+exports.between = between;
 //# sourceMappingURL=math.js.map

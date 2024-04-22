@@ -4,24 +4,35 @@
  * Wraps the existing Node Crypto API
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
-import { bufferToString } from "./helper";
 import crypto from "crypto";
-import { hmacHash } from "./hmacHash";
+import { hmacHash } from "./hmacHash.js";
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
+const cryptoHeaderMap = {
+    sha256: "HS256",
+    sha384: "HS384",
+    sha512: "HS512",
+};
 export async function encodeAndSign(data, algo, secretKey, 
 // istanbul ignore next
-enc = "hex", shouldSalt = true) {
+enc = "base64url", shouldSalt = true) {
     const salt = shouldSalt
         ? await new Promise((resolve, reject) => crypto.randomBytes(64, (err, buffer) => 
         // istanbul ignore next
         err ? reject(err) : resolve(buffer)))
         : Buffer.from("");
-    const bufferData = typeof data === "string" ? Buffer.from(data, "utf-8") : data;
-    const hash = hmacHash(Buffer.concat([salt, bufferData]), algo, secretKey, "raw");
-    const result = Buffer.concat([salt, hash, bufferData]);
-    return bufferToString(result, enc);
+    const header = Buffer.from(JSON.stringify({
+        typ: "JWT",
+        alg: cryptoHeaderMap[algo],
+    }));
+    const saltField = typeof shouldSalt === "string" && shouldSalt ? shouldSalt : "slt";
+    const payload = Buffer.from(JSON.stringify(shouldSalt ? { [saltField]: salt.toString("utf16le"), ...data } : data));
+    const base64urlHeader = header.toString("base64url");
+    const base64urlPayload = payload.toString("base64url");
+    const hash = hmacHash(`${base64urlHeader}.${base64urlPayload}`, algo, secretKey, "raw");
+    return enc === "raw"
+        ? [header, payload, hash]
+        : `${base64urlHeader}.${base64urlPayload}.${hash.toString("base64url")}`;
 }
 /* eslint-enable prefer-arrow/prefer-arrow-functions */
 //# sourceMappingURL=sign.js.map

@@ -2,8 +2,6 @@
  * Fetch utils
  *
  * @module
- * @license 0BSD
- * @author Luke Zhang (https://luke-zhang-04.github.io)
  */
 import fetch from "node-fetch";
 import { AbortController } from "node-abort-controller";
