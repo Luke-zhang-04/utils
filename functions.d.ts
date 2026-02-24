@@ -6,6 +6,7 @@
 /**
  * Passes `value` into `func` if defined, otherwise skips it
  *
+ * @deprecated Use optional chaining instead
  * @example
  *
  * ```ts

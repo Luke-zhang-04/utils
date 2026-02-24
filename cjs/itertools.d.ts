@@ -151,6 +151,52 @@ export declare function cycle<T, K extends Iterable<T> = Iterable<T>>(iterable: 
  */
 export declare function increment(start?: number, step?: number): Generator<number, void, void>;
 /**
+ * Make an iterator that generates numbers by increments by `1` from `[0, stop)`
+ *
+ * Based on [Python's `range` class](https://docs.python.org/3/library/stdtypes.html#range)
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(range(10)) // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ * Array.from(range(1, 11)) // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ * Array.from(range(0, 30, 5)) // [0, 5, 10, 15, 20, 25]
+ * Array.from(range(0, 10, 3)) // [0, 3, 6, 9]
+ * Array.from(range(0, -10, -1)) // [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+ * Array.from(range(0)) // []
+ * Array.from(range(1, 0)) // []
+ * ```
+ *
+ * @param stop - End of range
+ * @returns Generator of evenly spaced values from `0` (inclusive) to `stop` (non-inclusive) by
+ *   increments of 1
+ */
+export declare function range(stop: number): Generator<number, void, void>;
+/**
+ * Make an iterator that generates numbers by increments by `step` from `[start, stop)`
+ *
+ * Based on [Python's `range` class](https://docs.python.org/3/library/stdtypes.html#range)
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(range(10)) // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ * Array.from(range(1, 11)) // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ * Array.from(range(0, 30, 5)) // [0, 5, 10, 15, 20, 25]
+ * Array.from(range(0, 10, 3)) // [0, 3, 6, 9]
+ * Array.from(range(0, -10, -1)) // [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+ * Array.from(range(0)) // []
+ * Array.from(range(1, 0)) // []
+ * ```
+ *
+ * @param start - Start of range
+ * @param stop - End of range
+ * @param step - Increment step, `1` by default
+ * @returns Generator of evenly spaced values from `0` (inclusive) to `end` (non-inclusive) by
+ *   increments of 1
+ */
+export declare function range(start: number, stop: number, step?: number): Generator<number, void, void>;
+/**
  * Make an iterator that filters elements from `data` returning only those that have a
  * corresponding element in `selectors` that is truthy. Stops when either the `data` or `selectors`
  * iterables has been exhausted.

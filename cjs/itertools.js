@@ -6,7 +6,7 @@
  * @module
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.islice = exports.ireduce = exports.reduce = exports.imap = exports.map = exports.ifilter = exports.filter = exports.enumerate = exports.takeWhile = exports.dropWhile = exports.compress = exports.increment = exports.cycle = exports.repeat = exports.accumulate = exports.chain = exports.zip = void 0;
+exports.islice = exports.ireduce = exports.reduce = exports.imap = exports.map = exports.ifilter = exports.filter = exports.enumerate = exports.takeWhile = exports.dropWhile = exports.compress = exports.range = exports.increment = exports.cycle = exports.repeat = exports.accumulate = exports.chain = exports.zip = void 0;
 /**
  * Creates a generator of the n'th element of _each_ iterable, such that `n < length of smallest
  * iterable`
@@ -234,6 +234,50 @@ function* increment(start = 0, step = 1) {
     }
 }
 exports.increment = increment;
+/**
+ * Make an iterator that generates numbers by increments by `step` from `[start, stop)`
+ *
+ * Based on [Python's `range` class](https://docs.python.org/3/library/stdtypes.html#range)
+ *
+ * @example
+ *
+ * ```ts
+ * Array.from(range(10)) // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ * Array.from(range(1, 11)) // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ * Array.from(range(0, 30, 5)) // [0, 5, 10, 15, 20, 25]
+ * Array.from(range(0, 10, 3)) // [0, 3, 6, 9]
+ * Array.from(range(0, -10, -1)) // [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+ * Array.from(range(0)) // []
+ * Array.from(range(1, 0)) // []
+ * ```
+ *
+ * @param start - Start of range
+ * @param stop - End of range. If not given, then `start` will be the end and the range will start
+ *   from `0`.
+ * @param step - Increment step, `1` by default
+ * @returns Generator of evenly spaced values from `0` (inclusive) to `end` (non-inclusive) by
+ *   increments of 1
+ */
+function* range(start, stop, step = 1) {
+    if (stop === undefined) {
+        for (let counter = 0; counter < start; counter++) {
+            yield counter;
+        }
+    }
+    else {
+        if (step > 0) {
+            for (let counter = start; counter < stop; counter += step) {
+                yield counter;
+            }
+        }
+        else {
+            for (let counter = start; counter > stop; counter += step) {
+                yield counter;
+            }
+        }
+    }
+}
+exports.range = range;
 /**
  * Make an iterator that filters elements from `data` returning only those that have a
  * corresponding element in `selectors` that is truthy. Stops when either the `data` or `selectors`
