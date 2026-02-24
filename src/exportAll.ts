@@ -6,6 +6,7 @@
  */
 
 export * from "./array.js"
+export * from "./concurrency.js"
 export * from "./deepEqual.js"
 export * from "./functions.js"
 export {Status, Statuses, status, statuses, phraseStatus, phraseStatuses} from "./http.js"

@@ -6,6 +6,7 @@
  */
 
 export * as array from "./array.js"
+export * as concurrency from "./concurrency.js"
 export * as deepEqual from "./deepEqual.js"
 export * as functions from "./functions.js"
 export * as http from "./http.js"
