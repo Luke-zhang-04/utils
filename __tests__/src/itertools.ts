@@ -221,6 +221,24 @@ describe("itertools", () => {
         })
     })
 
+    describe("range", () => {
+        it.each([
+            [itertools.range(10), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
+            [itertools.range(1, 11), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
+            [itertools.range(0, 30, 5), [0, 5, 10, 15, 20, 25]],
+            [itertools.range(0, 10, 3), [0, 3, 6, 9]],
+            [itertools.range(0, -10, -1), [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]],
+            [itertools.range(0), []],
+            [itertools.range(1, 0), []],
+        ])("should create range", (iter, expected) => {
+            expect(typeof iter[Symbol.iterator]).toBe("function")
+
+            const result = Array.from(iter)
+
+            expect(isEqualArray(result, expected)).toBe(true)
+        })
+    })
+
     describe("compress", () => {
         it.each<[Iterable<number | string>, Iterable<unknown>, any[]]>([
             ["abcdef", [1, 0, 1, 0, 1, 1], ["a", "c", "e", "f"]],
